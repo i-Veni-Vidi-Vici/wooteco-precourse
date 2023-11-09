@@ -10,4 +10,7 @@ public class DiscountPolicy {
         return (totalAmount >= 10000);
     }
 
+    public static boolean checkChristmasPeriod(Integer day) {
+        return (day <= 25);
+    }
 }
