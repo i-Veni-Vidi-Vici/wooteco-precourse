@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.DiscountPolicy;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
@@ -28,5 +29,19 @@ public class DiscountPolicyTest {
     @CsvSource(value = {"1,true","25,true","26,false","31,false"})
     void checkChristmasPeriod(Integer day, boolean isPeriod){
         assertThat(DiscountPolicy.checkChristmasPeriod(day)).isEqualTo(isPeriod);
+    }
+
+    @DisplayName("평일 할인 금액 반환")
+    @ParameterizedTest
+    @CsvSource(value = {"1,0","9,0","5,2023","31,2023"})
+    void calculateWeekday(Integer day, Integer discountPrice){
+        assertThat(DiscountPolicy.calculateWeekday(day)).isEqualTo(discountPrice);
+    }
+
+    @DisplayName("평일 기간 체크")
+    @ParameterizedTest
+    @CsvSource(value = {"1,false","9,false","5,true","31,true"})
+    void checkWeekdayPeriod(Integer day, boolean isPeriod){
+        assertThat(DiscountPolicy.checkWeekdayPeriod(day)).isEequlTo(isPeriod);
     }
 }
