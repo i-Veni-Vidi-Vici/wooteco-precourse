@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class DiscountPolicyTest {
     @DisplayName("크리스마스 디데이 할인 금액 반환")
     @ParameterizedTest
-    @CsvSource(value = {"1,1000", "25,3400"})
+    @CsvSource(value = {"1,1000", "25,3400", "26, 0","31,0"})
     void calculateChristmas(Integer day, Integer discountPrice) {
         assertThat(DiscountPolicy.calculateChristmas(day)).isEqualTo(discountPrice);
     }
