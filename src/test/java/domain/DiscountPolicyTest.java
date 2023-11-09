@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.DiscountPolicy;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -51,7 +52,7 @@ public class DiscountPolicyTest {
         assertThat(DiscountPolicy.checkWeekdayPeriod(day)).isEqualTo(false);
     }
 
-    @DisplayName("평일 기간 체크, 주말")
+    @DisplayName("평일 기간 체크, 평일")
     @ParameterizedTest
     @ValueSource(ints = {
             3, 4, 5, 6, 7,
@@ -62,5 +63,30 @@ public class DiscountPolicyTest {
     })
     void checkWeekdayPeriodByWeekday(Integer day) {
         assertThat(DiscountPolicy.checkWeekdayPeriod(day)).isEqualTo(true);
+    }
+    @DisplayName("주말 할인 금액 반환, 주말")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            1, 2,
+            8, 9,
+            15, 16,
+            22, 23,
+            29, 30
+    })
+    void calculateWeekendByWeekend(Integer day){
+        assertThat(DiscountPolicy.calculateWeekend(day)).isEqualTo(2023);
+    }
+
+    @DisplayName("주말 할인 금액 반환, 평일")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            3, 4, 5, 6, 7,
+            10, 11, 12, 13, 14,
+            17, 18, 19, 20, 21,
+            24, 25, 26, 27, 28,
+            31
+    })
+    void calculateWeekendByWeekday(Integer day){
+        assertThat(DiscountPolicy.calculateWeekend(day)).isEqualTo(0);
     }
 }
