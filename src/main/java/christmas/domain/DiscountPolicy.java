@@ -14,7 +14,7 @@ public class DiscountPolicy {
         return (totalAmount >= 10000);
     }
 
-    public static boolean checkChristmasPeriod(Integer day) {
+    private static boolean checkChristmasPeriod(Integer day) {
         return (day <= 25);
     }
 
@@ -26,7 +26,7 @@ public class DiscountPolicy {
         return 0;
     }
 
-    public static boolean checkWeekday(Integer day) {
+    private static boolean checkWeekday(Integer day) {
         for (int i = 0; i < 5; i++) {
             if (day >= ((3 + (7 * i))) && (day <= (7 + (7 * i)))) {
                 return true;
