@@ -53,4 +53,22 @@ public class DiscountPolicy {
 
         return false;
     }
+
+    public static Integer calculateSpecial(Integer day) {
+        if (checkSpecial(day)) {
+            return 1000;
+        }
+
+        return 0;
+    }
+
+    private static boolean checkSpecial(Integer day) {
+        for (int i = 0; i < 5; i++) {
+            if (day == ((3 + (7 * i))) || (day == 25)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

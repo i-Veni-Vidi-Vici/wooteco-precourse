@@ -96,7 +96,7 @@ public class DiscountPolicyTest {
     @DisplayName("특별 할인 받는 날, 일요일 + 크리스마스")
     @ParameterizedTest
     @ValueSource(ints = {3, 10, 17, 24, 25, 31})
-    void calculateSpecial(Integer day) {
+    void calculateSpecialByTheDay(Integer day) {
         assertThat(DiscountPolicy.calculateSpecial(day)).isEqualTo(1000);
     }
 
@@ -109,7 +109,7 @@ public class DiscountPolicyTest {
             18, 19, 20, 21, 22,
             26, 27, 28, 29,
     })
-    void calculateSpecial(Integer day) {
+    void calculateSpecialByNotTheDay(Integer day) {
         assertThat(DiscountPolicy.calculateSpecial(day)).isEqualTo(0);
     }
 }
