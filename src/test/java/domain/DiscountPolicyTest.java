@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.DiscountPolicy;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -49,7 +48,7 @@ public class DiscountPolicyTest {
             29, 30
     })
     void checkWeekdayPeriodByWeekend(Integer day) {
-        assertThat(DiscountPolicy.checkWeekdayPeriod(day)).isEqualTo(false);
+        assertThat(DiscountPolicy.checkWeekday(day)).isEqualTo(false);
     }
 
     @DisplayName("평일 기간 체크, 평일")
@@ -62,7 +61,7 @@ public class DiscountPolicyTest {
             31
     })
     void checkWeekdayPeriodByWeekday(Integer day) {
-        assertThat(DiscountPolicy.checkWeekdayPeriod(day)).isEqualTo(true);
+        assertThat(DiscountPolicy.checkWeekday(day)).isEqualTo(true);
     }
     @DisplayName("주말 할인 금액 반환, 주말")
     @ParameterizedTest

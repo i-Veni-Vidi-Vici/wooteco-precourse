@@ -6,6 +6,7 @@ public class DiscountPolicy {
         if (checkChristmasPeriod(day)) {
             return (1000 + ((day - 1) * 100));
         }
+
         return 0;
     }
 
@@ -18,19 +19,38 @@ public class DiscountPolicy {
     }
 
     public static Integer calculateWeekday(Integer day) {
-        if (checkWeekdayPeriod(day)) {
+        if (checkWeekday(day)) {
             return 2023;
         }
+
         return 0;
     }
 
-
-    public static boolean checkWeekdayPeriod(Integer day) {
+    public static boolean checkWeekday(Integer day) {
         for (int i = 0; i < 5; i++) {
             if (day >= ((3 + (7 * i))) && (day <= (7 + (7 * i)))) {
                 return true;
             }
         }
+
+        return false;
+    }
+
+    public static Integer calculateWeekend(Integer day) {
+        if (checkWeekend(day)) {
+            return 2023;
+        }
+
+        return 0;
+    }
+
+    private static boolean checkWeekend(Integer day) {
+        for (int i = 0; i < 5; i++) {
+            if (day >= ((1 + (7 * i))) && (day <= (2 + (7 * i)))) {
+                return true;
+            }
+        }
+
         return false;
     }
 }
