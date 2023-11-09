@@ -22,4 +22,11 @@ public class DiscountPolicyTest {
         assertThat(DiscountPolicy.checkTarget(totalAmount)).isEqualTo(isTarget);
 
     }
+
+    @DisplayName("크리스마스 디데이 기간 체크")
+    @ParameterizedTest
+    @CsvSource(value = {"1,true","25,true","26,false","31,false"})
+    void checkChristmasPeriod(Integer day, boolean isPeriod){
+        assertThat(DiscountPolicy.checkChristmasPeriod(day)).isEqualTo(isPeriod);
+    }
 }
