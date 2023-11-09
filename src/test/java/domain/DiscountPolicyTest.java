@@ -33,7 +33,7 @@ public class DiscountPolicyTest {
 
     @DisplayName("평일 할인 금액 반환")
     @ParameterizedTest
-    @CsvSource(value = {"1,0","9,0","5,2023","31,2023"})
+    @CsvSource(value = {"1,0","9,0","5,2023","29,0","31,2023"})
     void calculateWeekday(Integer day, Integer discountPrice){
         assertThat(DiscountPolicy.calculateWeekday(day)).isEqualTo(discountPrice);
     }
@@ -42,6 +42,6 @@ public class DiscountPolicyTest {
     @ParameterizedTest
     @CsvSource(value = {"1,false","9,false","5,true","31,true"})
     void checkWeekdayPeriod(Integer day, boolean isPeriod){
-        assertThat(DiscountPolicy.checkWeekdayPeriod(day)).isEequlTo(isPeriod);
+        assertThat(DiscountPolicy.checkWeekdayPeriod(day)).isEqualTo(isPeriod);
     }
 }
