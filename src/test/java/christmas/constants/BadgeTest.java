@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class BadgeTest {
 
-
     @DisplayName("총 혜택 금액에 따라, 배지 부여 - 산타")
     @ParameterizedTest
     @ValueSource(ints = {20000, 25000})
@@ -36,6 +35,4 @@ public class BadgeTest {
     void grantBadgeByNothing(Integer totalDiscount){
         assertThat(Badge.grant(totalDiscount)).isEqualTo(Badge.NOTHING);
     }
-
-
 }
