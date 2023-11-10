@@ -154,10 +154,4 @@ public class DiscountPolicyTest {
     void calculateFreeGift(Integer totalAmount, Integer count) {
         assertThat(DiscountPolicy.calculateFreeGift(totalAmount)).isEqualTo(count);
     }
-
-//    @ParameterizedTest
-//    @CsvSource(value = {"1,"})
-//    void calculateTotalAmount(){
-//        assertThat(DiscountPolicy.calculateTotalAmount(day, totalAmount)).isEqualTo();
-//    }
 }

@@ -9,6 +9,7 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
 
 public class OrderTest {
     private static Map<Food, Integer> orderedMenu;
@@ -31,6 +32,8 @@ public class OrderTest {
         orderedMenu.put(Food.ZERO_COLA, 1);
         orderedMenu.put(Food.RED_WINE, 1);
         orderedMenu.put(Food.CHAMPAGNE, 1);
+
+        // 총 주문 금액:
     }
 
     @DisplayName("주문 메뉴에서 애피타이저 개수 체크")
@@ -55,5 +58,12 @@ public class OrderTest {
     @Test
     void checkDrink() {
         assertThat(Order.checkDrink(orderedMenu)).isEqualTo(3);
+    }
+
+
+    @DisplayName("총 주문 금액 계산")
+    @ParameterizedTest
+    void calculateTotalAmount(){
+        assertThat(Order.calculateTotalAmount(orderedMenu)).isEqualTo();
     }
 }
