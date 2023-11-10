@@ -10,11 +10,11 @@ public class InputView {
     }
 
     public static Integer convertToNumber(String userInput) {
-
+        checkNumber(userInput);
         return Integer.parseInt(userInput);
     }
 
-    public static void checkNumber(String userInput) {
+    private static void checkNumber(String userInput) {
         try {
             Integer.parseInt(userInput);
         } catch (NumberFormatException ex) {

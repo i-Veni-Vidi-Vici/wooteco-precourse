@@ -32,11 +32,11 @@ public class InputViewTest {
         assertThat(InputView.convertToNumber(userInput)).isEqualTo(convertedInput);
     }
 
-    @DisplayName("정수 이외의 값을 입력할 때, 예외 처리")
+    @DisplayName("정수 이외의 값을 변환할 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"a", " ", "1.1", "1a"})
-    void checkNumber(String userInput) {
-        assertThatThrownBy(() -> InputView.checkNumber(userInput))
+    void convertToNumberByNotInteger(String userInput) {
+        assertThatThrownBy(() -> InputView.convertToNumber(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
