@@ -67,6 +67,8 @@ public class DiscountPolicyTest {
         assertThat(DiscountPolicy.calculateWeekday(day)).isEqualTo(0);
     }
 
+
+
     @DisplayName("주말 할인 금액 반환, 평일")
     @ParameterizedTest
     @ValueSource(ints = {
@@ -126,4 +128,10 @@ public class DiscountPolicyTest {
     void calculateFreeGift(Integer totalAmount, Integer count) {
         assertThat(DiscountPolicy.calculateFreeGift(totalAmount)).isEqualTo(count);
     }
+
+//    @ParameterizedTest
+//    @CsvSource(value = {"1,"})
+//    void calculateTotalAmount(){
+//        assertThat(DiscountPolicy.calculateTotalAmount(day, totalAmount)).isEqualTo();
+//    }
 }

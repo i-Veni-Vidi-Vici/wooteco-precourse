@@ -36,6 +36,8 @@ public class DiscountPolicy {
         return false;
     }
 
+
+
     public static Integer calculateWeekend(Integer day) {
         if (checkWeekend(day)) {
             return 2023;
