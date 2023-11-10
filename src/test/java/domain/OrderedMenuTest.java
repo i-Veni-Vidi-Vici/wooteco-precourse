@@ -34,13 +34,12 @@ public class OrderedMenuTest {
 
     }
 
-
-    @DisplayName("총 주문 음식 수량이 20개를 넘을 시, 예외 처리 ")
+    @DisplayName("총 주문 음식 수량이 20개를 넘을 시, 예외 처리")
     @Test
-    void checkTotalCount(){
+    void checkTotalCount() {
         // given
         orderedMenu.put(Food.MUSHROOM_SOUP, 5);
-        orderedMenu.put(Food.T_BONE_STEAK, 15);
+        orderedMenu.put(Food.T_BONE_STEAK, 16);
 
         // when, then
         assertThatThrownBy(() -> OrderedMenu.checkTotalCount(orderedMenu))
