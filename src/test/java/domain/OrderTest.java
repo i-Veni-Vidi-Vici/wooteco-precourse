@@ -9,6 +9,9 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class OrderTest {
     private static Map<Food, Integer> orderedMenu;
@@ -64,5 +67,11 @@ public class OrderTest {
     @Test
     void calculateTotalAmount() {
         assertThat(Order.calculateTotalAmount(orderedMenu)).isEqualTo(319000);
+    }
+
+    @DisplayName("총 주문 금액에서 할인 후 금액 반환")
+    @Test
+    void discount() {
+        assertThat(Order.discount(10000, 2000).isEqualTo(8000);
     }
 }
