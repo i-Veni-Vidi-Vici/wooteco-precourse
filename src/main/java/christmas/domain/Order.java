@@ -6,14 +6,30 @@ import java.util.Map;
 public class Order {
 
     public static Integer checkAppetizer(Map<Food, Integer> orderedMenu) {
-        Integer appetizerCount = 0;
+        return checkType(orderedMenu, "애피타이저");
+    }
+
+    public static Integer checkMain(Map<Food, Integer> orderedMenu) {
+        return checkType(orderedMenu, "메인");
+    }
+
+    public static Integer checkDessert(Map<Food, Integer> orderedMenu) {
+        return checkType(orderedMenu, "디저트");
+    }
+
+    public static Integer checkDrink(Map<Food, Integer> orderedMenu) {
+        return checkType(orderedMenu, "음료");
+    }
+
+    private static Integer checkType(Map<Food, Integer> orderedMenu, String type) {
+        Integer typeCount = 0;
 
         for (Food food : orderedMenu.keySet()) {
-            if (food.getType().equals("애피타이저")) {
-                appetizerCount += orderedMenu.get(food);
+            if (food.getType().equals(type)) {
+                typeCount += orderedMenu.get(food);
             }
         }
 
-        return appetizerCount;
+        return typeCount;
     }
 }

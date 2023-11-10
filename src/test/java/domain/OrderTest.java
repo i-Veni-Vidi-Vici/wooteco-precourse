@@ -41,13 +41,13 @@ public class OrderTest {
     @DisplayName("주문 메뉴에서 메인 개수 체크")
     @Test
     void checkMain() {
-        assertThat(Order.checkMain(orderedMenu)).isEqualTo(3);
+        assertThat(Order.checkMain(orderedMenu)).isEqualTo(4);
     }
 
     @DisplayName("주문 메뉴에서 디저트 개수 체크")
     @Test
     void checkDessert() {
-        assertThat(Order.checkDessert(orderedMenu)).isEqualTo(3);
+        assertThat(Order.checkDessert(orderedMenu)).isEqualTo(1);
     }
 
     @DisplayName("주문 메뉴에서 음료 개수 체크")
