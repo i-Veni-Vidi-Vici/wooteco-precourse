@@ -112,4 +112,18 @@ public class DiscountPolicyTest {
     void calculateSpecialByNotTheDay(Integer day) {
         assertThat(DiscountPolicy.calculateSpecial(day)).isEqualTo(0);
     }
+
+    @DisplayName("증정 이벤트 개수 반환")
+    @ParameterizedTest
+    @CsvSource(value = {"119999,0", "120000,1","150000,1", "240000,2"})
+    void giveFreeGift(Integer totalAmount, Integer count) {
+        assertThat(DiscountPolicy.giveFreeGift(totalAmount)).isEqualTo(count);
+    }
+
+    @DisplayName("증정 이벤트 금액 반환")
+    @ParameterizedTest
+    @CsvSource(value = {"119999,0", "120000,25000","150000,25000", "240000,50000"})
+    void calculateFreeGift(Integer totalAmount, Integer count) {
+        assertThat(DiscountPolicy.calculateFreeGift(totalAmount)).isEqualTo(count);
+    }
 }
