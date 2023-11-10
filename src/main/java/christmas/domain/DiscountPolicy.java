@@ -71,4 +71,12 @@ public class DiscountPolicy {
 
         return false;
     }
+
+    public static Integer giveFreeGift(Integer totalAmount) {
+        return (totalAmount / 120000);
+    }
+
+    public static Integer calculateFreeGift(Integer totalAmount) {
+        return (25000 * giveFreeGift(totalAmount));
+    }
 }
