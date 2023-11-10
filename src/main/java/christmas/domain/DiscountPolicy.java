@@ -1,5 +1,8 @@
 package christmas.domain;
 
+import christmas.constants.Food;
+import java.util.Map;
+
 public class DiscountPolicy {
 
     public static Integer calculateChristmas(Integer day) {
@@ -18,9 +21,9 @@ public class DiscountPolicy {
         return (day <= 25);
     }
 
-    public static Integer calculateWeekday(Integer day) {
+    public static Integer calculateWeekday(Integer day, Map<Food, Integer> orderedMenu) {
         if (checkWeekday(day)) {
-            return 2023;
+            return (2023 * Order.checkDessert(orderedMenu));
         }
 
         return 0;
@@ -37,10 +40,9 @@ public class DiscountPolicy {
     }
 
 
-
-    public static Integer calculateWeekend(Integer day) {
+    public static Integer calculateWeekend(Integer day, Map<Food, Integer> orderedMenu) {
         if (checkWeekend(day)) {
-            return 2023;
+            return (2023 * Order.checkMain(orderedMenu));
         }
 
         return 0;

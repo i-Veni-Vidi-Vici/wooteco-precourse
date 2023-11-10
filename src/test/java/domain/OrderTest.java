@@ -24,8 +24,9 @@ public class OrderTest {
         orderedMenu.put(Food.T_BONE_STEAK, 2);
         orderedMenu.put(Food.BBQ_RIBS, 1);
         orderedMenu.put(Food.CHRISTMAS_PASTA, 1);
-        // 디저트 - 1
+        // 디저트 - 2
         orderedMenu.put(Food.CHOCO_CAKE, 1);
+        orderedMenu.put(Food.ICE_CREAM, 1);
         // 음료 -3
         orderedMenu.put(Food.ZERO_COLA, 1);
         orderedMenu.put(Food.RED_WINE, 1);
@@ -47,7 +48,7 @@ public class OrderTest {
     @DisplayName("주문 메뉴에서 디저트 개수 체크")
     @Test
     void checkDessert() {
-        assertThat(Order.checkDessert(orderedMenu)).isEqualTo(1);
+        assertThat(Order.checkDessert(orderedMenu)).isEqualTo(2);
     }
 
     @DisplayName("주문 메뉴에서 음료 개수 체크")
