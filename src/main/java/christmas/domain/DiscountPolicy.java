@@ -83,4 +83,12 @@ public class DiscountPolicy {
     public static Integer calculateFreeGift(Integer totalAmount) {
         return (25000 * giveFreeGift(totalAmount));
     }
+
+    public static Integer calculateTotalDiscount(Integer day, Integer totalAmount, Map<Food, Integer> orderedMenu) {
+        return (calculateChristmas(day)
+                + calculateWeekday(day, orderedMenu)
+                + calculateWeekend(day, orderedMenu)
+                + calculateSpecial(day)
+                + calculateFreeGift(totalAmount));
+    }
 }
