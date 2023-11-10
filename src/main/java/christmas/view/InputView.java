@@ -14,16 +14,16 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static Integer convertToNumber(String userInput) {
-        checkNumber(userInput);
+    public static Integer convertToNumber(String userInput, String exceptionMessage) {
+        checkNumber(userInput, exceptionMessage);
         return Integer.parseInt(userInput);
     }
 
-    private static void checkNumber(String userInput) {
+    private static void checkNumber(String userInput, String exceptionMessage) {
         try {
             Integer.parseInt(userInput);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(exceptionMessage);
         }
     }
 
@@ -55,7 +55,8 @@ public class InputView {
         for (String input : inputs) {
             String[] separatedInput = input.split("-");
             checkMenu(separatedInput[0]);
-            menu.put(separatedInput[0], convertToNumber(separatedInput[1]));
+            menu.put(separatedInput[0], convertToNumber(separatedInput[1],
+                    "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
         }
 
         return menu;

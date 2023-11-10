@@ -34,14 +34,16 @@ public class InputViewTest {
     @ParameterizedTest
     @CsvSource(value = {"1,1", "20,20", "31,31"})
     void convertToNumber(String userInput, Integer convertedInput) {
-        assertThat(InputView.convertToNumber(userInput)).isEqualTo(convertedInput);
+        assertThat(InputView.convertToNumber(userInput,
+                "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.")).isEqualTo(convertedInput);
     }
 
     @DisplayName("정수 이외의 값을 변환할 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"a", " ", "1.1", "1a"})
     void convertToNumberByNotInteger(String userInput) {
-        assertThatThrownBy(() -> InputView.convertToNumber(userInput))
+        assertThatThrownBy(() -> InputView.convertToNumber(userInput,
+                "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
