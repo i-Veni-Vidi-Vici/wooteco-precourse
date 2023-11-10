@@ -17,7 +17,7 @@ public class OrderedMenuTest {
     private Map<Food, Integer> orderedMenu;
 
     @BeforeEach
-    void beforEach() {
+    void beforeEach() {
         orderedMenu = new HashMap<>();
     }
 
@@ -30,6 +30,20 @@ public class OrderedMenuTest {
 
         // when, then
         assertThatThrownBy(() -> OrderedMenu.checkFoodCount(orderedMenu))
+                .isInstanceOf(IllegalArgumentException.class);
+
+    }
+
+
+    @DisplayName("총 주문 음식 수량이 20개를 넘을 시, 예외 처리 ")
+    @Test
+    void checkTotalCount(){
+        // given
+        orderedMenu.put(Food.MUSHROOM_SOUP, 5);
+        orderedMenu.put(Food.T_BONE_STEAK, 15);
+
+        // when, then
+        assertThatThrownBy(() -> OrderedMenu.checkTotalCount(orderedMenu))
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
