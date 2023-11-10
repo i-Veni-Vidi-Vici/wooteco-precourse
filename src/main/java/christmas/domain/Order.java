@@ -8,6 +8,7 @@ import static christmas.constants.Type.MAIN;
 import christmas.constants.Food;
 import christmas.constants.Type;
 import java.util.Map;
+import org.assertj.core.api.AbstractBigDecimalAssert;
 
 public class Order {
 
@@ -46,7 +47,10 @@ public class Order {
             totalAmount += (food.getPrice() * orderedMenu.get(food));
         }
 
-        return  totalAmount;
+        return totalAmount;
     }
 
+    public static Integer discount(Integer totalAmount, Integer totalDiscount) {
+        return (totalAmount - totalDiscount);
+    }
 }

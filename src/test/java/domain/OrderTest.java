@@ -72,6 +72,6 @@ public class OrderTest {
     @DisplayName("총 주문 금액에서 할인 후 금액 반환")
     @Test
     void discount() {
-        assertThat(Order.discount(10000, 2000).isEqualTo(8000);
+        assertThat(Order.discount(10000, 2000)).isEqualTo(8000);
     }
 }
