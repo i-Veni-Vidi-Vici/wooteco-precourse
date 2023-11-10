@@ -212,11 +212,19 @@ public class DiscountPolicyTest {
 
     @DisplayName("총 할인 금액 계산, 평일 + 크리스마스 + 특별 할인")
     @ParameterizedTest
-
     @ValueSource(ints = {3, 10, 17, 24, 25})
     void calculateTotalDiscountByWeekdayAndXmasAndSpecial(Integer day) {
         assertThat(DiscountPolicy.calculateTotalDiscount(day, Order.calculateTotalAmount(orderedMenu),
                 orderedMenu)).isEqualTo(55046
                 + (1000 + (day - 1) * 100)); // 평일 + 특별 할인 55046 + 크리스마스 할인 1000+(day-1)*100
     }
+
+    @DisplayName("총 혜택 금액에 따라, 배지 부여")
+    @ParameterizedTest
+    @CsvSource()
+    void calculateBadge(){
+        assertThat(DiscountPolicy.calculateBadge(totalDiscount)).isEqualTo(0);
+    }
+
+
 }
