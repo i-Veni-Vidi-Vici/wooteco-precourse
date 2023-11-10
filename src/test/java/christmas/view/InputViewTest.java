@@ -80,4 +80,12 @@ public class InputViewTest {
                 .isEqualTo(Map.of("해산물파스타", 2,
                         "레드와인", 1));
     }
+
+    @DisplayName("없는 메뉴 입력할 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"토마토파스타", "레드와인1"})
+    void checkMenu(String food){
+        assertThatThrownBy(() -> InputView.checkMenu(food))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
