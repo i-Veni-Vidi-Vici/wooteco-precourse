@@ -30,7 +30,7 @@ public class OrderedMenuTest {
         orderedMenu.put(Food.MUSHROOM_SOUP, foodCount);
 
         // when, then
-        assertDoesNotThrow(()->OrderedMenu.checkTotalCount(orderedMenu));
+        assertDoesNotThrow(()->OrderedMenu.checkFoodCount(orderedMenu));
     }
 
     @DisplayName("한 메뉴당 1개 이상 주문 안할 시, 예외 처리")
@@ -67,5 +67,27 @@ public class OrderedMenuTest {
         assertThatThrownBy(() -> OrderedMenu.checkTotalCount(orderedMenu))
                 .isInstanceOf(IllegalArgumentException.class);
 
+    }
+
+    @DisplayName("음료 이외의 메뉴도 주문시, 예외 처리x")
+    @Test
+    void checkOnlyDrinkByNotOnlyDrink(){
+        // given
+        orderedMenu.put(Food.MUSHROOM_SOUP, 5);
+
+        // when, then
+        assertDoesNotThrow(()->OrderedMenu.checkOnlyDrink(orderedMenu));
+    }
+
+    @DisplayName("음료만 시키면, 예외 처리")
+    @Test
+    void checkOnlyDrinkByOnlyDrink(){
+        // given
+        orderedMenu.put(Food.ZERO_COLA, 5);
+        orderedMenu.put(Food.RED_WINE, 1);
+
+        // when, then
+        assertThatThrownBy(() -> OrderedMenu.checkOnlyDrink(orderedMenu))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
