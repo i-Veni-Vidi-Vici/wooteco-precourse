@@ -2,21 +2,27 @@ package domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.constants.Food;
 import christmas.domain.Order;
 import java.util.HashMap;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+import java.util.Map;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 public class OrderTest {
 
-
-    @ParameterizedTest
-    @CsvSource(value = {"양송이수프,1","타파스,2","시저샐러드,3", "티본스테이크,1","초코케이크,1"})
-    void checkAppetizer(Food orderedFood, Integer foodCount){
+    @DisplayName("주문 메뉴에서 애피타이저 개수 체크")
+    @Test
+    void checkAppetizer() {
         Map<Food, Integer> orderedMenu = new HashMap<>();
 
-        orderedMenu.put(orderedFood,foodCount);
+        orderedMenu.put(Food.MUSHROOM_SOUP, 1);
+        orderedMenu.put(Food.CAESAR_SALAD, 2);
 
-        assertThat(Order.checkAppetizer(orderedMenu)).isEqualTo(foodCount);
+        orderedMenu.put(Food.T_BONE_STEAK, 3);
+        orderedMenu.put(Food.CHOCO_CAKE, 1);
+        orderedMenu.put(Food.ZERO_COLA, 3);
+
+        assertThat(Order.checkAppetizer(orderedMenu)).isEqualTo(3);
     }
 }
