@@ -1,6 +1,7 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.constants.Food;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -53,9 +54,20 @@ public class InputView {
 
         for (String input : inputs) {
             String[] separatedInput = input.split("-");
+            checkMenu(separatedInput[0]);
             menu.put(separatedInput[0], convertToNumber(separatedInput[1]));
         }
 
         return menu;
+    }
+
+    public static void checkMenu(String userInput) {
+        for (Food food : Food.values()) {
+            if (food.getName().equals(userInput)) {
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 }

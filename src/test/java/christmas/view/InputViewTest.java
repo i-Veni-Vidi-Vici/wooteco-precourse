@@ -84,8 +84,8 @@ public class InputViewTest {
     @DisplayName("없는 메뉴 입력할 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"토마토파스타", "레드와인1"})
-    void checkMenu(String food){
-        assertThatThrownBy(() -> InputView.checkMenu(food))
+    void checkMenu(String userInput){
+        assertThatThrownBy(() -> InputView.checkMenu(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
