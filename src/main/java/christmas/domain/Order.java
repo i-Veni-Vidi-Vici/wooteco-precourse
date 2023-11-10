@@ -38,4 +38,14 @@ public class Order {
 
         return typeCount;
     }
+
+    public static Integer calculateTotalAmount(Map<Food, Integer> orderedMenu) {
+        Integer totalAmount = 0;
+
+        for (Food food : orderedMenu.keySet()) {
+            totalAmount += (food.getPrice() * orderedMenu.get(food));
+        }
+
+        return  totalAmount;
+    }
 }

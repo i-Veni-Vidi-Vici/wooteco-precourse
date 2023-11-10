@@ -9,7 +9,6 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 
 public class OrderTest {
     private static Map<Food, Integer> orderedMenu;
@@ -18,22 +17,22 @@ public class OrderTest {
     static void beforeAll() {
         orderedMenu = new HashMap<>();
 
-        // 애피타이저 - 3
+        // 애피타이저 - 3, 22,000원
         orderedMenu.put(Food.MUSHROOM_SOUP, 1);
         orderedMenu.put(Food.CAESAR_SALAD, 2);
-        // 메인 - 4
+        // 메인 - 4, 189,000원
         orderedMenu.put(Food.T_BONE_STEAK, 2);
         orderedMenu.put(Food.BBQ_RIBS, 1);
         orderedMenu.put(Food.CHRISTMAS_PASTA, 1);
-        // 디저트 - 2
+        // 디저트 - 2, 20,000원
         orderedMenu.put(Food.CHOCO_CAKE, 1);
         orderedMenu.put(Food.ICE_CREAM, 1);
-        // 음료 -3
+        // 음료 -3, 88,000원
         orderedMenu.put(Food.ZERO_COLA, 1);
         orderedMenu.put(Food.RED_WINE, 1);
         orderedMenu.put(Food.CHAMPAGNE, 1);
 
-        // 총 주문 금액:
+        // 총 주문 금액: 319,000원
     }
 
     @DisplayName("주문 메뉴에서 애피타이저 개수 체크")
@@ -62,8 +61,8 @@ public class OrderTest {
 
 
     @DisplayName("총 주문 금액 계산")
-    @ParameterizedTest
-    void calculateTotalAmount(){
-        assertThat(Order.calculateTotalAmount(orderedMenu)).isEqualTo();
+    @Test
+    void calculateTotalAmount() {
+        assertThat(Order.calculateTotalAmount(orderedMenu)).isEqualTo(319000);
     }
 }
