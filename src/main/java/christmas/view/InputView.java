@@ -1,6 +1,10 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class InputView {
 
@@ -23,7 +27,7 @@ public class InputView {
     }
 
     public static void checkZero(String userInput) {
-        if(userInput.charAt(0) == '0'){
+        if (userInput.charAt(0) == '0') {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
         }
     }
@@ -34,5 +38,24 @@ public class InputView {
         }
     }
 
+    public static String getOrder() {
+        System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
+        return Console.readLine();
+    }
 
+    private static List<String> convertToList(String userInput) {
+        return Arrays.asList(userInput.split(","));
+    }
+
+    public static Map<String, Integer> convertToMap(String userInput) {
+        Map<String, Integer> menu = new HashMap<>();
+        List<String> inputs = convertToList(userInput);
+
+        for (String input : inputs) {
+            String[] separatedInput = input.split("-");
+            menu.put(separatedInput[0], convertToNumber(separatedInput[1]));
+        }
+
+        return menu;
+    }
 }

@@ -68,28 +68,16 @@ public class InputViewTest {
         System.setIn(new ByteArrayInputStream("해산물파스타-2,레드와인-1".getBytes()));
 
         // when, then
-        assertThat(InputView.getDate()).isEqualTo("해산물파스타-2,레드와인-1");
+        assertThat(InputView.getOrder()).isEqualTo("해산물파스타-2,레드와인-1");
 
         Console.close();
     }
 
-    @DisplayName("입력 문자열 분리하기")
-    @Test
-    void split() {
-        assertThat(InputView.split("해산물파스타-2,레드와인-1")).isEqualTo(new String[]{"해산물파스타-2", "레드와인-1"});
-    }
-
-    @DisplayName("입력 문자열을 리스트로 바꾸기")
+    @DisplayName("입력 문자열을 맵으로 음식과 수량을 분리하기")
     @Test
     void convertToList() {
-        assertThat(InputView.convertToList("해산물파스타-2,레드와인-1")).isEqualto(List.of("해산물파스타-2", "레드와인-1"));
-    }
-
-    @DisplayName("문자열 리스트를 맵으로 음식과 수량을 분리하기")
-    @Test
-    void convertToList() {
-        assertThat(InputView.convertToMap(List.of("해산물파스타-2", "레드와인-1")))
-                .isEqualto(Map.of("해산물파스타", 2,
+        assertThat(InputView.convertToMap("해산물파스타-2,레드와인-1"))
+                .isEqualTo(Map.of("해산물파스타", 2,
                         "레드와인", 1));
     }
 }
