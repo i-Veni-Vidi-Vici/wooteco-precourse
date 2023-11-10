@@ -53,7 +53,7 @@ public class InputViewTest {
     @DisplayName("입력 값 앞에 0이 있을 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"01", "000000010", "0", "0a"})
-    void checkZero(Integer userInput) {
+    void checkZero(String userInput) {
         assertThatThrownBy(() -> InputView.checkZero(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
