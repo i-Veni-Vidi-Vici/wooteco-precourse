@@ -5,7 +5,13 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.util.List;
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -16,7 +22,6 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"1", "20", "31"})
     void getDate(String userInput) {
-        // given
         System.setIn(new ByteArrayInputStream(userInput.getBytes()));
 
         // when, then
@@ -54,5 +59,37 @@ public class InputViewTest {
     void checkRange(Integer userInput) {
         assertThatThrownBy(() -> InputView.checkRange(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("주문 메뉴 입력 받기")
+    @Test
+    void getOrder() {
+        // given
+        System.setIn(new ByteArrayInputStream("해산물파스타-2,레드와인-1".getBytes()));
+
+        // when, then
+        assertThat(InputView.getDate()).isEqualTo("해산물파스타-2,레드와인-1");
+
+        Console.close();
+    }
+
+    @DisplayName("입력 문자열 분리하기")
+    @Test
+    void split() {
+        assertThat(InputView.split("해산물파스타-2,레드와인-1")).isEqualTo(new String[]{"해산물파스타-2", "레드와인-1"});
+    }
+
+    @DisplayName("입력 문자열을 리스트로 바꾸기")
+    @Test
+    void convertToList() {
+        assertThat(InputView.convertToList("해산물파스타-2,레드와인-1")).isEqualto(List.of("해산물파스타-2", "레드와인-1"));
+    }
+
+    @DisplayName("문자열 리스트를 맵으로 음식과 수량을 분리하기")
+    @Test
+    void convertToList() {
+        assertThat(InputView.convertToMap(List.of("해산물파스타-2", "레드와인-1")))
+                .isEqualto(Map.of("해산물파스타", 2,
+                        "레드와인", 1));
     }
 }
