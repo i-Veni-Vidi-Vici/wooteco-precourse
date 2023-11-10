@@ -1,6 +1,7 @@
 package domain;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import christmas.constants.Food;
 import christmas.domain.OrderedMenu;
@@ -21,10 +22,21 @@ public class OrderedMenuTest {
         orderedMenu = new HashMap<>();
     }
 
+    @DisplayName("한 메뉴당 1개 이상 주문 시, 예외 처리 x")
+    @ParameterizedTest
+    @ValueSource(ints = {1, 2})
+    void checkFoodCountByOneOrMore(Integer foodCount) {
+        // given
+        orderedMenu.put(Food.MUSHROOM_SOUP, foodCount);
+
+        // when, then
+        assertDoesNotThrow(()->OrderedMenu.checkTotalCount(orderedMenu));
+    }
+
     @DisplayName("한 메뉴당 1개 이상 주문 안할 시, 예외 처리")
     @ParameterizedTest
     @ValueSource(ints = {0, -1})
-    void checkFoodCount(Integer foodCount) {
+    void checkFoodCountByUnderOne(Integer foodCount) {
         // given
         orderedMenu.put(Food.MUSHROOM_SOUP, foodCount);
 
@@ -34,9 +46,19 @@ public class OrderedMenuTest {
 
     }
 
+    @DisplayName("총 주문 음식 수량이 20개를 넘지 않으면, 예외 처리x")
+    @Test
+    void checkTotalCountByTwentyOrLess() {
+        // given
+        orderedMenu.put(Food.MUSHROOM_SOUP, 5);
+        orderedMenu.put(Food.T_BONE_STEAK, 15);
+
+        // when, then
+        assertDoesNotThrow(()->OrderedMenu.checkTotalCount(orderedMenu));
+    }
     @DisplayName("총 주문 음식 수량이 20개를 넘을 시, 예외 처리")
     @Test
-    void checkTotalCount() {
+    void checkTotalCountByOverTwenty() {
         // given
         orderedMenu.put(Food.MUSHROOM_SOUP, 5);
         orderedMenu.put(Food.T_BONE_STEAK, 16);
