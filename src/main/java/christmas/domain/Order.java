@@ -1,31 +1,37 @@
 package christmas.domain;
 
+import static christmas.constants.Type.APPETIZER;
+import static christmas.constants.Type.DESSERT;
+import static christmas.constants.Type.DRINK;
+import static christmas.constants.Type.MAIN;
+
 import christmas.constants.Food;
+import christmas.constants.Type;
 import java.util.Map;
 
 public class Order {
 
     public static Integer checkAppetizer(Map<Food, Integer> orderedMenu) {
-        return checkType(orderedMenu, "애피타이저");
+        return checkType(orderedMenu, APPETIZER);
     }
 
     public static Integer checkMain(Map<Food, Integer> orderedMenu) {
-        return checkType(orderedMenu, "메인");
+        return checkType(orderedMenu, MAIN);
     }
 
     public static Integer checkDessert(Map<Food, Integer> orderedMenu) {
-        return checkType(orderedMenu, "디저트");
+        return checkType(orderedMenu, DESSERT);
     }
 
     public static Integer checkDrink(Map<Food, Integer> orderedMenu) {
-        return checkType(orderedMenu, "음료");
+        return checkType(orderedMenu, DRINK);
     }
 
-    private static Integer checkType(Map<Food, Integer> orderedMenu, String type) {
+    private static Integer checkType(Map<Food, Integer> orderedMenu, Type type) {
         Integer typeCount = 0;
 
         for (Food food : orderedMenu.keySet()) {
-            if (food.getType().equals(type)) {
+            if (food.getType() == type) {
                 typeCount += orderedMenu.get(food);
             }
         }
