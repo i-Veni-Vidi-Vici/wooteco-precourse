@@ -93,8 +93,8 @@ public class InputViewTest {
 
     @DisplayName("중복되는 음식 입력할 때, 예외 처리")
     @Test
-    void checkDuplication(){
-        assertThatThrownBy(() -> InputView.checkDuplication())
+    void convertToMap(){
+        assertThatThrownBy(() -> InputView.convertToMap("해산물파스타-2,해산물파스타-2,레드와인-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -59,6 +59,7 @@ public class InputView {
                     "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
         }
 
+        checkDuplication(inputs, menu);
         return menu;
     }
 
@@ -71,4 +72,11 @@ public class InputView {
 
         throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
+
+    private static void checkDuplication(List<String> inputs, Map<String,Integer> menu) {
+        if(inputs.size() != menu.size()){
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
 }
