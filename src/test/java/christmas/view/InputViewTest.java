@@ -90,4 +90,11 @@ public class InputViewTest {
         assertThatThrownBy(() -> InputView.checkMenu(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("중복되는 음식 입력할 때, 예외 처리")
+    @Test
+    void checkDuplication(){
+        assertThatThrownBy(() -> InputView.checkDuplication())
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
