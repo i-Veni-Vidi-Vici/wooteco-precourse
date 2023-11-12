@@ -3,8 +3,6 @@ package christmas.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.constants.Food;
-import christmas.domain.DiscountPolicy;
-import christmas.domain.Order;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
@@ -163,7 +161,7 @@ public class DiscountPolicyTest {
     @ParameterizedTest
     @ValueSource(ints = {29, 30})
     void calculateTotalDiscountByWeekend(Integer day) {
-        assertThat(DiscountPolicy.calculateTotalDiscount(day, Order.calculateTotalAmount(orderedMenu),
+        assertThat(DiscountPolicy.calculateTotalDiscount(day, OrderedMenu.calculateTotalAmount(orderedMenu),
                 orderedMenu)).isEqualTo(58092); // 샴페인 50000 + 주말 (2023 * 4)
     }
 
@@ -176,7 +174,7 @@ public class DiscountPolicyTest {
             22, 23
     })
     void calculateTotalDiscountByWeekendAndXmas(Integer day) {
-        assertThat(DiscountPolicy.calculateTotalDiscount(day, Order.calculateTotalAmount(orderedMenu),
+        assertThat(DiscountPolicy.calculateTotalDiscount(day, OrderedMenu.calculateTotalAmount(orderedMenu),
                 orderedMenu)).isEqualTo(58092
                 + (1000 + (day - 1) * 100)); // 주말 할인 58092 + 크리스마스 할인 1000+(day-1)*100
     }
@@ -185,7 +183,7 @@ public class DiscountPolicyTest {
     @ParameterizedTest
     @ValueSource(ints = {26, 27, 28})
     void calculateTotalDiscountByWeekday(Integer day) {
-        assertThat(DiscountPolicy.calculateTotalDiscount(day, Order.calculateTotalAmount(orderedMenu),
+        assertThat(DiscountPolicy.calculateTotalDiscount(day, OrderedMenu.calculateTotalAmount(orderedMenu),
                 orderedMenu)).isEqualTo(54046); // 샴페인 50000 + 평일 (2023 * 2)
     }
 
@@ -197,7 +195,7 @@ public class DiscountPolicyTest {
             18, 19, 20, 21,
     })
     void calculateTotalDiscountByWeekdayAndXmas(Integer day) {
-        assertThat(DiscountPolicy.calculateTotalDiscount(day, Order.calculateTotalAmount(orderedMenu),
+        assertThat(DiscountPolicy.calculateTotalDiscount(day, OrderedMenu.calculateTotalAmount(orderedMenu),
                 orderedMenu)).isEqualTo(54046
                 + (1000 + (day - 1) * 100)); // 평일 할인 54046 + 크리스마스 할인 1000+(day-1)*100
     }
@@ -206,7 +204,7 @@ public class DiscountPolicyTest {
     @ParameterizedTest
     @ValueSource(ints = {31})
     void calculateTotalDiscountByWeekdayAndSpecial(Integer day) {
-        assertThat(DiscountPolicy.calculateTotalDiscount(day, Order.calculateTotalAmount(orderedMenu),
+        assertThat(DiscountPolicy.calculateTotalDiscount(day, OrderedMenu.calculateTotalAmount(orderedMenu),
                 orderedMenu)).isEqualTo(55046); // 샴페인 50000 + 평일 (2023 * 2) + 특별 1000
     }
 
@@ -214,7 +212,7 @@ public class DiscountPolicyTest {
     @ParameterizedTest
     @ValueSource(ints = {3, 10, 17, 24, 25})
     void calculateTotalDiscountByWeekdayAndXmasAndSpecial(Integer day) {
-        assertThat(DiscountPolicy.calculateTotalDiscount(day, Order.calculateTotalAmount(orderedMenu),
+        assertThat(DiscountPolicy.calculateTotalDiscount(day, OrderedMenu.calculateTotalAmount(orderedMenu),
                 orderedMenu)).isEqualTo(55046
                 + (1000 + (day - 1) * 100)); // 평일 + 특별 할인 55046 + 크리스마스 할인 1000+(day-1)*100
     }

@@ -23,7 +23,7 @@ public class DiscountPolicy {
 
     public static Integer calculateWeekday(Integer day, Map<Food, Integer> orderedMenu) {
         if (checkWeekday(day)) {
-            return (2023 * Order.checkDessert(orderedMenu));
+            return (2023 * OrderedMenu.checkDessert(orderedMenu));
         }
 
         return 0;
@@ -42,7 +42,7 @@ public class DiscountPolicy {
 
     public static Integer calculateWeekend(Integer day, Map<Food, Integer> orderedMenu) {
         if (checkWeekend(day)) {
-            return (2023 * Order.checkMain(orderedMenu));
+            return (2023 * OrderedMenu.checkMain(orderedMenu));
         }
 
         return 0;
@@ -90,5 +90,9 @@ public class DiscountPolicy {
                 + calculateWeekend(day, orderedMenu)
                 + calculateSpecial(day)
                 + calculateFreeGift(totalAmount));
+    }
+
+    public static Integer discount(Integer totalAmount, Integer totalDiscount) {
+        return (totalAmount - totalDiscount);
     }
 }

@@ -4,11 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.domain.OrderedMenu;
+import christmas.domain.OrderedTime;
 import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -34,7 +32,7 @@ public class InputViewTest {
     @ParameterizedTest
     @CsvSource(value = {"1,1", "20,20", "31,31"})
     void convertToNumber(String userInput, Integer convertedInput) {
-        assertThat(InputView.convertToNumber(userInput,
+        assertThat(OrderedTime.convertToNumber(userInput,
                 "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.")).isEqualTo(convertedInput);
     }
 
@@ -42,7 +40,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"a", " ", "1.1", "1a"})
     void convertToNumberByNotInteger(String userInput) {
-        assertThatThrownBy(() -> InputView.convertToNumber(userInput,
+        assertThatThrownBy(() -> OrderedTime.convertToNumber(userInput,
                 "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -51,7 +49,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"01", "000000010", "0", "0a"})
     void checkZero(String userInput) {
-        assertThatThrownBy(() -> InputView.checkZero(userInput))
+        assertThatThrownBy(() -> OrderedTime.checkZero(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -59,7 +57,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 32})
     void checkRange(Integer userInput) {
-        assertThatThrownBy(() -> InputView.checkRange(userInput))
+        assertThatThrownBy(() -> OrderedTime.checkRange(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -78,7 +76,7 @@ public class InputViewTest {
     @DisplayName("입력 문자열을 맵으로 음식과 수량을 분리하기")
     @Test
     void convertToList() {
-        assertThat(InputView.convertToMap("해산물파스타-2,레드와인-1"))
+        assertThat(OrderedMenu.convertToMap("해산물파스타-2,레드와인-1"))
                 .isEqualTo(Map.of("해산물파스타", 2,
                         "레드와인", 1));
     }
@@ -87,14 +85,14 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"토마토파스타", "레드와인1"})
     void checkMenu(String userInput){
-        assertThatThrownBy(() -> InputView.checkMenu(userInput))
+        assertThatThrownBy(() -> OrderedMenu.checkMenu(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("중복되는 음식 입력할 때, 예외 처리")
     @Test
     void convertToMap(){
-        assertThatThrownBy(() -> InputView.convertToMap("해산물파스타-2,해산물파스타-2,레드와인-1"))
+        assertThatThrownBy(() -> OrderedMenu.convertToMap("해산물파스타-2,해산물파스타-2,레드와인-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
