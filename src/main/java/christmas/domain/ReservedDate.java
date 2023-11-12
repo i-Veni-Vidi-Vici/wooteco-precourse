@@ -1,12 +1,12 @@
 package christmas.domain;
 
-public class OrderedDate {
+public class ReservedDate {
 
-    private final Integer date;
+    private final Integer reservedDate;
 
-    public OrderedDate(Integer date) {
-        checkRange(date);
-        this.date = date;
+    public ReservedDate(Integer reservedDate) {
+        checkRange(reservedDate);
+        this.reservedDate = reservedDate;
     }
 
     public static void checkRange(Integer date) {
