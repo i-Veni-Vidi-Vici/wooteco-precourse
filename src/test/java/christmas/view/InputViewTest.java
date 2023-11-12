@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.OrderedMenu;
-import christmas.domain.OrderedTime;
+import christmas.domain.OrderedDay;
 import christmas.utility.Converter;
 import christmas.utility.Validator;
 import java.io.ByteArrayInputStream;
@@ -59,7 +59,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 32})
     void checkRange(Integer userInput) {
-        assertThatThrownBy(() -> OrderedTime.checkRange(userInput))
+        assertThatThrownBy(() -> OrderedDay.checkRange(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

@@ -1,6 +1,6 @@
 package christmas.domain;
 
-public class OrderedTime {
+public class OrderedDay {
 
     public static void checkRange(Integer userInput) {
         if ((userInput < 1) || (userInput > 31)) {
