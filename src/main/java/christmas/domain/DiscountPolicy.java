@@ -1,8 +1,5 @@
 package christmas.domain;
 
-import christmas.constants.Food;
-import java.util.Map;
-
 public class DiscountPolicy {
 
     public static Integer calculateChristmas(Integer day) {
@@ -76,12 +73,15 @@ public class DiscountPolicy {
         return false;
     }
 
-    public static Integer giveFreeGift(Integer totalAmount) {
-        return (totalAmount / 120000);
+    public static boolean checkFreeGift(Integer totalAmount) {
+        return (totalAmount / 120000) > 0;
     }
 
     public static Integer calculateFreeGift(Integer totalAmount) {
-        return (25000 * giveFreeGift(totalAmount));
+        if (checkFreeGift(totalAmount)) {
+            return 25000;
+        }
+        return 0;
     }
 
     public static Integer calculateTotalDiscount(Integer day, Integer totalAmount, OrderedMenu orderedMenu) {
