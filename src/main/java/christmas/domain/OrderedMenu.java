@@ -69,16 +69,6 @@ public class OrderedMenu {
         return typeCount;
     }
 
-    public Integer countTotalFood() {
-        Integer totalCount = 0;
-
-        for (Food food : orderedMenu.keySet()) {
-            totalCount += orderedMenu.get(food);
-        }
-
-        return totalCount;
-    }
-
     public Integer calculateTotalAmount() {
         Integer totalAmount = 0;
 
