@@ -68,7 +68,7 @@ public class InputViewTest {
         System.setIn(new ByteArrayInputStream("해산물파스타-2,레드와인-1".getBytes()));
 
         // when, then
-        assertThat(InputView.getOrder()).isEqualTo("해산물파스타-2,레드와인-1");
+        assertThat(InputView.getMenu()).isEqualTo("해산물파스타-2,레드와인-1");
 
         Console.close();
     }
