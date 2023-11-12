@@ -6,6 +6,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import camp.nextstep.edu.missionutils.Console;
 import christmas.domain.OrderedMenu;
 import christmas.domain.OrderedTime;
+import christmas.utility.Converter;
+import christmas.utility.Validator;
 import java.io.ByteArrayInputStream;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
@@ -32,7 +34,7 @@ public class InputViewTest {
     @ParameterizedTest
     @CsvSource(value = {"1,1", "20,20", "31,31"})
     void convertToNumber(String userInput, Integer convertedInput) {
-        assertThat(OrderedTime.convertToNumber(userInput,
+        assertThat(Converter.convertToNumber(userInput,
                 "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.")).isEqualTo(convertedInput);
     }
 
@@ -40,7 +42,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"a", " ", "1.1", "1a"})
     void convertToNumberByNotInteger(String userInput) {
-        assertThatThrownBy(() -> OrderedTime.convertToNumber(userInput,
+        assertThatThrownBy(() -> Converter.convertToNumber(userInput,
                 "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -49,7 +51,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"01", "000000010", "0", "0a"})
     void checkZero(String userInput) {
-        assertThatThrownBy(() -> OrderedTime.checkZero(userInput))
+        assertThatThrownBy(() -> Validator.checkZero(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

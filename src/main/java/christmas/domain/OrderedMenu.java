@@ -7,6 +7,7 @@ import static christmas.constants.Type.MAIN;
 
 import christmas.constants.Food;
 import christmas.constants.Type;
+import christmas.utility.Converter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -92,7 +93,7 @@ public class OrderedMenu {
         for (String input : inputs) {
             String[] separatedInput = input.split("-");
             checkMenu(separatedInput[0]);
-            menu.put(separatedInput[0], OrderedTime.convertToNumber(separatedInput[1],
+            menu.put(separatedInput[0], Converter.convertToNumber(separatedInput[1],
                     "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
         }
 
