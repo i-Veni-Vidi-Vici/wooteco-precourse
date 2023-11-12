@@ -5,9 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Console;
 import christmas.constants.Food;
-import christmas.domain.OrderedDay;
+import christmas.domain.OrderedDate;
 import christmas.utility.Converter;
-import christmas.utility.Validator;
 import java.io.ByteArrayInputStream;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
@@ -57,7 +56,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(ints = {-1, 0, 32})
     void checkRange(Integer userInput) {
-        assertThatThrownBy(() -> OrderedDay.checkRange(userInput))
+        assertThatThrownBy(() -> OrderedDate.checkRange(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 

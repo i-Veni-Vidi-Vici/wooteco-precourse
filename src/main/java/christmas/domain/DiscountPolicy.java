@@ -101,7 +101,7 @@ public class DiscountPolicy {
     }
 
     public static boolean checkFreeGift(Integer totalAmount) {
-        return (totalAmount / 120000) > 0;
+        return ((totalAmount / 120000) > 0);
     }
 
     public static Integer calculateFreeGift(Integer totalAmount) {
