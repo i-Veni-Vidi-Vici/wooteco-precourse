@@ -33,7 +33,7 @@ public enum Food {
         this.price = price;
     }
 
-    public static boolean check(String orderedFood) {
+    public static boolean checkExistence(String orderedFood) {
         for (Food food : values()) {
             if (food.getName().equals(orderedFood)) {
                 return true;
