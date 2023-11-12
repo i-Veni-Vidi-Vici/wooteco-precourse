@@ -1,6 +1,35 @@
 package christmas.domain;
 
+import christmas.constants.Benefit;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 public class DiscountPolicy {
+
+    private final Map<Benefit, Integer> benefits;
+
+    public DiscountPolicy(Integer day, Integer totalAmount, OrderedMenu orderedMenu) {
+        Map<Benefit, Integer> temporaryBenefits = new HashMap<>();
+
+        addBenefits(checkChristmasPeriod(day), calculateChristmas(day), temporaryBenefits);
+        addBenefits(checkWeekday(day), calculateWeekday(day,orderedMenu), temporaryBenefits);
+        addBenefits(checkWeekend(day), calculateWeekend(day,orderedMenu), temporaryBenefits);
+        addBenefits(checkSpecial(day), calculateSpecial(day), temporaryBenefits);
+        addBenefits(checkFreeGift(totalAmount),calculateFreeGift(totalAmount), temporaryBenefits);
+
+        benefits = Collections.unmodifiableMap(temporaryBenefits);
+    }
+
+    private static void addBenefits(boolean checkBenefit, Integer benefitAmount, Map<Benefit, Integer> benefits){
+        if (checkBenefit){
+            benefits.put(Benefit.CHRISTMAS, benefitAmount);
+        }
+    }
+
+    private static boolean checkTarget(Integer totalAmount) {
+        return (totalAmount >= 10000);
+    }
 
     public static Integer calculateChristmas(Integer day) {
         if (checkChristmasPeriod(day)) {
@@ -8,10 +37,6 @@ public class DiscountPolicy {
         }
 
         return 0;
-    }
-
-    public static boolean checkTarget(Integer totalAmount) {
-        return (totalAmount >= 10000);
     }
 
     private static boolean checkChristmasPeriod(Integer day) {

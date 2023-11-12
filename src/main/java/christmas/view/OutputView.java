@@ -38,4 +38,9 @@ public class OutputView {
 
         System.out.println("없음");
     }
+
+    public static void printBenefitDetails() {
+        System.out.println("<혜택 내역>");
+
+    }
 }
