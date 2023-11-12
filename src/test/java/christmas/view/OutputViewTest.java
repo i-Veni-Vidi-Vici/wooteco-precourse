@@ -2,6 +2,8 @@ package christmas.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.constants.Badge;
+import christmas.constants.Benefit;
 import christmas.constants.Food;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
@@ -89,20 +91,32 @@ public class OutputViewTest {
     @DisplayName("혜택이 있을 경우, 혜택 내역 출력")
     @Test
     void printBenefitDetails(){
+        // given
+        Map<Benefit, Integer> benefits = new HashMap<>();
+        benefits.put(Benefit.CHRISTMAS,1000);
+        benefits.put(Benefit.WEEKDAY,2023);
+        benefits.put(Benefit.FREE_GIFT,25000);
+
         // when
-        OutputView.printBenefitDetails();
+        OutputView.printBenefitDetails(benefits);
 
         // then
         assertThat(out.toString())
                 .contains("<혜택 내역>")
-                .contains("크리스마스 디데이 할인: -1,200원");
+                .contains("크리스마스 디데이 할인: -1,000원")
+                .contains("평일 할인: -2,023원")
+                .contains("증정 이벤트: -25,000원");
+
     }
 
     @DisplayName("혜택이 없을 경우, 없음 출력")
     @Test
     void printBenefitDetailsByNotApplicable(){
+        // given
+        Map<Benefit, Integer> benefits = new HashMap<>();
+
         // when
-        OutputView.printBenefitDetails();
+        OutputView.printBenefitDetails(benefits);
 
         // then
         assertThat(out.toString())
@@ -114,7 +128,7 @@ public class OutputViewTest {
     @Test
     void printTotalBenefitAmount(){
         // when
-        OutputView.printTotalBenefitAmount();
+        OutputView.printTotalBenefitAmount(31246);
 
         // then
         assertThat(out.toString())
@@ -126,7 +140,7 @@ public class OutputViewTest {
     @Test
     void printTotalBenefitAmountByZero(){
         // when
-        OutputView.printTotalBenefitAmount();
+        OutputView.printTotalBenefitAmount(0);
 
         // then
         assertThat(out.toString())
@@ -138,23 +152,35 @@ public class OutputViewTest {
     @Test
     void printPaymentAmount(){
         // when
-        OutputView.printPaymentAmount();
+        OutputView.printPaymentAmount(135754);
 
         // then
         assertThat(out.toString())
                 .contains("<할인 후 예상 결제 금액>")
-                .contains("8,500원");
+                .contains("135,754원");
     }
 
-    @DisplayName("혜택 금액에 따라 이벤트 배지 출력")
+    @DisplayName("산타 이벤트 배지 출력")
     @Test
     void printBadge(){
         // when
-        OutputView.printBadg();
+        OutputView.printBadge(Badge.SANTA);
 
         // then
         assertThat(out.toString())
                 .contains("<12월 이벤트 배지>")
                 .contains("산타");
+    }
+
+    @DisplayName("없음 이벤트 배지 출력")
+    @Test
+    void printBadgeByNothing(){
+        // when
+        OutputView.printBadge(Badge.NOTHING);
+
+        // then
+        assertThat(out.toString())
+                .contains("<12월 이벤트 배지>")
+                .contains("없음");
     }
 }

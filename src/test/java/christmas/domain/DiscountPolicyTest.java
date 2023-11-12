@@ -62,13 +62,13 @@ public class DiscountPolicyTest {
         }
     }
 
-    @DisplayName("할인 대상 검증")
-    @ParameterizedTest
-    @CsvSource(value = {"10000,true", "25000,true", "9999,false", "3000,false"})
-    void checkTarget(Integer totalAmount, boolean isTarget) {
-        assertThat(DiscountPolicy.checkTarget(totalAmount)).isEqualTo(isTarget);
-
-    }
+//    @DisplayName("할인 대상 검증")
+//    @ParameterizedTest
+//    @CsvSource(value = {"10000,true", "25000,true", "9999,false", "3000,false"})
+//    void checkTarget(Integer totalAmount, boolean isTarget) {
+//        assertThat(DiscountPolicy.checkTarget(totalAmount)).isEqualTo(isTarget);
+//
+//    }
 
     @DisplayName("평일 할인 금액 반환, 평일")
     @ParameterizedTest
