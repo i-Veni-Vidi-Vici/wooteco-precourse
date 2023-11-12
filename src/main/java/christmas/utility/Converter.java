@@ -28,7 +28,7 @@ public class Converter {
         }
     }
 
-    public static Map<Food, Integer> convertToOrderedMenu(String value) {
+    public static Map<Food, Integer> convertToReservedMenu(String value) {
         Map<Food, Integer> orderedMenu = new HashMap<>();
         List<String> inputMenus = convertToList(value, ",");
 

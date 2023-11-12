@@ -75,7 +75,7 @@ public class InputViewTest {
     @DisplayName("입력된 문자열을 주문메뉴 자료형으로 변환시키기")
     @Test
     void convertToOrderedMenu() {
-        assertThat(Converter.convertToOrderedMenu("해산물파스타-2,레드와인-1"))
+        assertThat(Converter.convertToReservedMenu("해산물파스타-2,레드와인-1"))
                 .isEqualTo(Map.of(Food.SEAFOOD_PASTA, 2,
                         Food.RED_WINE, 1));
     }
@@ -84,7 +84,7 @@ public class InputViewTest {
     @DisplayName("중복되는 음식 입력할 때, 예외 처리")
     @Test
     void convertToOrderedMenuByDuplication(){
-        assertThatThrownBy(() -> Converter.convertToOrderedMenu("해산물파스타-2,해산물파스타-2,레드와인-1"))
+        assertThatThrownBy(() -> Converter.convertToReservedMenu("해산물파스타-2,해산물파스타-2,레드와인-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -92,7 +92,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"해산물파스타-해산물파스타-2,레드와인-1","해산물파스타,레드와인-1"})
     void convertToOrderedMenuByWrongDelimiterCount(String userInput){
-        assertThatThrownBy(() -> Converter.convertToOrderedMenu(userInput))
+        assertThatThrownBy(() -> Converter.convertToReservedMenu(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -100,7 +100,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"해산물파스타-01,레드와인-1","해산물파스타-000000001"})
     void convertToOrderedMenuByFirstZero(String userInput){
-        assertThatThrownBy(() -> Converter.convertToOrderedMenu(userInput))
+        assertThatThrownBy(() -> Converter.convertToReservedMenu(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -108,7 +108,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"해산물파스타-aa,레드와인-1","해산물파스타-1.1","해산물파스타-1.0"})
     void convertToOrderedMenuByNotPositiveNumber(String userInput){
-        assertThatThrownBy(() -> Converter.convertToOrderedMenu(userInput))
+        assertThatThrownBy(() -> Converter.convertToReservedMenu(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
