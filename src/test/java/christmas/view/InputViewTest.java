@@ -78,7 +78,7 @@ public class InputViewTest {
     @DisplayName("입력 문자열을 맵으로 음식과 수량을 분리하기")
     @Test
     void convertToList() {
-        assertThat(Converter.convertToMap("해산물파스타-2,레드와인-1"))
+        assertThat(Converter.convertToOrderedMenu("해산물파스타-2,레드와인-1"))
                 .isEqualTo(Map.of("해산물파스타", 2,
                         "레드와인", 1));
     }
@@ -94,7 +94,7 @@ public class InputViewTest {
     @DisplayName("중복되는 음식 입력할 때, 예외 처리")
     @Test
     void convertToMap(){
-        assertThatThrownBy(() -> Converter.convertToMap("해산물파스타-2,해산물파스타-2,레드와인-1"))
+        assertThatThrownBy(() -> Converter.convertToOrderedMenu("해산물파스타-2,해산물파스타-2,레드와인-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

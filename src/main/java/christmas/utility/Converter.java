@@ -1,6 +1,5 @@
 package christmas.utility;
 
-
 import christmas.constants.Food;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -10,26 +9,26 @@ import java.util.Map;
 public class Converter {
 
 
-    public static Integer convertToNumber(String userInput, String exceptionMessage) {
-        checkNumber(userInput, exceptionMessage);
-        return Integer.parseInt(userInput);
+    public static Integer convertToNumber(String value) {
+        checkNumber(value);
+        return Integer.parseInt(value);
     }
 
-    private static void checkNumber(String userInput, String exceptionMessage) {
+    private static void checkNumber(String value) {
         try {
-            Integer.parseInt(userInput);
+            Integer.parseInt(value);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(exceptionMessage);
+            throw new IllegalArgumentException();
         }
     }
 
-    private static List<String> convertToList(String userInput) {
-        return Arrays.asList(userInput.split(","));
+    private static List<String> convertToListByComma(String value) {
+        return Arrays.asList(value.split(","));
     }
 
-    public static Map<String, Integer> convertToMap(String userInput) {
+    public static Map<Food, Integer> convertToOrderedMenu(String value) {
         Map<String, Integer> menu = new HashMap<>();
-        List<String> inputs = convertToList(userInput);
+        List<String> inputs = convertToListByComma(value);
 
         for (String input : inputs) {
             String[] separatedInput = input.split("-");
