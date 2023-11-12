@@ -97,4 +97,12 @@ public class InputViewTest {
         assertThatThrownBy(() -> Converter.convertToOrderedMenu("해산물파스타-2,해산물파스타-2,레드와인-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName(" - 구분자로 3개 이상 연결될 때, 예외 처리")
+    @Test
+    void convertToMapByWrongDelimiterCount(){
+        assertThatThrownBy(() -> Converter.convertToOrderedMenu("해산물파스타-해산물파스타-2,레드와인-1"))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
 }
