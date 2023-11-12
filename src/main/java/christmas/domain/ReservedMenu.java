@@ -6,16 +6,18 @@ import static christmas.constants.Type.MAIN;
 
 import christmas.constants.Food;
 import christmas.constants.Type;
+import java.util.Collections;
 import java.util.Map;
 
 public class ReservedMenu {
+
     private final Map<Food, Integer> reservedMenu;
 
     public ReservedMenu(Map<Food, Integer> reservedMenu) {
         checkFoodCount(reservedMenu);
         checkOnlyDrink(reservedMenu);
         checkTotalFoodCount(reservedMenu);
-        this.reservedMenu = reservedMenu;
+        this.reservedMenu = Collections.unmodifiableMap(reservedMenu);
     }
 
     private void checkFoodCount(Map<Food, Integer> reservedMenu) {
@@ -79,4 +81,7 @@ public class ReservedMenu {
         return totalAmount;
     }
 
+    public Map<Food, Integer> getReservedMenu() {
+        return reservedMenu;
+    }
 }
