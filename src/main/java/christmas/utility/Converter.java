@@ -35,7 +35,7 @@ public class Converter {
 
         for (String inputMenu : inputMenus) {
             List<String> foodAndPrice = convertToList(inputMenu, "-");
-            checkSize(foodAndPrice);
+            checkForm(foodAndPrice);
             orderedMenu.put(Food.checkExistence(foodAndPrice.get(0)), convertToNumber(foodAndPrice.get(1)));
         }
 
@@ -47,7 +47,7 @@ public class Converter {
         return Arrays.asList(value.split(delimiter));
     }
 
-    private static void checkSize(List<String> foodAndPrice) {
+    private static void checkForm(List<String> foodAndPrice) {
         if (foodAndPrice.size() != 2) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
