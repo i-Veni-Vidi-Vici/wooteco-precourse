@@ -33,14 +33,14 @@ public enum Food {
         this.price = price;
     }
 
-    public static boolean checkExistence(String orderedFood) {
+    public static Food checkExistence(String orderedFood) {
         for (Food food : values()) {
             if (food.getName().equals(orderedFood)) {
-                return true;
+                return food;
             }
         }
 
-        return false;
+        throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
 
     public String getName() {

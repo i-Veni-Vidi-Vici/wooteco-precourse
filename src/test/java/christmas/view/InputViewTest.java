@@ -34,24 +34,22 @@ public class InputViewTest {
     @ParameterizedTest
     @CsvSource(value = {"1,1", "20,20", "31,31"})
     void convertToNumber(String userInput, Integer convertedInput) {
-        assertThat(Converter.convertToNumber(userInput,
-                "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.")).isEqualTo(convertedInput);
+        assertThat(Converter.convertToNumber(userInput)).isEqualTo(convertedInput);
     }
 
     @DisplayName("정수 이외의 값을 변환할 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"a", " ", "1.1", "1a"})
     void convertToNumberByNotInteger(String userInput) {
-        assertThatThrownBy(() -> Converter.convertToNumber(userInput,
-                "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요."))
+        assertThatThrownBy(() -> Converter.convertToNumber(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName("입력 값 앞에 0이 있을 때, 예외 처리")
+    @DisplayName("입력 값 앞에 0이 있을 때(2자리 이상), 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"01", "000000010", "0", "0a"})
-    void checkZero(String userInput) {
-        assertThatThrownBy(() -> Validator.checkZero(userInput))
+    @ValueSource(strings = {"01", "000000010", "0a","00"})
+    void convertToNumberByFirstZero(String userInput) {
+        assertThatThrownBy(() ->Converter.convertToNumber(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -77,10 +75,10 @@ public class InputViewTest {
 
     @DisplayName("입력 문자열을 맵으로 음식과 수량을 분리하기")
     @Test
-    void convertToList() {
+    void convertToOrderedMenu() {
         assertThat(Converter.convertToOrderedMenu("해산물파스타-2,레드와인-1"))
-                .isEqualTo(Map.of("해산물파스타", 2,
-                        "레드와인", 1));
+                .isEqualTo(Map.of(Food.SEAFOOD_PASTA, 2,
+                        Food.RED_WINE, 1));
     }
 
     @DisplayName("없는 메뉴 입력할 때, 예외 처리")
@@ -93,7 +91,7 @@ public class InputViewTest {
 
     @DisplayName("중복되는 음식 입력할 때, 예외 처리")
     @Test
-    void convertToMap(){
+    void convertToOrderedMenuByDuplication(){
         assertThatThrownBy(() -> Converter.convertToOrderedMenu("해산물파스타-2,해산물파스타-2,레드와인-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }

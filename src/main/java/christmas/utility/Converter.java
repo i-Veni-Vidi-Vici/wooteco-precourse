@@ -11,6 +11,7 @@ public class Converter {
 
     public static Integer convertToNumber(String value) {
         checkNumber(value);
+        checkZero(value);
         return Integer.parseInt(value);
     }
 
@@ -22,27 +23,38 @@ public class Converter {
         }
     }
 
-    private static List<String> convertToListByComma(String value) {
-        return Arrays.asList(value.split(","));
+    private static void checkZero(String value) {
+        if ((value.charAt(0) == '0') && (value.length() > 1)) {
+            throw new IllegalArgumentException();
+        }
     }
 
     public static Map<Food, Integer> convertToOrderedMenu(String value) {
-        Map<String, Integer> menu = new HashMap<>();
-        List<String> inputs = convertToListByComma(value);
+        Map<Food, Integer> orderedMenu = new HashMap<>();
+        List<String> inputMenus = convertToList(value, ",");
 
-        for (String input : inputs) {
-            String[] separatedInput = input.split("-");
-            Food.checkExistence(separatedInput[0]);
-            menu.put(separatedInput[0], convertToNumber(separatedInput[1],
-                    "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
+        for (String inputMenu : inputMenus) {
+            List<String> foodAndPrice = convertToList(inputMenu, "-");
+            checkSize(foodAndPrice);
+            orderedMenu.put(Food.checkExistence(foodAndPrice.get(0)), convertToNumber(foodAndPrice.get(1)));
         }
 
-        checkDuplication(inputs, menu);
-        return menu;
+        checkDuplication(inputMenus, orderedMenu);
+        return orderedMenu;
     }
 
-    private static void checkDuplication(List<String> inputs, Map<String,Integer> menu) {
-        if(inputs.size() != menu.size()){
+    private static List<String> convertToList(String value, String delimiter) {
+        return Arrays.asList(value.split(delimiter));
+    }
+
+    private static void checkSize(List<String> foodAndPrice) {
+        if (foodAndPrice.size() != 2) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    private static void checkDuplication(List<String> inputMenus, Map<Food, Integer> menu) {
+        if (inputMenus.size() != menu.size()) {
             throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
