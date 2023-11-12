@@ -8,7 +8,6 @@ import java.util.Map;
 
 public class Converter {
 
-
     public static Integer convertToNumber(String value) {
         checkNumber(value);
         checkZero(value);
