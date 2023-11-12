@@ -73,7 +73,7 @@ public class InputViewTest {
         Console.close();
     }
 
-    @DisplayName("입력 문자열을 맵으로 음식과 수량을 분리하기")
+    @DisplayName("입력된 문자열을 주문메뉴 자료형으로 변환시키기")
     @Test
     void convertToOrderedMenu() {
         assertThat(Converter.convertToOrderedMenu("해산물파스타-2,레드와인-1"))
@@ -81,13 +81,6 @@ public class InputViewTest {
                         Food.RED_WINE, 1));
     }
 
-    @DisplayName("없는 메뉴 입력할 때, 예외 처리")
-    @ParameterizedTest
-    @ValueSource(strings = {"토마토파스타", "레드와인1"})
-    void checkMenu(String userInput){
-        assertThatThrownBy(() -> Food.checkExistence(userInput))
-                .isInstanceOf(IllegalArgumentException.class);
-    }
 
     @DisplayName("중복되는 음식 입력할 때, 예외 처리")
     @Test
@@ -96,11 +89,27 @@ public class InputViewTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
-    @DisplayName(" - 구분자로 3개 이상 연결될 때, 예외 처리")
-    @Test
-    void convertToMapByWrongDelimiterCount(){
-        assertThatThrownBy(() -> Converter.convertToOrderedMenu("해산물파스타-해산물파스타-2,레드와인-1"))
+    @DisplayName(" - 구분자의 개수가 1개가 아닐 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"해산물파스타-해산물파스타-2,레드와인-1","해산물파스타,레드와인-1"})
+    void convertToOrderedMenuByWrongDelimiterCount(String userInput){
+        assertThatThrownBy(() -> Converter.convertToOrderedMenu(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("음식 개수 앞에 0이 입력될 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"해산물파스타-01,레드와인-1","해산물파스타-000000001"})
+    void convertToOrderedMenuByFirstZero(String userInput){
+        assertThatThrownBy(() -> Converter.convertToOrderedMenu(userInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("음식 개수가 정수가 아닐 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"해산물파스타-aa,레드와인-1","해산물파스타-1.1","해산물파스타-1.0"})
+    void convertToOrderedMenuByNotPositiveNumber(String userInput){
+        assertThatThrownBy(() -> Converter.convertToOrderedMenu(userInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
