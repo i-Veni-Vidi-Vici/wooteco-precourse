@@ -9,13 +9,13 @@ public class DiscountPolicy {
 
     private final Map<Benefit, Integer> benefits;
 
-    public DiscountPolicy(Integer day, Integer totalAmount, OrderedMenu orderedMenu) {
+    public DiscountPolicy(Integer day, Integer totalAmount, ReservedMenu reservedMenu) {
         Map<Benefit, Integer> temporaryBenefits = new HashMap<>();
 
         if (checkTarget(totalAmount)) {
             addBenefits(checkChristmasPeriod(day), calculateChristmas(day), temporaryBenefits);
-            addBenefits(checkWeekday(day), calculateWeekday(day, orderedMenu), temporaryBenefits);
-            addBenefits(checkWeekend(day), calculateWeekend(day, orderedMenu), temporaryBenefits);
+            addBenefits(checkWeekday(day), calculateWeekday(day, reservedMenu), temporaryBenefits);
+            addBenefits(checkWeekend(day), calculateWeekend(day, reservedMenu), temporaryBenefits);
             addBenefits(checkSpecial(day), calculateSpecial(day), temporaryBenefits);
             addBenefits(checkFreeGift(totalAmount), calculateFreeGift(totalAmount), temporaryBenefits);
         }
@@ -45,9 +45,9 @@ public class DiscountPolicy {
         return (day <= 25);
     }
 
-    public static Integer calculateWeekday(Integer day, OrderedMenu orderedMenu) {
+    public static Integer calculateWeekday(Integer day, ReservedMenu reservedMenu) {
         if (checkWeekday(day)) {
-            return (2023 * orderedMenu.countDessert());
+            return (2023 * reservedMenu.countDessert());
         }
 
         return 0;
@@ -64,9 +64,9 @@ public class DiscountPolicy {
     }
 
 
-    public static Integer calculateWeekend(Integer day, OrderedMenu orderedMenu) {
+    public static Integer calculateWeekend(Integer day, ReservedMenu reservedMenu) {
         if (checkWeekend(day)) {
-            return (2023 * orderedMenu.countMain());
+            return (2023 * reservedMenu.countMain());
         }
 
         return 0;
@@ -111,11 +111,11 @@ public class DiscountPolicy {
         return 0;
     }
 
-    public static Integer calculateTotalDiscount(Integer day, Integer totalAmount, OrderedMenu orderedMenu) {
+    public static Integer calculateTotalDiscount(Integer day, Integer totalAmount, ReservedMenu reservedMenu) {
         if (checkTarget(totalAmount)) {
             return (calculateChristmas(day)
-                    + calculateWeekday(day, orderedMenu)
-                    + calculateWeekend(day, orderedMenu)
+                    + calculateWeekday(day, reservedMenu)
+                    + calculateWeekend(day, reservedMenu)
                     + calculateSpecial(day)
                     + calculateFreeGift(totalAmount));
         }

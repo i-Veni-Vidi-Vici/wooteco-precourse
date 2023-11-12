@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class OrderTest {
-    private static OrderedMenu orderedMenu;
+    private static ReservedMenu reservedMenu;
 
     @BeforeAll
     static void beforeAll() {
@@ -33,26 +33,26 @@ public class OrderTest {
 
         // 총 주문 금액: 319,000원
 
-        orderedMenu = new OrderedMenu(menu);
+        reservedMenu = new ReservedMenu(menu);
     }
 
 
     @DisplayName("주문 메뉴에서 메인 개수 체크")
     @Test
     void checkMain() {
-        assertThat(orderedMenu.countMain()).isEqualTo(4);
+        assertThat(reservedMenu.countMain()).isEqualTo(4);
     }
 
     @DisplayName("주문 메뉴에서 디저트 개수 체크")
     @Test
     void checkDessert() {
-        assertThat(orderedMenu.countDessert()).isEqualTo(2);
+        assertThat(reservedMenu.countDessert()).isEqualTo(2);
     }
 
     @DisplayName("총 주문 금액 계산")
     @Test
     void calculateTotalAmount() {
-        assertThat(orderedMenu.calculateTotalAmount()).isEqualTo(319000);
+        assertThat(reservedMenu.calculateTotalAmount()).isEqualTo(319000);
     }
 
     @DisplayName("총 주문 금액에서 할인 후 금액 반환")
