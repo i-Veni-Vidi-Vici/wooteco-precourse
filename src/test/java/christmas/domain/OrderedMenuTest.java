@@ -4,7 +4,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import christmas.constants.Food;
-import christmas.domain.OrderedMenu;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +29,7 @@ public class OrderedMenuTest {
         orderedMenu.put(Food.MUSHROOM_SOUP, foodCount);
 
         // when, then
-        assertDoesNotThrow(()->OrderedMenu.checkFoodCount(orderedMenu));
+        assertDoesNotThrow(() -> new OrderedMenu(orderedMenu));
     }
 
     @DisplayName("한 메뉴당 1개 이상 주문 안할 시, 예외 처리")
@@ -41,7 +40,7 @@ public class OrderedMenuTest {
         orderedMenu.put(Food.MUSHROOM_SOUP, foodCount);
 
         // when, then
-        assertThatThrownBy(() -> OrderedMenu.checkFoodCount(orderedMenu))
+        assertThatThrownBy(() -> new OrderedMenu(orderedMenu))
                 .isInstanceOf(IllegalArgumentException.class);
 
     }
@@ -54,8 +53,9 @@ public class OrderedMenuTest {
         orderedMenu.put(Food.T_BONE_STEAK, 15);
 
         // when, then
-        assertDoesNotThrow(()->OrderedMenu.checkTotalCount(orderedMenu));
+        assertDoesNotThrow(() -> new OrderedMenu(orderedMenu));
     }
+
     @DisplayName("총 주문 음식 수량이 20개를 넘을 시, 예외 처리")
     @Test
     void checkTotalCountByOverTwenty() {
@@ -64,30 +64,29 @@ public class OrderedMenuTest {
         orderedMenu.put(Food.T_BONE_STEAK, 16);
 
         // when, then
-        assertThatThrownBy(() -> OrderedMenu.checkTotalCount(orderedMenu))
+        assertThatThrownBy(() -> new OrderedMenu(orderedMenu))
                 .isInstanceOf(IllegalArgumentException.class);
-
     }
 
     @DisplayName("음료 이외의 메뉴도 주문시, 예외 처리x")
     @Test
-    void checkOnlyDrinkByNotOnlyDrink(){
+    void checkOnlyDrinkByNotOnlyDrink() {
         // given
         orderedMenu.put(Food.MUSHROOM_SOUP, 5);
 
         // when, then
-        assertDoesNotThrow(()->OrderedMenu.checkOnlyDrink(orderedMenu));
+        assertDoesNotThrow(() ->new OrderedMenu(orderedMenu));
     }
 
     @DisplayName("음료만 시키면, 예외 처리")
     @Test
-    void checkOnlyDrinkByOnlyDrink(){
+    void checkOnlyDrinkByOnlyDrink() {
         // given
         orderedMenu.put(Food.ZERO_COLA, 5);
         orderedMenu.put(Food.RED_WINE, 1);
 
         // when, then
-        assertThatThrownBy(() -> OrderedMenu.checkOnlyDrink(orderedMenu))
+        assertThatThrownBy(() -> new OrderedMenu(orderedMenu))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

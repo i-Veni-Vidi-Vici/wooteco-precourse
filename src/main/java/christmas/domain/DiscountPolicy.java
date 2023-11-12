@@ -21,9 +21,9 @@ public class DiscountPolicy {
         return (day <= 25);
     }
 
-    public static Integer calculateWeekday(Integer day, Map<Food, Integer> orderedMenu) {
+    public static Integer calculateWeekday(Integer day, OrderedMenu orderedMenu) {
         if (checkWeekday(day)) {
-            return (2023 * OrderedMenu.checkDessert(orderedMenu));
+            return (2023 * orderedMenu.countDessert());
         }
 
         return 0;
@@ -40,9 +40,9 @@ public class DiscountPolicy {
     }
 
 
-    public static Integer calculateWeekend(Integer day, Map<Food, Integer> orderedMenu) {
+    public static Integer calculateWeekend(Integer day, OrderedMenu orderedMenu) {
         if (checkWeekend(day)) {
-            return (2023 * OrderedMenu.checkMain(orderedMenu));
+            return (2023 * orderedMenu.countMain());
         }
 
         return 0;
@@ -84,7 +84,7 @@ public class DiscountPolicy {
         return (25000 * giveFreeGift(totalAmount));
     }
 
-    public static Integer calculateTotalDiscount(Integer day, Integer totalAmount, Map<Food, Integer> orderedMenu) {
+    public static Integer calculateTotalDiscount(Integer day, Integer totalAmount, OrderedMenu orderedMenu) {
         return (calculateChristmas(day)
                 + calculateWeekday(day, orderedMenu)
                 + calculateWeekend(day, orderedMenu)
