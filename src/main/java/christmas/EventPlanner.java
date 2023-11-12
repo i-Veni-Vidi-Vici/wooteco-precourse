@@ -1,6 +1,6 @@
 package christmas;
 
-public class Order {
+public class EventPlanner {
 
 
     public void reserveDate{
