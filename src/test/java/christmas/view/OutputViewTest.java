@@ -2,12 +2,17 @@ package christmas.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.constants.Food;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class OutputViewTest {
     private OutputStream out;
@@ -34,30 +39,33 @@ public class OutputViewTest {
     @Test
     void printDate(){
         // when
-        OutputView.printDate();
+        OutputView.printDate(3);
 
         // then
-        assertThat(out.toString()).contains("12월 "+"일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
+        assertThat(out.toString()).contains("12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
     }
 
     @DisplayName("예약한 메뉴 출력")
     @Test
     void printMenu(){
+        Map<Food, Integer> orderedMenu = new HashMap<>();
+        orderedMenu.put(Food.T_BONE_STEAK, 1);
+        orderedMenu.put(Food.ICE_CREAM, 2);
         // when
-        OutputView.printMenu();
+        OutputView.printMenu(orderedMenu);
 
         // then
         assertThat(out.toString())
                 .contains("<주문 메뉴>")
-                .contains("티본스테이크 1개");
-
+                .contains("티본스테이크 1개")
+                .contains("아이스크림 2개");
     }
 
     @DisplayName("총 주문 금액 출력")
     @Test
     void printTotalAmount(){
         // when
-        OutputView.printTotalAmount();
+        OutputView.printTotalAmount(142000);
 
         // then
         assertThat(out.toString())
@@ -66,27 +74,16 @@ public class OutputViewTest {
     }
 
     @DisplayName("12만원 이상일 때, 증정 메뉴 출력")
-    @Test
-    void printFreeGift(){
+    @ParameterizedTest
+    @CsvSource(value = {"true,샴페인 1개","false,없음"})
+    void printFreeGift(boolean freeGift, String print){
         // when
-        OutputView.printFreeGift();
+        OutputView.printFreeGift(freeGift);
 
         // then
         assertThat(out.toString())
                 .contains("<증정 메뉴>")
-                .contains("샴페인 1개");
-    }
-
-    @DisplayName("12만원 미만일 때, 증정 메뉴 없음 출력")
-    @Test
-    void printFreeGiftByNotApplicable(){
-        // when
-        OutputView.printFreeGift();
-
-        // then
-        assertThat(out.toString())
-                .contains("<증정 메뉴>")
-                .contains("없음");
+                .contains(print);
     }
 
     @DisplayName("혜택이 있을 경우, 혜택 내역 출력")

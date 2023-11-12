@@ -147,7 +147,7 @@ public class DiscountPolicyTest {
     @ParameterizedTest
     @CsvSource(value = {"119999,0", "120000,1", "150000,1", "240000,2"})
     void giveFreeGift(Integer totalAmount, Integer count) {
-        assertThat(DiscountPolicy.giveFreeGift(totalAmount)).isEqualTo(count);
+        assertThat(DiscountPolicy.checkFreeGift(totalAmount)).isEqualTo(count);
     }
 
     @DisplayName("증정 이벤트 금액 반환")
