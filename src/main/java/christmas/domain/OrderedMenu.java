@@ -7,10 +7,6 @@ import static christmas.constants.Type.MAIN;
 
 import christmas.constants.Food;
 import christmas.constants.Type;
-import christmas.utility.Converter;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class OrderedMenu {
@@ -82,38 +78,4 @@ public class OrderedMenu {
         return totalAmount;
     }
 
-    private static List<String> convertToList(String userInput) {
-        return Arrays.asList(userInput.split(","));
-    }
-
-    public static Map<String, Integer> convertToMap(String userInput) {
-        Map<String, Integer> menu = new HashMap<>();
-        List<String> inputs = convertToList(userInput);
-
-        for (String input : inputs) {
-            String[] separatedInput = input.split("-");
-            checkMenu(separatedInput[0]);
-            menu.put(separatedInput[0], Converter.convertToNumber(separatedInput[1],
-                    "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
-        }
-
-        checkDuplication(inputs, menu);
-        return menu;
-    }
-
-    public static void checkMenu(String userInput) {
-        for (Food food : Food.values()) {
-            if (food.getName().equals(userInput)) {
-                return;
-            }
-        }
-
-        throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-    }
-
-    private static void checkDuplication(List<String> inputs, Map<String,Integer> menu) {
-        if(inputs.size() != menu.size()){
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-        }
-    }
 }

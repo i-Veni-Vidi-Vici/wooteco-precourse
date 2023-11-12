@@ -4,7 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import camp.nextstep.edu.missionutils.Console;
-import christmas.domain.OrderedMenu;
+import christmas.constants.Food;
 import christmas.domain.OrderedDay;
 import christmas.utility.Converter;
 import christmas.utility.Validator;
@@ -78,7 +78,7 @@ public class InputViewTest {
     @DisplayName("입력 문자열을 맵으로 음식과 수량을 분리하기")
     @Test
     void convertToList() {
-        assertThat(OrderedMenu.convertToMap("해산물파스타-2,레드와인-1"))
+        assertThat(Converter.convertToMap("해산물파스타-2,레드와인-1"))
                 .isEqualTo(Map.of("해산물파스타", 2,
                         "레드와인", 1));
     }
@@ -87,14 +87,14 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"토마토파스타", "레드와인1"})
     void checkMenu(String userInput){
-        assertThatThrownBy(() -> OrderedMenu.checkMenu(userInput))
+        assertThatThrownBy(() -> Food.checkMenu(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("중복되는 음식 입력할 때, 예외 처리")
     @Test
     void convertToMap(){
-        assertThatThrownBy(() -> OrderedMenu.convertToMap("해산물파스타-2,해산물파스타-2,레드와인-1"))
+        assertThatThrownBy(() -> Converter.convertToMap("해산물파스타-2,해산물파스타-2,레드와인-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }

@@ -33,6 +33,16 @@ public enum Food {
         this.price = price;
     }
 
+    public static void checkMenu(String userInput) {
+        for (Food food : values()) {
+            if (food.getName().equals(userInput)) {
+                return;
+            }
+        }
+
+        throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    }
+
     public String getName() {
         return name;
     }
