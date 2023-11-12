@@ -9,23 +9,25 @@ public class DiscountPolicy {
 
     private final Map<Benefit, Integer> benefits;
 
-    public DiscountPolicy(Integer day, Integer totalAmount, ReservedMenu reservedMenu) {
+    public DiscountPolicy(Integer day, ReservedMenu reservedMenu) {
         Map<Benefit, Integer> temporaryBenefits = new HashMap<>();
+        Integer totalAmount = reservedMenu.calculateTotalAmount();
 
         if (checkTarget(totalAmount)) {
-            addBenefits(checkChristmasPeriod(day), calculateChristmas(day), temporaryBenefits);
-            addBenefits(checkWeekday(day), calculateWeekday(day, reservedMenu), temporaryBenefits);
-            addBenefits(checkWeekend(day), calculateWeekend(day, reservedMenu), temporaryBenefits);
-            addBenefits(checkSpecial(day), calculateSpecial(day), temporaryBenefits);
-            addBenefits(checkFreeGift(totalAmount), calculateFreeGift(totalAmount), temporaryBenefits);
+            addBenefits(checkChristmasPeriod(day),Benefit.CHRISTMAS, calculateChristmas(day), temporaryBenefits);
+            addBenefits(checkWeekday(day),Benefit.WEEKDAY, calculateWeekday(day, reservedMenu), temporaryBenefits);
+            addBenefits(checkWeekend(day), Benefit.WEEKEND, calculateWeekend(day, reservedMenu), temporaryBenefits);
+            addBenefits(checkSpecial(day), Benefit.SPECIAL, calculateSpecial(day), temporaryBenefits);
+            addBenefits(checkFreeGift(totalAmount), Benefit.FREE_GIFT,calculateFreeGift(totalAmount), temporaryBenefits);
         }
 
         benefits = Collections.unmodifiableMap(temporaryBenefits);
     }
 
-    private static void addBenefits(boolean checkBenefit, Integer benefitAmount, Map<Benefit, Integer> benefits) {
+    private static void addBenefits(boolean checkBenefit, Benefit benefit, Integer benefitAmount,
+                                    Map<Benefit, Integer> benefits) {
         if (checkBenefit) {
-            benefits.put(Benefit.CHRISTMAS, benefitAmount);
+            benefits.put(benefit, benefitAmount);
         }
     }
 
@@ -125,5 +127,10 @@ public class DiscountPolicy {
 
     public static Integer discount(Integer totalAmount, Integer totalDiscount) {
         return (totalAmount - totalDiscount + calculateFreeGift(totalAmount));
+    }
+
+
+    public Map<Benefit, Integer> getBenefits() {
+        return benefits;
     }
 }

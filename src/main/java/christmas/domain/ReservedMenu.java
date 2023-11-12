@@ -81,7 +81,7 @@ public class ReservedMenu {
         return totalAmount;
     }
 
-    public Map<Food, Integer> getReservedMenu() {
+    public Map<Food, Integer> getMenu() {
         return reservedMenu;
     }
 }

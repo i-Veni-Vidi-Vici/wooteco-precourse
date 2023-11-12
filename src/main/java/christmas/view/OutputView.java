@@ -42,6 +42,7 @@ public class OutputView {
             System.out.println("없음");
         }
 
+        System.out.println();
     }
 
     public static void printBenefitDetails(Map<Benefit, Integer> benefits) {
