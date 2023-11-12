@@ -33,7 +33,7 @@ public class Converter {
 
         for (String input : inputs) {
             String[] separatedInput = input.split("-");
-            Food.checkMenu(separatedInput[0]);
+            Food.check(separatedInput[0]);
             menu.put(separatedInput[0], convertToNumber(separatedInput[1],
                     "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
         }

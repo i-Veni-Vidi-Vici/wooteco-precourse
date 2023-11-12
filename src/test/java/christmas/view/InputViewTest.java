@@ -87,7 +87,7 @@ public class InputViewTest {
     @ParameterizedTest
     @ValueSource(strings = {"토마토파스타", "레드와인1"})
     void checkMenu(String userInput){
-        assertThatThrownBy(() -> Food.checkMenu(userInput))
+        assertThatThrownBy(() -> Food.check(userInput))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
