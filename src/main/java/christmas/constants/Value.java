@@ -29,6 +29,10 @@ public enum Value {
 
     XMAS_INCREMENT_DISCOUNT(100),
 
+    CHAMPAGNE_PRICE(25000),
+
+    MINIMUM_PRICE_CONDITION(120000)
+
     ;
 
 

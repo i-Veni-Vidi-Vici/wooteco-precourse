@@ -1,5 +1,9 @@
 package christmas.domain.promotion.giveaway;
 
+import static christmas.constants.Value.CHAMPAGNE_PRICE;
+import static christmas.constants.Value.MINIMUM_PRICE_CONDITION;
+import static christmas.constants.Value.ZERO;
+
 import christmas.constants.Benefit;
 import christmas.domain.promotion.Promotion;
 import java.util.Collections;
@@ -20,13 +24,13 @@ public class Champagne implements Promotion {
 
     private Integer calculate(Integer totalAmount) {
         if (isEligible(totalAmount)) {
-            return 25000;
+            return CHAMPAGNE_PRICE.get();
         }
-        return 0;
+        return ZERO.get();
     }
 
     private boolean isEligible(Integer totalAmount) {
-        return ((totalAmount / 120000) > 0);
+        return ((totalAmount / MINIMUM_PRICE_CONDITION.get()) > ZERO.get());
     }
 
     @Override
