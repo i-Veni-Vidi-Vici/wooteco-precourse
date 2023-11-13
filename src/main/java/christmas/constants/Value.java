@@ -38,6 +38,10 @@ public enum Value {
 
     MAX_DATE(31),
 
+    MIN_FOOD_COUNT(1),
+
+    MAX_TOTAL_FOOD_COUNT(20),
+
 
     ;
 

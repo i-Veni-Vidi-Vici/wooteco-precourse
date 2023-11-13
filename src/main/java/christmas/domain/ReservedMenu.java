@@ -3,6 +3,9 @@ package christmas.domain;
 import static christmas.constants.Type.DESSERT;
 import static christmas.constants.Type.DRINK;
 import static christmas.constants.Type.MAIN;
+import static christmas.constants.Value.INITIAL_ZERO;
+import static christmas.constants.Value.MAX_TOTAL_FOOD_COUNT;
+import static christmas.constants.Value.MIN_FOOD_COUNT;
 
 import christmas.constants.Food;
 import christmas.constants.Type;
@@ -22,7 +25,7 @@ public class ReservedMenu {
 
     private void checkFoodCount(Map<Food, Integer> reservedMenu) {
         for (Food food : reservedMenu.keySet()) {
-            if (reservedMenu.get(food) < 1) {
+            if (reservedMenu.get(food) < MIN_FOOD_COUNT.get()) {
                 throw new IllegalArgumentException();
             }
         }
@@ -35,12 +38,12 @@ public class ReservedMenu {
     }
 
     private Integer checkTotalFoodCount(Map<Food, Integer> reservedMenu) {
-        Integer totalCount = 0;
+        Integer totalCount = INITIAL_ZERO.get();
 
         for (Food food : reservedMenu.keySet()) {
             totalCount += reservedMenu.get(food);
         }
-        if (totalCount > 20) {
+        if (totalCount > MAX_TOTAL_FOOD_COUNT.get()) {
             throw new IllegalArgumentException();
         }
 
@@ -60,7 +63,7 @@ public class ReservedMenu {
     }
 
     private Integer checkType(Map<Food, Integer> reservedMenu, Type type) {
-        Integer typeCount = 0;
+        Integer typeCount = INITIAL_ZERO.get();
 
         for (Food food : reservedMenu.keySet()) {
             if (food.getType() == type) {
@@ -72,7 +75,7 @@ public class ReservedMenu {
     }
 
     public Integer calculateTotalAmount() {
-        Integer totalAmount = 0;
+        Integer totalAmount = INITIAL_ZERO.get();
 
         for (Food food : reservedMenu.keySet()) {
             totalAmount += (food.getPrice() * reservedMenu.get(food));
