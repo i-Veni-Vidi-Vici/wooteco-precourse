@@ -48,13 +48,13 @@ public class Converter {
 
     private static void checkForm(List<String> foodAndPrice) {
         if (foodAndPrice.size() != 2) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException();
         }
     }
 
     private static void checkDuplication(List<String> inputMenus, Map<Food, Integer> menu) {
         if (inputMenus.size() != menu.size()) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException();
         }
     }
 }

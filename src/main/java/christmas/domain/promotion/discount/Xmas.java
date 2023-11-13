@@ -29,7 +29,6 @@ public class Xmas implements Promotion {
         return (date <= 25);
     }
 
-
     @Override
     public Map<Benefit, Integer> apply() {
         return Collections.unmodifiableMap(xmas);

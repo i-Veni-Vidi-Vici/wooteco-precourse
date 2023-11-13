@@ -23,14 +23,14 @@ public class ReservedMenu {
     private void checkFoodCount(Map<Food, Integer> reservedMenu) {
         for (Food food : reservedMenu.keySet()) {
             if (reservedMenu.get(food) < 1) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                throw new IllegalArgumentException();
             }
         }
     }
 
     private void checkOnlyDrink(Map<Food, Integer> reservedMenu) {
         if (countDrink(reservedMenu).equals(checkTotalFoodCount(reservedMenu))) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException();
         }
     }
 
@@ -41,7 +41,7 @@ public class ReservedMenu {
             totalCount += reservedMenu.get(food);
         }
         if (totalCount > 20) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException();
         }
 
         return totalCount;
