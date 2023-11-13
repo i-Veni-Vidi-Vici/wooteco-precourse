@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,6 +19,12 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class OutputViewTest {
     private OutputStream out;
+    private static OutputView outputView;
+
+    @BeforeAll
+    static void beforeAll() {
+        outputView = new OutputView();
+    }
 
     @BeforeEach
     void beforeEach() {
@@ -28,9 +35,9 @@ public class OutputViewTest {
 
     @DisplayName("12월 이벤트 플래너 시작 문구 출력")
     @Test
-    void printPlanner(){
+    void printPlanner() {
         // when
-        OutputView.printPlanner();
+        outputView.printPlanner();
 
         // then
         assertThat(out.toString()).contains("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
@@ -38,9 +45,9 @@ public class OutputViewTest {
 
     @DisplayName("예약한 날짜에 대한 첫 이벤트 문구 출력")
     @Test
-    void printDate(){
+    void printDate() {
         // when
-        OutputView.printDate(3);
+        outputView.printDate(3);
 
         // then
         assertThat(out.toString()).contains("12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!");
@@ -48,12 +55,12 @@ public class OutputViewTest {
 
     @DisplayName("예약한 메뉴 출력")
     @Test
-    void printMenu(){
+    void printMenu() {
         Map<Food, Integer> orderedMenu = new HashMap<>();
         orderedMenu.put(Food.T_BONE_STEAK, 1);
         orderedMenu.put(Food.ICE_CREAM, 2);
         // when
-        OutputView.printMenu(orderedMenu);
+        outputView.printMenu(orderedMenu);
 
         // then
         assertThat(out.toString())
@@ -64,9 +71,9 @@ public class OutputViewTest {
 
     @DisplayName("총 주문 금액 출력")
     @Test
-    void printTotalAmount(){
+    void printTotalAmount() {
         // when
-        OutputView.printTotalAmount(142000);
+        outputView.printTotalAmount(142000);
 
         // then
         assertThat(out.toString())
@@ -76,10 +83,10 @@ public class OutputViewTest {
 
     @DisplayName("증정 메뉴 출력")
     @ParameterizedTest
-    @CsvSource(value = {"true,샴페인 1개","false,없음"})
-    void printGiveaway(boolean giveaway, String print){
+    @CsvSource(value = {"true,샴페인 1개", "false,없음"})
+    void printGiveaway(boolean giveaway, String print) {
         // when
-        OutputView.printGiveaway(giveaway);
+        outputView.printGiveaway(giveaway);
 
         // then
         assertThat(out.toString())
@@ -89,15 +96,15 @@ public class OutputViewTest {
 
     @DisplayName("혜택이 있을 경우, 혜택 내역 출력")
     @Test
-    void printBenefitDetails(){
+    void printBenefitDetails() {
         // given
         Map<Benefit, Integer> benefits = new HashMap<>();
-        benefits.put(Benefit.CHRISTMAS,1000);
-        benefits.put(Benefit.WEEKDAY,2023);
-        benefits.put(Benefit.GIVEAWAY,25000);
+        benefits.put(Benefit.CHRISTMAS, 1000);
+        benefits.put(Benefit.WEEKDAY, 2023);
+        benefits.put(Benefit.GIVEAWAY, 25000);
 
         // when
-        OutputView.printBenefitDetails(benefits);
+        outputView.printBenefitDetails(benefits);
 
         // then
         assertThat(out.toString())
@@ -110,12 +117,12 @@ public class OutputViewTest {
 
     @DisplayName("혜택이 없을 경우, 없음 출력")
     @Test
-    void printBenefitDetailsByNotBenefit(){
+    void printBenefitDetailsByNotBenefit() {
         // given
         Map<Benefit, Integer> benefits = new HashMap<>();
 
         // when
-        OutputView.printBenefitDetails(benefits);
+        outputView.printBenefitDetails(benefits);
 
         // then
         assertThat(out.toString())
@@ -125,9 +132,9 @@ public class OutputViewTest {
 
     @DisplayName("총 헤택 금액 출력")
     @Test
-    void printTotalBenefitAmount(){
+    void printTotalBenefitAmount() {
         // when
-        OutputView.printTotalBenefitAmount(31246);
+        outputView.printTotalBenefitAmount(31246);
 
         // then
         assertThat(out.toString())
@@ -137,9 +144,9 @@ public class OutputViewTest {
 
     @DisplayName("혜택 금액이 없을 경우, 0원 출력")
     @Test
-    void printTotalBenefitAmountByZero(){
+    void printTotalBenefitAmountByZero() {
         // when
-        OutputView.printTotalBenefitAmount(0);
+        outputView.printTotalBenefitAmount(0);
 
         // then
         assertThat(out.toString())
@@ -149,9 +156,9 @@ public class OutputViewTest {
 
     @DisplayName("할인 후 예상 결제 금액 출력")
     @Test
-    void printPaymentAmount(){
+    void printPaymentAmount() {
         // when
-        OutputView.printPaymentAmount(135754);
+        outputView.printPaymentAmount(135754);
 
         // then
         assertThat(out.toString())
@@ -161,9 +168,9 @@ public class OutputViewTest {
 
     @DisplayName("산타 이벤트 배지 출력")
     @Test
-    void printBadge(){
+    void printBadge() {
         // when
-        OutputView.printBadge(Badge.SANTA);
+        outputView.printBadge(Badge.SANTA);
 
         // then
         assertThat(out.toString())
@@ -173,9 +180,9 @@ public class OutputViewTest {
 
     @DisplayName("없음 이벤트 배지 출력")
     @Test
-    void printBadgeByNothing(){
+    void printBadgeByNothing() {
         // when
-        OutputView.printBadge(Badge.NOTHING);
+        outputView.printBadge(Badge.NOTHING);
 
         // then
         assertThat(out.toString())
