@@ -97,4 +97,8 @@ public class OutputView {
         System.out.println(BADGE.getMessage());
         System.out.println(badge.getBadge());
     }
+
+    public void printError(String message){
+        System.out.println(message);
+    }
 }
