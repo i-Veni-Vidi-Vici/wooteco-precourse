@@ -4,6 +4,7 @@ import christmas.constants.Badge;
 import christmas.domain.promotion.Benefits;
 import christmas.domain.ReservedDate;
 import christmas.domain.ReservedMenu;
+import christmas.domain.promotion.giveaway.Champagne;
 import christmas.utility.Converter;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -24,7 +25,7 @@ public class EventPlanner {
         OutputView.printDate(reservedDate.getDate());
         OutputView.printMenu(reservedMenu.getMenu());
         OutputView.printTotalAmount(totalAmount);
-        OutputView.printFreeGift(benefits.checkFreeGift(totalAmount));
+        OutputView.printFreeGift(Champagne.checkFreeGift(totalAmount));
         OutputView.printBenefitDetails(benefits.getBenefits());
         OutputView.printTotalBenefitAmount(totalDiscount);
         OutputView.printPaymentAmount(benefits.discount(totalAmount, totalDiscount));
