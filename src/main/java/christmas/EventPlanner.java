@@ -77,5 +77,4 @@ public class EventPlanner {
         outputView.printPaymentAmount(benefits.discount());
         outputView.printBadge(Badge.grant(totalDiscount));
     }
-
 }
