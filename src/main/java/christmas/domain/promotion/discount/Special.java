@@ -1,5 +1,7 @@
 package christmas.domain.promotion.discount;
 
+import static christmas.constants.Condition.FALSE;
+import static christmas.constants.Condition.TRUE;
 import static christmas.constants.Value.FIRST_SPECIAL_DATE;
 import static christmas.constants.Value.FIVE_WEEKS;
 import static christmas.constants.Value.INITIAL_ZERO;
@@ -38,11 +40,11 @@ public class Special implements Promotion {
         for (int week = INITIAL_ZERO.get(); week < FIVE_WEEKS.get(); week++) {
             if ((date.equals(FIRST_SPECIAL_DATE.get() + (SEVEN_DAYS.get() * week)))
                     || (date.equals(XMAS_DATE.get()))) {
-                return true;
+                return TRUE.get();
             }
         }
 
-        return false;
+        return FALSE.get();
     }
 
     @Override
