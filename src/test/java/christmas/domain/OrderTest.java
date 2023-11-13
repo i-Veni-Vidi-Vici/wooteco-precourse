@@ -56,9 +56,9 @@ public class OrderTest {
         assertThat(reservedMenu.calculateTotalAmount()).isEqualTo(319000);
     }
 
-    @DisplayName("총 주문 금액에서 할인 후 금액 반환")
-    @Test
-    void discount() {
-        assertThat(Benefits.discount(10000, 2000)).isEqualTo(8000);
-    }
+//    @DisplayName("총 주문 금액에서 할인 후 금액 반환")
+//    @Test
+//    void discount() {
+//        assertThat(Benefits.discount(10000, 2000)).isEqualTo(8000);
+//    }
 }

@@ -13,7 +13,7 @@ public class XmasTest {
     @DisplayName("크리스마스 디데이 할인 금액 계산")
     @ParameterizedTest
     @CsvSource(value = {"1,1000", "10,1900", "25,3400"})
-    void calculateChristmas(Integer date, Integer discountPrice) {
+    void calculateXmas(Integer date, Integer discountPrice) {
         Xmas xmas = new Xmas(date);
 
         assertThat(xmas.apply().get(Benefit.CHRISTMAS)).isEqualTo(discountPrice);
@@ -21,7 +21,7 @@ public class XmasTest {
 
     @DisplayName("크리스마스 디데이 할인 금액 계산, 25일 까지")
     @Test
-    void calculateChristmasUntil25th() {
+    void calculateXmasUntil25th() {
         for (int date = 1; date <= 25; date++) {
             Xmas xmas = new Xmas(date);
             assertThat(xmas.apply().get(Benefit.CHRISTMAS)).isEqualTo(1000 + (date - 1) * 100);
@@ -30,7 +30,7 @@ public class XmasTest {
 
     @DisplayName("크리스마스 디데이 할인 금액 계산, 25일 이후")
     @Test
-    void calculateChristmasAfter25th() {
+    void calculateXmasAfter25th() {
         for (int date = 26; date <= 31; date++) {
             Xmas xmas = new Xmas(date);
             assertThat(xmas.apply()).isEmpty();

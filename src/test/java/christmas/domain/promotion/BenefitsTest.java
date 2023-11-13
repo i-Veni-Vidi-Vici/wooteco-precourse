@@ -1,11 +1,13 @@
-package christmas.domain;
+package christmas.domain.promotion;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.constants.Benefit;
 import christmas.constants.Food;
+import christmas.domain.ReservedMenu;
 import christmas.domain.promotion.Benefits;
 import christmas.domain.promotion.discount.Special;
+import christmas.domain.promotion.discount.Weekday;
 import christmas.domain.promotion.discount.Weekend;
 import christmas.domain.promotion.discount.Xmas;
 import christmas.domain.promotion.giveaway.Champagne;
@@ -45,34 +47,7 @@ public class BenefitsTest {
         reservedMenu = new ReservedMenu(menu);
     }
 
-    @DisplayName("크리스마스 디데이 할인 금액 계산")
-    @ParameterizedTest
-    @CsvSource(value = {"1,1000", "10,1900", "25,3400"})
-    void calculateChristmas(Integer date, Integer discountPrice) {
-        Xmas xmas = new Xmas(date);
-        
-        assertThat(xmas.apply().get(Benefit.CHRISTMAS)).isEqualTo(discountPrice);
-    }
 
-    @DisplayName("크리스마스 디데이 할인 금액 계산, 25일 까지")
-    @Test
-    void calculateChristmasUntil25th() {
-
-        for (int date = 1; date <= 25; date++) {
-
-            Xmas xmas = new Xmas(date);
-            assertThat(xmas.apply().get(Benefit.CHRISTMAS)).isEqualTo(1000 + (date - 1) * 100);
-        }
-    }
-
-    @DisplayName("크리스마스 디데이 할인 금액 계산, 25일 이후")
-    @Test
-    void calculateChristmasAfter25th() {
-        for (int date = 26; date <= 31; date++) {
-            Xmas xmas = new Xmas(date);
-            assertThat(xmas.apply()).isEmpty();
-        }
-    }
 
 //    @DisplayName("할인 대상 검증")
 //    @ParameterizedTest
@@ -82,94 +57,10 @@ public class BenefitsTest {
 //
 //    }
 //
-//    @DisplayName("평일 할인 금액 반환, 평일")
-//    @ParameterizedTest
-//    @ValueSource(ints = {
-//            3, 4, 5, 6, 7,
-//            10, 11, 12, 13, 14,
-//            17, 18, 19, 20, 21,
-//            24, 25, 26, 27, 28,
-//            31
-//    })
-//    void calculateWeekdateByWeekdate(Integer date) {
-//        assertThat(Weekdate.calculate(date, reservedMenu)).isEqualTo(2023 * 2);
-//    }
-//
-//    @DisplayName("평일 할인 금액 반환, 주말")
-//    @ParameterizedTest
-//    @ValueSource(ints = {
-//            1, 2,
-//            8, 9,
-//            15, 16,
-//            22, 23,
-//            29, 30
-//    })
-//    void calculateWeekdateByWeekend(Integer date) {
-//        assertThat(Weekdate.calculate(date, reservedMenu)).isEqualTo(0);
-//    }
-//
-//
-//    @DisplayName("주말 할인 금액 반환, 평일")
-//    @ParameterizedTest
-//    @ValueSource(ints = {
-//            3, 4, 5, 6, 7,
-//            10, 11, 12, 13, 14,
-//            17, 18, 19, 20, 21,
-//            24, 25, 26, 27, 28,
-//            31
-//    })
-//    void calculateWeekendByWeekdate(Integer date) {
-//        assertThat(Weekend.calculate(date, reservedMenu)).isEqualTo(0);
-//    }
-//
-//    @DisplayName("주말 할인 금액 반환, 주말")
-//    @ParameterizedTest
-//    @ValueSource(ints = {
-//            1, 2,
-//            8, 9,
-//            15, 16,
-//            22, 23,
-//            29, 30
-//    })
-//    void calculateWeekendByWeekend(Integer date) {
-//        assertThat(Weekend.calculate(date, reservedMenu)).isEqualTo(2023 * 4);
-//    }
-//
-//    @DisplayName("특별 할인 받는 날, 일요일 + 크리스마스")
-//    @ParameterizedTest
-//    @ValueSource(ints = {3, 10, 17, 24, 25, 31})
-//    void calculateSpecialByTheDay(Integer date) {
-//        assertThat(Special.calculate(date)).isEqualTo(1000);
-//    }
-//
-//    @DisplayName("특별 할인 받지 못하는 날")
-//    @ParameterizedTest
-//    @ValueSource(ints = {
-//            1, 2,
-//            4, 5, 6, 7, 8, 9,
-//            11, 12, 13, 14, 15,
-//            18, 19, 20, 21, 22,
-//            26, 27, 28, 29
-//    })
-//    void calculateSpecialByNotTheDay(Integer date) {
-//        assertThat(Special.calculate(date)).isEqualTo(0);
-//    }
-//
-//    @DisplayName("증정 이벤트 대상 확인")
-//    @ParameterizedTest
-//    @CsvSource(value = {"119999,false", "120000,true", "150000,true", "240000,true"})
-//    void checkFreeGift(Integer totalAmount, boolean freeGift) {
-//        assertThat(Champagne.isEligible(totalAmount)).isEqualTo(freeGift);
-//    }
-//
-//    @DisplayName("증정 이벤트 금액 반환")
-//    @ParameterizedTest
-//    @CsvSource(value = {"119999,0", "120000,25000", "150000,25000", "240000,25000"})
-//    void calculateFreeGift(Integer totalAmount, Integer count) {
-//        assertThat(Champagne.calculate(totalAmount)).isEqualTo(count);
-//    }
-//
-//
+
+
+
+
 //    @DisplayName("총 할인 금액 계산, 샴페인 + 주말 할인")
 //    @ParameterizedTest
 //    @ValueSource(ints = {29, 30})
