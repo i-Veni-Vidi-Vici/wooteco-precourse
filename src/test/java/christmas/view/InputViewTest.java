@@ -52,13 +52,7 @@ public class InputViewTest {
 //                .isInstanceOf(IllegalArgumentException.class);
 //    }
 //
-//    @DisplayName("날짜 범위를 벗어날 때, 예외 처리")
-//    @ParameterizedTest
-//    @ValueSource(ints = {-1, 0, 32})
-//    void checkRange(Integer userInput) {
-//        assertThatThrownBy(() -> ReservedDate.checkRange(userInput))
-//                .isInstanceOf(IllegalArgumentException.class);
-//    }
+
 //
 //    @DisplayName("주문 메뉴 입력 받기")
 //    @Test
