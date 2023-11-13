@@ -18,11 +18,13 @@ public class Benefits {
         benefits = new HashMap<>();
 
         Special special = new Special(date);
+        Weekday weekday = new Weekday(date, reservedMenu);
 
         Integer totalAmount = reservedMenu.calculateTotalAmount();
 
         if (checkTarget(totalAmount)) {
             benefits.putAll(special.apply());
+            benefits.putAll(weekday.apply());
 
         }
 
