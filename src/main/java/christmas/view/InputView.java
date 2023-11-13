@@ -1,7 +1,7 @@
 package christmas.view;
 
 import static christmas.constants.Message.DATE_INPUT;
-import static christmas.constants.Message.MENU;
+import static christmas.constants.Message.MENU_INPUT;
 
 import camp.nextstep.edu.missionutils.Console;
 
@@ -13,7 +13,7 @@ public class InputView {
     }
 
     public String getMenu() {
-        System.out.println(MENU.getMessage());
+        System.out.println(MENU_INPUT.getMessage());
         return Console.readLine();
     }
 }
