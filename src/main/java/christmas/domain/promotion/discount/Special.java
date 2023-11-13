@@ -18,7 +18,7 @@ public class Special implements Promotion {
         }
     }
 
-    public Integer calculate(Integer date) {
+    private Integer calculate(Integer date) {
         if (isEligible(date)) {
             return 1000;
         }
@@ -27,7 +27,7 @@ public class Special implements Promotion {
     }
 
     @Override
-    public boolean isEligible(Integer date) {
+    private boolean isEligible(Integer date) {
         for (int i = 0; i < 5; i++) {
             if (date == ((3 + (7 * i))) || (date == 25)) {
                 return true;
