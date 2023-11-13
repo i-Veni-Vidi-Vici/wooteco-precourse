@@ -47,8 +47,6 @@ public class BenefitsTest {
         reservedMenu = new ReservedMenu(menu);
     }
 
-
-
 //    @DisplayName("할인 대상 검증")
 //    @ParameterizedTest
 //    @CsvSource(value = {"10000,true", "25000,true", "9999,false", "3000,false"})
@@ -57,67 +55,65 @@ public class BenefitsTest {
 //
 //    }
 //
+    @DisplayName("총 혜택 금액 계산, 샴페인 + 주말")
+    @ParameterizedTest
+    @ValueSource(ints = {29, 30})
+    void calculateTotalDiscountByWeekend(Integer date) {
+        Benefits benefits = new Benefits(date, reservedMenu);
+        assertThat(benefits.calculateTotalBenefit()).isEqualTo(33092); // 샴페인 25000 + 주말 (2023 * 4)
+    }
 
+    @DisplayName("총 혜택 금액 계산, 샴페인 + 주말 + 크리스 마스")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            1, 2,
+            8, 9,
+            15, 16,
+            22, 23
+    })
+    void calculateTotalDiscountByWeekendAndXmas(Integer date) {
+        Benefits benefits = new Benefits(date, reservedMenu);
+        assertThat(benefits.calculateTotalBenefit()).isEqualTo(33092
+                + (1000 + (date - 1) * 100)); // 샴페인, 주말  33092 + 크리스마스 (1000 + (date - 1) * 100)
+    }
 
+    @DisplayName("총 혜택 금액 계산, 샴페인 + 평일")
+    @ParameterizedTest
+    @ValueSource(ints = {26, 27, 28})
+    void calculateTotalDiscountByWeekday(Integer date) {
+        Benefits benefits = new Benefits(date, reservedMenu);
+        assertThat(benefits.calculateTotalBenefit())
+                .isEqualTo(29046); // 샴페인 25000 + 평일 (2023 * 2)
+    }
 
+    @DisplayName("총 혜택 금액 계산, 샴페인 + 평일 + 크리스마스")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            4, 5, 6, 7,
+            11, 12, 13, 14,
+            18, 19, 20, 21,
+    })
+    void calculateTotalDiscountByWeekdayAndXmas(Integer date) {
+        Benefits benefits = new Benefits(date, reservedMenu);
+        assertThat(benefits.calculateTotalBenefit()).isEqualTo(29046
+                + (1000 + (date - 1) * 100)); // 샴페인, 평일 29046 + 크리스마스 (1000 + (date - 1) * 100)
+    }
 
-//    @DisplayName("총 할인 금액 계산, 샴페인 + 주말 할인")
-//    @ParameterizedTest
-//    @ValueSource(ints = {29, 30})
-//    void calculateTotalDiscountByWeekend(Integer date) {
-//        assertThat(Benefits.calculateTotalBenefit(date, reservedMenu.calculateTotalAmount(),
-//                reservedMenu)).isEqualTo(33092); // 샴페인 25000 + 주말 (2023 * 4)
-//    }
-//
-//    @DisplayName("총 할인 금액 계산, 샴페인 +  주말 + 크리스 마스 할인")
-//    @ParameterizedTest
-//    @ValueSource(ints = {
-//            1, 2,
-//            8, 9,
-//            15, 16,
-//            22, 23
-//    })
-//    void calculateTotalDiscountByWeekendAndXmas(Integer date) {
-//        assertThat(Benefits.calculateTotalBenefit(date, reservedMenu.calculateTotalAmount(),
-//                reservedMenu)).isEqualTo(33092
-//                + (1000 + (date - 1) * 100)); // 샴페인 + 주말 할인 33092 + 크리스마스 할인 1000+(date-1)*100
-//    }
-//
-//    @DisplayName("총 할인 금액 계산, 샴페인 +  평일 할인")
-//    @ParameterizedTest
-//    @ValueSource(ints = {26, 27, 28})
-//    void calculateTotalDiscountByWeekdate(Integer date) {
-//        assertThat(Benefits.calculateTotalBenefit(date, reservedMenu.calculateTotalAmount(),
-//                reservedMenu)).isEqualTo(29046); // 샴페인 25000 + 평일 (2023 * 2)
-//    }
-//
-//    @DisplayName("총 할인 금액 계산, 샴페인 +  평일 + 크리스마스 할인")
-//    @ParameterizedTest
-//    @ValueSource(ints = {
-//            4, 5, 6, 7,
-//            11, 12, 13, 14,
-//            18, 19, 20, 21,
-//    })
-//    void calculateTotalDiscountByWeekdateAndXmas(Integer date) {
-//        assertThat(Benefits.calculateTotalBenefit(date, reservedMenu.calculateTotalAmount(),
-//                reservedMenu)).isEqualTo(29046
-//                + (1000 + (date - 1) * 100)); // 샴페인 + 평일 할인 29046 + 크리스마스 할인 1000+(date-1)*100
-//    }
-//
-//    @DisplayName("총 할인 금액 계산, 샴페인 +  평일 + 특별 할인")
-//    @ParameterizedTest
-//    @ValueSource(ints = {31})
-//    void calculateTotalDiscountByWeekdateAndSpecial(Integer date) {
-//        assertThat(Benefits.calculateTotalBenefit(date, reservedMenu.calculateTotalAmount(),
-//                reservedMenu)).isEqualTo(30046); // 샴페인 25000 + 평일 (2023 * 2) + 특별 1000
-//    }
-//
-//    @DisplayName("총 할인 금액 계산, 샴페인 +  평일 + 크리스마스 + 특별 할인")
-//    @ParameterizedTest
-//    @ValueSource(ints = {3, 10, 17, 24, 25})
-//    void calculateTotalDiscountByWeekdateAndXmasAndSpecial(Integer date) {
-//        assertThat(Benefits.calculateTotalBenefit(date, reservedMenu.calculateTotalAmount(),
-//                reservedMenu)).isEqualTo(30046
-//                + (1000 + (date - 1) * 100)); // 샴페인 + 평일 + 특별 할인 30046 + 크리스마스 할인 1000+(date-1)*100
-//    }
+    @DisplayName("총 혜택 금액 계산, 샴페인 + 평일 + 특별")
+    @ParameterizedTest
+    @ValueSource(ints = {31})
+    void calculateTotalDiscountByWeekdayAndSpecial(Integer date) {
+        Benefits benefits = new Benefits(date, reservedMenu);
+        assertThat(benefits.calculateTotalBenefit())
+                .isEqualTo(30046); // 샴페인 25000 + 평일 (2023 * 2) + 특별 1000
+    }
+
+    @DisplayName("총 혜택 금액 계산, 샴페인 + 평일 + 크리스마스 + 특별")
+    @ParameterizedTest
+    @ValueSource(ints = {3, 10, 17, 24, 25})
+    void calculateTotalDiscountByWeekdayAndXmasAndSpecial(Integer date) {
+        Benefits benefits = new Benefits(date, reservedMenu);
+        assertThat(benefits.calculateTotalBenefit()).isEqualTo(30046
+                + (1000 + (date - 1) * 100)); // 샴페인 + 평일 + 특별 30046 + 크리스마스 (1000 + (date - 1) * 100)
+    }
 }
