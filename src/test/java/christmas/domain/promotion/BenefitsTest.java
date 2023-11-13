@@ -2,22 +2,15 @@ package christmas.domain.promotion;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.constants.Benefit;
+
 import christmas.constants.Food;
 import christmas.domain.ReservedMenu;
-import christmas.domain.promotion.Benefits;
-import christmas.domain.promotion.discount.Special;
-import christmas.domain.promotion.discount.Weekday;
-import christmas.domain.promotion.discount.Weekend;
-import christmas.domain.promotion.discount.Xmas;
-import christmas.domain.promotion.giveaway.Champagne;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class BenefitsTest {
@@ -54,7 +47,7 @@ public class BenefitsTest {
         assertThat(benefits.getBenefits()).isNotEmpty();
     }
 
-    @DisplayName("혜택 적용 대상 체크, 총 구매 금액  10,000원 미만 => not 대상")
+    @DisplayName("혜택 적용 대상 체크, 총 구매 금액 10,000원 미만 => not 대상")
     @Test
     void checkTargetByNotApply() {
         // given
@@ -130,4 +123,13 @@ public class BenefitsTest {
         assertThat(benefits.calculateTotalBenefit()).isEqualTo(30046
                 + (1000 + (date - 1) * 100)); // 샴페인 + 평일 + 특별 30046 + 크리스마스 (1000 + (date - 1) * 100)
     }
+
+    @DisplayName("할인 후 예상 결제 금액 계산")
+    @Test
+    void discount(){
+        Benefits benefits = new Benefits(1, reservedMenu);
+        assertThat(benefits.discount())
+                .isEqualTo(319000 - 9092); // 샴페인 제외, 주말 + 크리스마스 9092원 할인
+    }
+
 }
