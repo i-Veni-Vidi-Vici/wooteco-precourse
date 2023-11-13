@@ -19,7 +19,7 @@ public class EventPlanner {
     private final InputView inputView;
 
     public EventPlanner() {
-       outputView = new OutputView();
+        outputView = new OutputView();
         inputView = new InputView();
     }
 
@@ -43,7 +43,7 @@ public class EventPlanner {
         boolean isReserving = true;
         while (isReserving) {
             try {
-                reservedDate = new ReservedDate(Converter.convertToNumber(InputView.getDate()));
+                reservedDate = new ReservedDate(Converter.convertToNumber(inputView.getDate()));
                 isReserving = false;
             } catch (IllegalArgumentException ex) {
                 System.out.println(INVALID_DATE_ERROR.getMessage());
@@ -56,7 +56,7 @@ public class EventPlanner {
 
         while (isReserving) {
             try {
-                reservedMenu = new ReservedMenu(Converter.convertToReservedMenu(InputView.getMenu()));
+                reservedMenu = new ReservedMenu(Converter.convertToReservedMenu(inputView.getMenu()));
                 isReserving = false;
             } catch (IllegalArgumentException ex) {
                 System.out.println(INVALID_ORDER_ERROR.getMessage());
