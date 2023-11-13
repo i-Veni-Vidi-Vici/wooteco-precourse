@@ -1,5 +1,13 @@
 package christmas.domain.promotion.discount;
 
+import static christmas.constants.Value.FIRST_SPECIAL_DATE;
+import static christmas.constants.Value.FIVE_WEEKS;
+import static christmas.constants.Value.INITIAL_ZERO;
+import static christmas.constants.Value.SEVEN_DAYS;
+import static christmas.constants.Value.SPECIAL_DISCOUNT;
+import static christmas.constants.Value.XMAS_DATE;
+import static christmas.constants.Value.ZERO;
+
 import christmas.constants.Benefit;
 import christmas.domain.promotion.Promotion;
 import java.util.Collections;
@@ -20,15 +28,16 @@ public class Special implements Promotion {
 
     private Integer calculate(Integer date) {
         if (isEligible(date)) {
-            return 1000;
+            return SPECIAL_DISCOUNT.get();
         }
 
-        return 0;
+        return ZERO.get();
     }
 
     private boolean isEligible(Integer date) {
-        for (int i = 0; i < 5; i++) {
-            if (date == ((3 + (7 * i))) || (date == 25)) {
+        for (int week = INITIAL_ZERO.get(); week < FIVE_WEEKS.get(); week++) {
+            if ((date.equals(FIRST_SPECIAL_DATE.get() + (SEVEN_DAYS.get() * week)))
+                    || (date.equals(XMAS_DATE.get()))) {
                 return true;
             }
         }
