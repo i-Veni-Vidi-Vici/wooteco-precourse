@@ -1,9 +1,22 @@
 package christmas.domain.promotion.discount;
 
+import christmas.constants.Benefit;
 import christmas.domain.ReservedMenu;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Weekend {
-    public static Integer calculateWeekend(Integer day, ReservedMenu reservedMenu) {
+    private final Map<Benefit, Integer> weekend;
+
+    public Weekend(Integer date, ReservedMenu reservedMenu) {
+        weekend = new HashMap<>();
+
+        if (checkWeekend(date)) {
+            weekend.put(Benefit.SPECIAL, calculateWeekend(date, reservedMenu));
+        }
+    }
+    public Integer calculateWeekend(Integer day, ReservedMenu reservedMenu) {
         if (checkWeekend(day)) {
             return (2023 * reservedMenu.countMain());
         }
@@ -11,7 +24,7 @@ public class Weekend {
         return 0;
     }
 
-    public static boolean checkWeekend(Integer day) {
+    public boolean checkWeekend(Integer day) {
         for (int i = 0; i < 5; i++) {
             if (day >= ((1 + (7 * i))) && (day <= (2 + (7 * i)))) {
                 return true;
@@ -19,5 +32,9 @@ public class Weekend {
         }
 
         return false;
+    }
+
+    public Map<Benefit, Integer> apply() {
+        return Collections.unmodifiableMap(weekend);
     }
 }

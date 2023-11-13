@@ -19,15 +19,16 @@ public class Benefits {
 
         Special special = new Special(date);
         Weekday weekday = new Weekday(date, reservedMenu);
+        Weekend weekend = new Weekend(date, reservedMenu);
 
         Integer totalAmount = reservedMenu.calculateTotalAmount();
 
         if (checkTarget(totalAmount)) {
             benefits.putAll(special.apply());
             benefits.putAll(weekday.apply());
+            benefits.putAll(weekend.apply());
 
         }
-
     }
 
 //    private static void addBenefits(boolean checkBenefit, Benefit benefit, Integer benefitAmount,
