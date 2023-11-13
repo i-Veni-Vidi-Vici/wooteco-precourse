@@ -14,64 +14,31 @@ public class Benefits {
 
     private final Map<Benefit, Integer> benefits;
 
-    public Benefits(Map<Benefit, Integer> benefits) {
-        this.benefits = benefits;
+    public Benefits(Integer date, ReservedMenu reservedMenu) {
+        benefits = new HashMap<>();
+
+        Integer totalAmount = reservedMenu.calculateTotalAmount();
+
+        if (checkTarget(totalAmount)) {
+            applyBenefits(date, totalAmount, reservedMenu);
+        }
     }
-//    public Benefits(Integer date, ReservedMenu reservedMenu) {
-//        benefits = new HashMap<>();
-//
-//        Special special = new Special(date);
-//        Weekday weekday = new Weekday(date, reservedMenu);
-//        Weekend weekend = new Weekend(date, reservedMenu);
-//        Xmas xmas = new Xmas(date);
-//        Champagne champagne = new Champagne(date);
-//
-//        Integer totalAmount = reservedMenu.calculateTotalAmount();
-//
-//        if (checkTarget(totalAmount)) {
-//            benefits.putAll(special.apply());
-//            benefits.putAll(weekday.apply());
-//            benefits.putAll(weekend.apply());
-//            benefits.putAll(xmas.apply());
-//            benefits.putAll(champagne.apply());
-//
-//        }
-//    }
 
+    private void applyBenefits(Integer date, Integer totalAmount, ReservedMenu reservedMenu) {
+        addBenefit(new Special(date));
+        addBenefit(new Weekday(date, reservedMenu));
+        addBenefit(new Weekend(date, reservedMenu));
+        addBenefit(new Xmas(date));
+        addBenefit(new Champagne(totalAmount));
+    }
 
-//    public Benefits(Integer date, ReservedMenu reservedMenu) {
-//        benefits = new HashMap<>();
-//
-//        Integer totalAmount = reservedMenu.calculateTotalAmount();
-//
-//        if (checkTarget(totalAmount)) {
-//            applyBenefits(date, reservedMenu);
-//        }
-//    }
-
-//    private void applyBenefits(Integer date, ReservedMenu reservedMenu) {
-//        applyBenefit(new Special(date));
-//        applyBenefit(new Weekday(date, reservedMenu));
-//        applyBenefit(new Weekend(date, reservedMenu));
-//        applyBenefit(new Xmas(date));
-//        applyBenefit(new Champagne(date));
-//    }
-//
-//    private void applyBenefit(Benefit benefit) {
-//        benefits.putAll(benefit.apply());
-//    }
-
-//    private static void addBenefits(boolean checkBenefit, Benefit benefit, Integer benefitAmount,
-//                                    Map<Benefit, Integer> benefits) {
-//        if (checkBenefit) {
-//            benefits.put(benefit, benefitAmount);
-//        }
-//    }
+    private void addBenefit(Promotion promotion) {
+        benefits.putAll(promotion.apply());
+    }
 
     private static boolean checkTarget(Integer totalAmount) {
         return (totalAmount >= 10000);
     }
-
 
 //    public static Integer calculateTotalDiscount(Integer day, Integer totalAmount, ReservedMenu reservedMenu) {
 //        if (checkTarget(totalAmount)) {

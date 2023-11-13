@@ -10,11 +10,11 @@ public class Champagne implements Promotion {
 
     private final Map<Benefit, Integer> champagne;
 
-    public Champagne(Integer date) {
+    public Champagne(Integer totalAmount) {
         champagne = new HashMap<>();
 
-        if (isEligible(date)) {
-            champagne.put(Benefit.SPECIAL, calculate(date));
+        if (isEligible(totalAmount)) {
+            champagne.put(Benefit.SPECIAL, calculate(totalAmount));
         }
     }
 
