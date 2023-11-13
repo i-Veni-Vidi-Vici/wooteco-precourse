@@ -27,16 +27,16 @@ import java.util.Map;
 
 public class OutputView {
 
-    public static void printPlanner() {
+    public void printPlanner() {
         System.out.println(PLANNER.getMessage());
     }
 
-    public static void printDate(Integer date) {
+    public void printDate(Integer date) {
         System.out.println(DECEMBER.getMessage() + WHITESPACE.getMessage()
                 + date + DATE.getMessage() + NEW_LINE.getMessage());
     }
 
-    public static void printMenu(Map<Food, Integer> orderedMenu) {
+    public void printMenu(Map<Food, Integer> orderedMenu) {
         System.out.println(MENU.getMessage());
 
         for (Food food : orderedMenu.keySet()) {
@@ -47,13 +47,13 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printTotalAmount(Integer totalAmount) {
+    public void printTotalAmount(Integer totalAmount) {
         System.out.println(TOTAL_AMOUNT.getMessage());
         System.out.println(String.format(COMMA_INTEGER_FORMAT.getMessage(), totalAmount) + WON.getMessage());
         System.out.println();
     }
 
-    public static void printGiveaway(boolean giveaway) {
+    public void printGiveaway(boolean giveaway) {
         System.out.println(GIVEAWAY_MENU.getMessage());
 
         if (giveaway) {
@@ -66,7 +66,7 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printBenefitDetails(Map<Benefit, Integer> benefits) {
+    public void printBenefitDetails(Map<Benefit, Integer> benefits) {
         System.out.println(BENEFIT_DETAILS.getMessage());
 
         for (Benefit benefit : benefits.keySet()) {
@@ -81,24 +81,24 @@ public class OutputView {
         System.out.println();
     }
 
-    public static void printTotalBenefitAmount(Integer totalBenefitAmount) {
+    public void printTotalBenefitAmount(Integer totalBenefitAmount) {
         System.out.println(TOTAL_BENEFIT_AMOUNT.getMessage());
         System.out.println(MINUS.getMessage() + String.format(COMMA_INTEGER_FORMAT.getMessage(), totalBenefitAmount)
                 + WON.getMessage() + NEW_LINE.getMessage());
     }
 
-    public static void printPaymentAmount(Integer paymentAmount) {
+    public void printPaymentAmount(Integer paymentAmount) {
         System.out.println(PAYMENT_AMOUNT.getMessage());
         System.out.println(String.format(COMMA_INTEGER_FORMAT.getMessage(), paymentAmount)
                 + WON.getMessage() + NEW_LINE.getMessage());
     }
 
-    public static void printBadge(Badge badge) {
+    public void printBadge(Badge badge) {
         System.out.println(BADGE.getMessage());
         System.out.println(badge.getBadge());
     }
 
-    public void printError(String message){
+    public void printError(String message) {
         System.out.println(message);
     }
 }

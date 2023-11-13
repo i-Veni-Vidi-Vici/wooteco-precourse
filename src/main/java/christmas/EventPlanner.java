@@ -15,6 +15,13 @@ public class EventPlanner {
     private ReservedDate reservedDate;
     private ReservedMenu reservedMenu;
     private Benefits benefits;
+    private final OutputView outputView;
+    private final InputView inputView;
+
+    public EventPlanner() {
+       outputView = new OutputView();
+        inputView = new InputView();
+    }
 
     public void run() {
         showPlanner();
@@ -29,7 +36,7 @@ public class EventPlanner {
     }
 
     private void showPlanner() {
-        OutputView.printPlanner();
+        outputView.printPlanner();
     }
 
     private void reserveDate() {
@@ -58,17 +65,17 @@ public class EventPlanner {
     }
 
     private void showReservation() {
-        OutputView.printDate(reservedDate.getDate());
-        OutputView.printMenu(reservedMenu.getMenu());
-        OutputView.printTotalAmount(reservedMenu.calculateTotalAmount());
+        outputView.printDate(reservedDate.getDate());
+        outputView.printMenu(reservedMenu.getMenu());
+        outputView.printTotalAmount(reservedMenu.calculateTotalAmount());
     }
 
     private void showBenefits(Integer totalDiscount) {
-        OutputView.printGiveaway(benefits.checkGiveaway());
-        OutputView.printBenefitDetails(benefits.getBenefits());
-        OutputView.printTotalBenefitAmount(totalDiscount);
-        OutputView.printPaymentAmount(benefits.discount());
-        OutputView.printBadge(Badge.grant(totalDiscount));
+        outputView.printGiveaway(benefits.checkGiveaway());
+        outputView.printBenefitDetails(benefits.getBenefits());
+        outputView.printTotalBenefitAmount(totalDiscount);
+        outputView.printPaymentAmount(benefits.discount());
+        outputView.printBadge(Badge.grant(totalDiscount));
     }
 
 }
