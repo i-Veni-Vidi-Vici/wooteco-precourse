@@ -1,5 +1,11 @@
 package christmas.domain.promotion.discount;
 
+import static christmas.constants.Value.FIRST_XMAS_DISCOUNT;
+import static christmas.constants.Value.ONE_DATE;
+import static christmas.constants.Value.XMAS_DATE;
+import static christmas.constants.Value.XMAS_INCREMENT_DISCOUNT;
+import static christmas.constants.Value.ZERO;
+
 import christmas.constants.Benefit;
 import christmas.domain.promotion.Promotion;
 import java.util.Collections;
@@ -19,14 +25,14 @@ public class Xmas implements Promotion {
 
     private Integer calculate(Integer date) {
         if (isEligible(date)) {
-            return (1000 + ((date - 1) * 100));
+            return (FIRST_XMAS_DISCOUNT.get() + ((date - ONE_DATE.get()) * XMAS_INCREMENT_DISCOUNT.get()));
         }
 
-        return 0;
+        return ZERO.get();
     }
 
     private boolean isEligible(Integer date) {
-        return (date <= 25);
+        return (date <= XMAS_DATE.get());
     }
 
     @Override
