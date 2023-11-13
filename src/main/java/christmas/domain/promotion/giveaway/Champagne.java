@@ -1,33 +1,36 @@
 package christmas.domain.promotion.giveaway;
 
 import christmas.constants.Benefit;
+import christmas.domain.promotion.Promotion;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Champagne {
+public class Champagne implements Promotion {
 
     private final Map<Benefit, Integer> champagne;
 
     public Champagne(Integer date) {
         champagne = new HashMap<>();
 
-        if (checkChampagne(date)) {
-            champagne.put(Benefit.SPECIAL, calculateChampagne(date));
+        if (isEligible(date)) {
+            champagne.put(Benefit.SPECIAL, calculate(date));
         }
     }
 
-    public boolean checkChampagne(Integer totalAmount) {
-        return ((totalAmount / 120000) > 0);
-    }
-
-    public Integer calculateChampagne(Integer totalAmount) {
-        if (checkChampagne(totalAmount)) {
+    public Integer calculate(Integer totalAmount) {
+        if (isEligible(totalAmount)) {
             return 25000;
         }
         return 0;
     }
 
+    @Override
+    public boolean isEligible(Integer totalAmount) {
+        return ((totalAmount / 120000) > 0);
+    }
+
+    @Override
     public Map<Benefit, Integer> apply() {
         return Collections.unmodifiableMap(champagne);
     }

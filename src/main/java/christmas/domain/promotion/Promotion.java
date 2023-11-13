@@ -5,9 +5,9 @@ import java.util.Map;
 
 public interface Promotion {
 
-    Integer calculate();
 
-    boolean isEligible();
+
+    boolean isEligible(Integer value);
 
     Map<Benefit, Integer> apply();
 }

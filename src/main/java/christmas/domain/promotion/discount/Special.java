@@ -1,31 +1,34 @@
 package christmas.domain.promotion.discount;
 
 import christmas.constants.Benefit;
+import christmas.domain.ReservedMenu;
+import christmas.domain.promotion.Promotion;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Special {
+public class Special implements Promotion {
 
     private final Map<Benefit, Integer> special;
 
     public Special(Integer date) {
         special = new HashMap<>();
 
-        if (checkSpecial(date)) {
-            special.put(Benefit.SPECIAL, calculateSpecial(date));
+        if (isEligible(date)) {
+            special.put(Benefit.SPECIAL, calculate(date));
         }
     }
 
-    public Integer calculateSpecial(Integer date) {
-        if (checkSpecial(date)) {
+    public Integer calculate(Integer date) {
+        if (isEligible(date)) {
             return 1000;
         }
 
         return 0;
     }
 
-    public boolean checkSpecial(Integer date) {
+    @Override
+    public boolean isEligible(Integer date) {
         for (int i = 0; i < 5; i++) {
             if (date == ((3 + (7 * i))) || (date == 25)) {
                 return true;
@@ -35,6 +38,7 @@ public class Special {
         return false;
     }
 
+    @Override
     public Map<Benefit, Integer> apply() {
         return Collections.unmodifiableMap(special);
     }

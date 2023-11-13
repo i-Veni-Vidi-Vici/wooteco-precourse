@@ -14,6 +14,9 @@ public class Benefits {
 
     private final Map<Benefit, Integer> benefits;
 
+    public Benefits(Map<Benefit, Integer> benefits) {
+        this.benefits = benefits;
+    }
 //    public Benefits(Integer date, ReservedMenu reservedMenu) {
 //        benefits = new HashMap<>();
 //
@@ -36,27 +39,27 @@ public class Benefits {
 //    }
 
 
-    public Benefits(Integer date, ReservedMenu reservedMenu) {
-        benefits = new HashMap<>();
+//    public Benefits(Integer date, ReservedMenu reservedMenu) {
+//        benefits = new HashMap<>();
+//
+//        Integer totalAmount = reservedMenu.calculateTotalAmount();
+//
+//        if (checkTarget(totalAmount)) {
+//            applyBenefits(date, reservedMenu);
+//        }
+//    }
 
-        Integer totalAmount = reservedMenu.calculateTotalAmount();
-
-        if (checkTarget(totalAmount)) {
-            applyBenefits(date, reservedMenu);
-        }
-    }
-
-    private void applyBenefits(Integer date, ReservedMenu reservedMenu) {
-        applyBenefit(new Special(date));
-        applyBenefit(new Weekday(date, reservedMenu));
-        applyBenefit(new Weekend(date, reservedMenu));
-        applyBenefit(new Xmas(date));
-        applyBenefit(new Champagne(date));
-    }
-
-    private void applyBenefit(Benefit benefit) {
-        benefits.putAll(benefit.apply());
-    }
+//    private void applyBenefits(Integer date, ReservedMenu reservedMenu) {
+//        applyBenefit(new Special(date));
+//        applyBenefit(new Weekday(date, reservedMenu));
+//        applyBenefit(new Weekend(date, reservedMenu));
+//        applyBenefit(new Xmas(date));
+//        applyBenefit(new Champagne(date));
+//    }
+//
+//    private void applyBenefit(Benefit benefit) {
+//        benefits.putAll(benefit.apply());
+//    }
 
 //    private static void addBenefits(boolean checkBenefit, Benefit benefit, Integer benefitAmount,
 //                                    Map<Benefit, Integer> benefits) {
@@ -70,22 +73,22 @@ public class Benefits {
     }
 
 
-    public static Integer calculateTotalDiscount(Integer day, Integer totalAmount, ReservedMenu reservedMenu) {
-        if (checkTarget(totalAmount)) {
-            return (Xmas.calculateXmas(day)
-                    + Weekday.calculateWeekday(day, reservedMenu)
-                    + Weekend.calculateWeekend(day, reservedMenu)
-                    + Special.calculateSpecial(day)
-                    + Champagne.calculateChampagne(totalAmount));
-        }
-
-        return 0;
-    }
-
-    public static Integer discount(Integer totalAmount, Integer totalDiscount) {
-        return (totalAmount - totalDiscount + Champagne.calculateChampagne(totalAmount));
-    }
-
+//    public static Integer calculateTotalDiscount(Integer day, Integer totalAmount, ReservedMenu reservedMenu) {
+//        if (checkTarget(totalAmount)) {
+//            return (Xmas.calculateXmas(day)
+//                    + Weekday.calculateWeekday(day, reservedMenu)
+//                    + Weekend.calculateWeekend(day, reservedMenu)
+//                    + Special.calculate(day)
+//                    + Champagne.calculateChampagne(totalAmount));
+//        }
+//
+//        return 0;
+//    }
+//
+//    public static Integer discount(Integer totalAmount, Integer totalDiscount) {
+//        return (totalAmount - totalDiscount + Champagne.calculateChampagne(totalAmount));
+//    }
+//
 
     public Map<Benefit, Integer> getBenefits() {
         return benefits;

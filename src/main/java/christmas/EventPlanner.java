@@ -25,7 +25,7 @@ public class EventPlanner {
         OutputView.printDate(reservedDate.getDate());
         OutputView.printMenu(reservedMenu.getMenu());
         OutputView.printTotalAmount(totalAmount);
-        OutputView.printFreeGift(Champagne.checkChampagne(totalAmount));
+        OutputView.printFreeGift(Champagne.isEligible(totalAmount));
         OutputView.printBenefitDetails(benefits.getBenefits());
         OutputView.printTotalBenefitAmount(totalDiscount);
         OutputView.printPaymentAmount(benefits.discount(totalAmount, totalDiscount));
