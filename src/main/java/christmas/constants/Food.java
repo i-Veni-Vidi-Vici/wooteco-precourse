@@ -24,7 +24,6 @@ public enum Food {
 
     private final String name;
     private final Type type;
-
     private final int price;
 
     Food(String name, Type type, int price) {
@@ -50,7 +49,6 @@ public enum Food {
     public int getPrice() {
         return price;
     }
-
 
     public Type getType() {
         return type;

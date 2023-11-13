@@ -18,7 +18,6 @@ public enum Badge {
         return badge;
     }
 
-
     public static Badge grant(Integer totalDiscount) {
         if (totalDiscount >= SANTA.minimumAmount) {
             return SANTA;
