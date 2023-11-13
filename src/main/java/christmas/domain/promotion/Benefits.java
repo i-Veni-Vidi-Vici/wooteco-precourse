@@ -1,5 +1,8 @@
 package christmas.domain.promotion;
 
+import static christmas.constants.Value.BENEFIT_MINIMUM_AMOUNT_CONDITION;
+import static christmas.constants.Value.INITIAL_ZERO;
+
 import christmas.constants.Benefit;
 import christmas.domain.ReservedMenu;
 import christmas.domain.promotion.discount.Special;
@@ -38,11 +41,11 @@ public class Benefits {
     }
 
     private boolean checkTarget(Integer totalAmount) {
-        return (totalAmount >= 10000);
+        return (totalAmount >= BENEFIT_MINIMUM_AMOUNT_CONDITION.get());
     }
 
     public Integer calculateTotalBenefit() {
-        Integer totalBenefit = 0;
+        Integer totalBenefit = INITIAL_ZERO.get();
 
         for (Benefit benefit : benefits.keySet()) {
             totalBenefit += benefits.get(benefit);

@@ -1,7 +1,7 @@
 package christmas.domain.promotion.giveaway;
 
 import static christmas.constants.Value.CHAMPAGNE_PRICE;
-import static christmas.constants.Value.MINIMUM_PRICE_CONDITION;
+import static christmas.constants.Value.GIVEAWAY_MINIMUM_AMOUNT_CONDITION;
 import static christmas.constants.Value.ZERO;
 
 import christmas.constants.Benefit;
@@ -30,7 +30,7 @@ public class Champagne implements Promotion {
     }
 
     private boolean isEligible(Integer totalAmount) {
-        return ((totalAmount / MINIMUM_PRICE_CONDITION.get()) > ZERO.get());
+        return ((totalAmount / GIVEAWAY_MINIMUM_AMOUNT_CONDITION.get()) > ZERO.get());
     }
 
     @Override
