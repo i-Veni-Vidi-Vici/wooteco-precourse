@@ -53,6 +53,28 @@ public class WeekdayTest {
         assertThat(weekday.apply().get(Benefit.WEEKDAY)).isEqualTo(2023 * 2);
     }
 
+    @DisplayName("평일 할인 금액 계산, 디저트 0개 + 평일")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            3, 4, 5, 6, 7,
+            10, 11, 12, 13, 14,
+            17, 18, 19, 20, 21,
+            24, 25, 26, 27, 28,
+            31
+    })
+    void calculateWeekdayByNotDessert(Integer date) {
+        // given
+        Map<Food,Integer> menu = new HashMap<>();
+        menu.put(Food.T_BONE_STEAK, 1);
+        ReservedMenu notDessertMenu = new ReservedMenu(menu);
+
+        // when
+        Weekday weekday = new Weekday(date, notDessertMenu);
+
+        // then
+        assertThat(weekday.apply()).isEmpty();
+    }
+
     @DisplayName("평일 할인 금액 계산, 디저트 2개 + 주말")
     @ParameterizedTest
     @ValueSource(ints = {
