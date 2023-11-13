@@ -14,7 +14,7 @@ public class Champagne implements Promotion {
         champagne = new HashMap<>();
 
         if (isEligible(totalAmount)) {
-            champagne.put(Benefit.SPECIAL, calculate(totalAmount));
+            champagne.put(Benefit.FREE_GIFT, calculate(totalAmount));
         }
     }
 

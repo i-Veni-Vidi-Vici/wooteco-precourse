@@ -14,7 +14,7 @@ public class Weekend implements Promotion {
         weekend = new HashMap<>();
 
         if (isEligible(date)) {
-            weekend.put(Benefit.SPECIAL, calculate(date, reservedMenu));
+            weekend.put(Benefit.WEEKEND, calculate(date, reservedMenu));
         }
     }
 

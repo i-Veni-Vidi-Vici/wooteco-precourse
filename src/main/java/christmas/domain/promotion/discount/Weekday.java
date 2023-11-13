@@ -15,7 +15,7 @@ public class Weekday implements Promotion {
         weekday = new HashMap<>();
 
         if (isEligible(date)) {
-            weekday.put(Benefit.SPECIAL, calculate(date, reservedMenu));
+            weekday.put(Benefit.WEEKDAY, calculate(date, reservedMenu));
         }
     }
 

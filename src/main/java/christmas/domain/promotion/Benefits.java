@@ -13,11 +13,12 @@ import java.util.Map;
 public class Benefits {
 
     private final Map<Benefit, Integer> benefits;
+    private final Integer totalAmount;
 
     public Benefits(Integer date, ReservedMenu reservedMenu) {
         benefits = new HashMap<>();
 
-        Integer totalAmount = reservedMenu.calculateTotalAmount();
+        totalAmount = reservedMenu.calculateTotalAmount();
 
         if (checkTarget(totalAmount)) {
             applyBenefits(date, totalAmount, reservedMenu);
@@ -50,8 +51,12 @@ public class Benefits {
         return totalBenefit;
     }
 
-    public Integer discount(Integer totalAmount, Integer totalDiscount) {
-        return (totalAmount - totalDiscount + Champagne.calculateChampagne(totalAmount));
+    public Integer discount() {
+        if (benefits.containsKey(Benefit.FREE_GIFT)) {
+            return (totalAmount - calculateTotalBenefit() + benefits.get(Benefit.FREE_GIFT));
+        }
+
+        return (totalAmount - calculateTotalBenefit());
     }
 
 
