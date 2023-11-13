@@ -1,6 +1,6 @@
 package christmas.domain.promotion;
 
-import static christmas.constants.Value.BENEFIT_MINIMUM_AMOUNT_CONDITION;
+import static christmas.constants.Value.BENEFIT_MIN_AMOUNT_CONDITION;
 import static christmas.constants.Value.INITIAL_ZERO;
 
 import christmas.constants.Benefit;
@@ -41,7 +41,7 @@ public class Benefits {
     }
 
     private boolean checkTarget(Integer totalAmount) {
-        return (totalAmount >= BENEFIT_MINIMUM_AMOUNT_CONDITION.get());
+        return (totalAmount >= BENEFIT_MIN_AMOUNT_CONDITION.get());
     }
 
     public Integer calculateTotalBenefit() {
