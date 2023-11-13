@@ -1,5 +1,15 @@
 package christmas.domain.promotion.discount;
 
+import static christmas.constants.Condition.FALSE;
+import static christmas.constants.Condition.TRUE;
+import static christmas.constants.Value.FIRST_WEEKDAY_DATE;
+import static christmas.constants.Value.FIRST_WEEK_LAST_WEEKDAY_DATE;
+import static christmas.constants.Value.FIVE_WEEKS;
+import static christmas.constants.Value.INITIAL_ZERO;
+import static christmas.constants.Value.SEVEN_DAYS;
+import static christmas.constants.Value.WEEKDAY_DISCOUNT;
+import static christmas.constants.Value.ZERO;
+
 import christmas.constants.Benefit;
 import christmas.domain.ReservedMenu;
 import christmas.domain.promotion.Promotion;
@@ -21,20 +31,21 @@ public class Weekday implements Promotion {
 
     private Integer calculate(Integer date, ReservedMenu reservedMenu) {
         if (isEligible(date)) {
-            return (2023 * reservedMenu.countDessert());
+            return (WEEKDAY_DISCOUNT.get() * reservedMenu.countDessert());
         }
 
-        return 0;
+        return ZERO.get();
     }
 
     private boolean isEligible(Integer date) {
-        for (int i = 0; i < 5; i++) {
-            if (date >= ((3 + (7 * i))) && (date <= (7 + (7 * i)))) {
-                return true;
+        for (int week = INITIAL_ZERO.get(); week < FIVE_WEEKS.get(); week++) {
+            if ((date >= (FIRST_WEEKDAY_DATE.get() + (SEVEN_DAYS.get() * week)))
+                    && (date <= (FIRST_WEEK_LAST_WEEKDAY_DATE.get() + (SEVEN_DAYS.get() * week)))) {
+                return TRUE.get();
             }
         }
 
-        return false;
+        return FALSE.get();
     }
 
     @Override

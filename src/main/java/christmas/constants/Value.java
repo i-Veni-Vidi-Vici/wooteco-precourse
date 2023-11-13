@@ -10,10 +10,15 @@ public enum Value {
 
     FIRST_SPECIAL_DATE(3),
 
+    FIRST_WEEKDAY_DATE(3),
+
+    FIRST_WEEK_LAST_WEEKDAY_DATE(7),
+
     SEVEN_DAYS(7),
 
     XMAS_DATE(25),
 
+    WEEKDAY_DISCOUNT(2023),
 
     ;
 
