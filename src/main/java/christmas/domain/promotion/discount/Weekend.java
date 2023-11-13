@@ -18,7 +18,7 @@ public class Weekend implements Promotion {
         }
     }
 
-    public Integer calculate(Integer date, ReservedMenu reservedMenu) {
+    private Integer calculate(Integer date, ReservedMenu reservedMenu) {
         if (isEligible(date)) {
             return (2023 * reservedMenu.countMain());
         }
@@ -26,8 +26,7 @@ public class Weekend implements Promotion {
         return 0;
     }
 
-    @Override
-    public boolean isEligible(Integer date) {
+    private boolean isEligible(Integer date) {
         for (int i = 0; i < 5; i++) {
             if (date >= ((1 + (7 * i))) && (date <= (2 + (7 * i)))) {
                 return true;
@@ -36,7 +35,6 @@ public class Weekend implements Promotion {
 
         return false;
     }
-
 
     @Override
     public Map<Benefit, Integer> apply() {

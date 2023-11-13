@@ -26,7 +26,6 @@ public class Special implements Promotion {
         return 0;
     }
 
-    @Override
     private boolean isEligible(Integer date) {
         for (int i = 0; i < 5; i++) {
             if (date == ((3 + (7 * i))) || (date == 25)) {

@@ -17,7 +17,7 @@ public class Xmas implements Promotion {
         }
     }
 
-    public Integer calculate(Integer date) {
+    private Integer calculate(Integer date) {
         if (isEligible(date)) {
             return (1000 + ((date - 1) * 100));
         }
@@ -25,8 +25,7 @@ public class Xmas implements Promotion {
         return 0;
     }
 
-    @Override
-    public boolean isEligible(Integer date) {
+    private boolean isEligible(Integer date) {
         return (date <= 25);
     }
 

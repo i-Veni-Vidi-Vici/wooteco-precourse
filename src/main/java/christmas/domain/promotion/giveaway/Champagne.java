@@ -18,15 +18,14 @@ public class Champagne implements Promotion {
         }
     }
 
-    public Integer calculate(Integer totalAmount) {
+    private Integer calculate(Integer totalAmount) {
         if (isEligible(totalAmount)) {
             return 25000;
         }
         return 0;
     }
 
-    @Override
-    public boolean isEligible(Integer totalAmount) {
+    private boolean isEligible(Integer totalAmount) {
         return ((totalAmount / 120000) > 0);
     }
 
