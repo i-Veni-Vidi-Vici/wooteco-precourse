@@ -39,7 +39,7 @@ public class WeekdayTest {
         reservedMenu = new ReservedMenu(menu);
     }
 
-    @DisplayName("평일 할인 금액 계산, 디저트 2개 + 평일")
+    @DisplayName("평일 할인 금액 계산, 디저트 2개 + 평일 => 2023 * 2")
     @ParameterizedTest
     @ValueSource(ints = {
             3, 4, 5, 6, 7,
@@ -53,7 +53,7 @@ public class WeekdayTest {
         assertThat(weekday.apply().get(Benefit.WEEKDAY)).isEqualTo(2023 * 2);
     }
 
-    @DisplayName("평일 할인 금액 계산, 디저트 0개 + 평일")
+    @DisplayName("평일 할인 금액 계산, 디저트 0개 + 평일 => not apply")
     @ParameterizedTest
     @ValueSource(ints = {
             3, 4, 5, 6, 7,
@@ -75,7 +75,7 @@ public class WeekdayTest {
         assertThat(weekday.apply()).isEmpty();
     }
 
-    @DisplayName("평일 할인 금액 계산, 디저트 2개 + 주말")
+    @DisplayName("평일 할인 금액 계산, 디저트 2개 + 주말 => not apply")
     @ParameterizedTest
     @ValueSource(ints = {
             1, 2,

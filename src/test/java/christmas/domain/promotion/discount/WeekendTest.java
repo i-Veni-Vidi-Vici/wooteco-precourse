@@ -49,9 +49,32 @@ public class WeekendTest {
             29, 30
     })
     void calculateWeekendByWeekend(Integer date) {
-        Weekend weekend = new Weekend(date,reservedMenu);
+        Weekend weekend = new Weekend(date, reservedMenu);
         assertThat(weekend.apply().get(Benefit.WEEKEND)).isEqualTo(2023 * 4);
     }
+
+    @DisplayName("주말 할인 금액 계산, 메인 0개 + 주말 => not apply")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            1, 2,
+            8, 9,
+            15, 16,
+            22, 23,
+            29, 30
+    })
+    void calculateWeekendByNotMain(Integer date) {
+        // given
+        Map<Food, Integer> menu = new HashMap<>();
+        menu.put(Food.CHOCO_CAKE, 3);
+        ReservedMenu notMainMenu = new ReservedMenu(menu);
+
+        // when
+        Weekend weekend = new Weekend(date, notMainMenu);
+
+        // then
+        assertThat(weekend.apply()).isEmpty();
+    }
+
 
     @DisplayName("주말 할인 금액 계산, 메인 4개 + 평일 => not apply")
     @ParameterizedTest
@@ -63,7 +86,7 @@ public class WeekendTest {
             31
     })
     void calculateWeekendByWeekday(Integer date) {
-        Weekend weekend = new Weekend(date,reservedMenu);
+        Weekend weekend = new Weekend(date, reservedMenu);
         assertThat(weekend.apply()).isEmpty();
     }
 
