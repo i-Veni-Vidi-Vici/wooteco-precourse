@@ -61,7 +61,7 @@ public class EventPlanner {
     }
 
     private void showBenefits(Integer totalDiscount) {
-        OutputView.printFreeGift(benefits.checkGiveaway());
+        OutputView.printGiveaway(benefits.checkGiveaway());
         OutputView.printBenefitDetails(benefits.getBenefits());
         OutputView.printTotalBenefitAmount(totalDiscount);
         OutputView.printPaymentAmount(benefits.discount());

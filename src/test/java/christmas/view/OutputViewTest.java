@@ -36,7 +36,6 @@ public class OutputViewTest {
         assertThat(out.toString()).contains("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
     }
 
-
     @DisplayName("예약한 날짜에 대한 첫 이벤트 문구 출력")
     @Test
     void printDate(){
@@ -75,12 +74,12 @@ public class OutputViewTest {
                 .contains("142,000원");
     }
 
-    @DisplayName("12만원 이상일 때, 증정 메뉴 출력")
+    @DisplayName("증정 메뉴 출력")
     @ParameterizedTest
     @CsvSource(value = {"true,샴페인 1개","false,없음"})
-    void printFreeGift(boolean freeGift, String print){
+    void printGiveaway(boolean giveaway, String print){
         // when
-        OutputView.printFreeGift(freeGift);
+        OutputView.printGiveaway(giveaway);
 
         // then
         assertThat(out.toString())
@@ -95,7 +94,7 @@ public class OutputViewTest {
         Map<Benefit, Integer> benefits = new HashMap<>();
         benefits.put(Benefit.CHRISTMAS,1000);
         benefits.put(Benefit.WEEKDAY,2023);
-        benefits.put(Benefit.FREE_GIFT,25000);
+        benefits.put(Benefit.GIVEAWAY,25000);
 
         // when
         OutputView.printBenefitDetails(benefits);
@@ -111,7 +110,7 @@ public class OutputViewTest {
 
     @DisplayName("혜택이 없을 경우, 없음 출력")
     @Test
-    void printBenefitDetailsByNotApplicable(){
+    void printBenefitDetailsByNotBenefit(){
         // given
         Map<Benefit, Integer> benefits = new HashMap<>();
 

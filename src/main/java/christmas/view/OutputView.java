@@ -1,5 +1,25 @@
 package christmas.view;
 
+import static christmas.constants.Message.BADGE;
+import static christmas.constants.Message.BENEFIT_DETAILS;
+import static christmas.constants.Message.COLON;
+import static christmas.constants.Message.COMMA_INTEGER_FORMAT;
+import static christmas.constants.Message.COUNT;
+import static christmas.constants.Message.DATE;
+import static christmas.constants.Message.DECEMBER;
+import static christmas.constants.Message.GIVEAWAY_MENU;
+import static christmas.constants.Message.MENU;
+import static christmas.constants.Message.MINUS;
+import static christmas.constants.Message.NEW_LINE;
+import static christmas.constants.Message.NOTHING;
+import static christmas.constants.Message.ONE_CHAMPAGNE;
+import static christmas.constants.Message.PAYMENT_AMOUNT;
+import static christmas.constants.Message.PLANNER;
+import static christmas.constants.Message.TOTAL_AMOUNT;
+import static christmas.constants.Message.TOTAL_BENEFIT_AMOUNT;
+import static christmas.constants.Message.WHITESPACE;
+import static christmas.constants.Message.WON;
+
 import christmas.constants.Badge;
 import christmas.constants.Benefit;
 import christmas.constants.Food;
@@ -8,71 +28,73 @@ import java.util.Map;
 public class OutputView {
 
     public static void printPlanner() {
-        System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
+        System.out.println(PLANNER.getMessage());
     }
 
     public static void printDate(Integer date) {
-        System.out.println("12월 " + date + "일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n");
+        System.out.println(DECEMBER.getMessage() + WHITESPACE.getMessage()
+                + date + DATE.getMessage() + NEW_LINE.getMessage());
     }
 
     public static void printMenu(Map<Food, Integer> orderedMenu) {
-        System.out.println("<주문 메뉴>");
+        System.out.println(MENU.getMessage());
 
         for (Food food : orderedMenu.keySet()) {
-            System.out.println(food.getName() + " " + orderedMenu.get(food) + "개");
+            System.out.println(food.getName() + WHITESPACE.getMessage()
+                    + orderedMenu.get(food) + COUNT.getMessage());
         }
 
         System.out.println();
     }
 
     public static void printTotalAmount(Integer totalAmount) {
-        System.out.println("<할인 전 총주문 금액>");
-        System.out.println(String.format("%,d", totalAmount) + "원");
+        System.out.println(TOTAL_AMOUNT.getMessage());
+        System.out.println(String.format(COMMA_INTEGER_FORMAT.getMessage(), totalAmount) + WON.getMessage());
         System.out.println();
     }
 
+    public static void printGiveaway(boolean giveaway) {
+        System.out.println(GIVEAWAY_MENU.getMessage());
 
-    public static void printFreeGift(boolean freeGift) {
-        System.out.println("<증정 메뉴>");
-
-        if (freeGift) {
-            System.out.println("샴페인 1개");
+        if (giveaway) {
+            System.out.println(ONE_CHAMPAGNE.getMessage());
         }
-        if (!freeGift) {
-            System.out.println("없음");
+        if (!giveaway) {
+            System.out.println(NOTHING.getMessage());
         }
 
         System.out.println();
     }
 
     public static void printBenefitDetails(Map<Benefit, Integer> benefits) {
-        System.out.println("<혜택 내역>");
+        System.out.println(BENEFIT_DETAILS.getMessage());
 
         for (Benefit benefit : benefits.keySet()) {
-            System.out.println(benefit.getBenefit() + ": -" + String.format("%,d", benefits.get(benefit)) + "원");
+            System.out.println(benefit.getBenefit() + COLON.getMessage() + WHITESPACE.getMessage() + MINUS.getMessage()
+                    + String.format(COMMA_INTEGER_FORMAT.getMessage(), benefits.get(benefit)) + WON.getMessage());
         }
 
         if (benefits.isEmpty()) {
-            System.out.println("없음");
+            System.out.println(NOTHING.getMessage());
         }
 
         System.out.println();
     }
 
     public static void printTotalBenefitAmount(Integer totalBenefitAmount) {
-        System.out.println("<총혜택 금액>");
-        System.out.println("-" + String.format("%,d", totalBenefitAmount) + "원");
-        System.out.println();
+        System.out.println(TOTAL_BENEFIT_AMOUNT.getMessage());
+        System.out.println(MINUS.getMessage() + String.format(COMMA_INTEGER_FORMAT.getMessage(), totalBenefitAmount)
+                + WON.getMessage() + NEW_LINE.getMessage());
     }
 
     public static void printPaymentAmount(Integer paymentAmount) {
-        System.out.println("<할인 후 예상 결제 금액>");
-        System.out.println(String.format("%,d", paymentAmount) + "원");
-        System.out.println();
+        System.out.println(PAYMENT_AMOUNT.getMessage());
+        System.out.println(String.format(COMMA_INTEGER_FORMAT.getMessage(), paymentAmount)
+                + WON.getMessage() + NEW_LINE.getMessage());
     }
 
     public static void printBadge(Badge badge) {
-        System.out.println("<12월 이벤트 배지>");
+        System.out.println(BADGE.getMessage());
         System.out.println(badge.getBadge());
     }
 }

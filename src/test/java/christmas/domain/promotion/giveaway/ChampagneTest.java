@@ -13,7 +13,7 @@ public class ChampagneTest {
     @ValueSource(ints = {120000, 150000, 240000})
     void checkFreeGift(Integer totalAmount) {
         Champagne champagne = new Champagne(totalAmount);
-        assertThat(champagne.apply().get(Benefit.FREE_GIFT)).isEqualTo(25000);
+        assertThat(champagne.apply().get(Benefit.GIVEAWAY)).isEqualTo(25000);
     }
 
     @DisplayName("증정 이벤트 금액 계산, 12만원 미만 => not apply")

@@ -53,14 +53,14 @@ public class Benefits {
 
     public Integer discount() {
         if (checkGiveaway()) {
-            return (totalAmount - calculateTotalBenefit() + benefits.get(Benefit.FREE_GIFT));
+            return (totalAmount - calculateTotalBenefit() + benefits.get(Benefit.GIVEAWAY));
         }
 
         return (totalAmount - calculateTotalBenefit());
     }
 
     public boolean checkGiveaway() {
-        return benefits.containsKey(Benefit.FREE_GIFT);
+        return benefits.containsKey(Benefit.GIVEAWAY);
     }
 
     public Map<Benefit, Integer> getBenefits() {
