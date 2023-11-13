@@ -22,6 +22,8 @@ public enum Message {
     WHITESPACE(" "),
     COLON(":"),
     MINUS("-"),
+    HYPHEN("-"),
+    COMMA(","),
     COMMA_INTEGER_FORMAT("%,d");
 
     private final String message;

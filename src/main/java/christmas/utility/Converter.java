@@ -1,5 +1,14 @@
 package christmas.utility;
 
+import static christmas.constants.Message.COMMA;
+import static christmas.constants.Message.HYPHEN;
+import static christmas.constants.Value.ASCII_ZERO;
+import static christmas.constants.Value.FIRST_CHARACTER;
+import static christmas.constants.Value.FIRST_INDEX;
+import static christmas.constants.Value.FORM_SIZE;
+import static christmas.constants.Value.ONE_LENGTH;
+import static christmas.constants.Value.SECOND_INDEX;
+
 import christmas.constants.Food;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,19 +32,20 @@ public class Converter {
     }
 
     private static void checkZero(String value) {
-        if ((value.charAt(0) == '0') && (value.length() > 1)) {
+        if ((value.charAt(FIRST_CHARACTER.get()) == ASCII_ZERO.get()) && (value.length() > ONE_LENGTH.get())) {
             throw new IllegalArgumentException();
         }
     }
 
     public static Map<Food, Integer> convertToReservedMenu(String value) {
         Map<Food, Integer> orderedMenu = new HashMap<>();
-        List<String> inputMenus = convertToList(value, ",");
+        List<String> inputMenus = convertToList(value, COMMA.getMessage());
 
         for (String inputMenu : inputMenus) {
-            List<String> foodAndPrice = convertToList(inputMenu, "-");
+            List<String> foodAndPrice = convertToList(inputMenu, HYPHEN.getMessage());
             checkForm(foodAndPrice);
-            orderedMenu.put(Food.checkExistence(foodAndPrice.get(0)), convertToNumber(foodAndPrice.get(1)));
+            orderedMenu.put(Food.checkExistence(foodAndPrice.get(FIRST_INDEX.get())),
+                    convertToNumber(foodAndPrice.get(SECOND_INDEX.get())));
         }
 
         checkDuplication(inputMenus, orderedMenu);
@@ -47,7 +57,7 @@ public class Converter {
     }
 
     private static void checkForm(List<String> foodAndPrice) {
-        if (foodAndPrice.size() != 2) {
+        if (foodAndPrice.size() != FORM_SIZE.get()) {
             throw new IllegalArgumentException();
         }
     }

@@ -42,6 +42,17 @@ public enum Value {
 
     MAX_TOTAL_FOOD_COUNT(20),
 
+    FIRST_CHARACTER(0),
+
+    ASCII_ZERO(48),
+
+    ONE_LENGTH(1),
+
+    FIRST_INDEX(0),
+
+    SECOND_INDEX(1),
+    FORM_SIZE(2)
+
 
     ;
 
