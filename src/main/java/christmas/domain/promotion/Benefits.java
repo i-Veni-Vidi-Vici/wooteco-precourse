@@ -14,21 +14,48 @@ public class Benefits {
 
     private final Map<Benefit, Integer> benefits;
 
+//    public Benefits(Integer date, ReservedMenu reservedMenu) {
+//        benefits = new HashMap<>();
+//
+//        Special special = new Special(date);
+//        Weekday weekday = new Weekday(date, reservedMenu);
+//        Weekend weekend = new Weekend(date, reservedMenu);
+//        Xmas xmas = new Xmas(date);
+//        Champagne champagne = new Champagne(date);
+//
+//        Integer totalAmount = reservedMenu.calculateTotalAmount();
+//
+//        if (checkTarget(totalAmount)) {
+//            benefits.putAll(special.apply());
+//            benefits.putAll(weekday.apply());
+//            benefits.putAll(weekend.apply());
+//            benefits.putAll(xmas.apply());
+//            benefits.putAll(champagne.apply());
+//
+//        }
+//    }
+
+
     public Benefits(Integer date, ReservedMenu reservedMenu) {
         benefits = new HashMap<>();
-
-        Special special = new Special(date);
-        Weekday weekday = new Weekday(date, reservedMenu);
-        Weekend weekend = new Weekend(date, reservedMenu);
 
         Integer totalAmount = reservedMenu.calculateTotalAmount();
 
         if (checkTarget(totalAmount)) {
-            benefits.putAll(special.apply());
-            benefits.putAll(weekday.apply());
-            benefits.putAll(weekend.apply());
-
+            applyBenefits(date, reservedMenu);
         }
+    }
+
+    private void applyBenefits(Integer date, ReservedMenu reservedMenu) {
+        applyBenefit(new Special(date));
+        applyBenefit(new Weekday(date, reservedMenu));
+        applyBenefit(new Weekend(date, reservedMenu));
+        applyBenefit(new Xmas(date));
+        applyBenefit(new Champagne(date));
+    }
+
+    private void applyBenefit(Benefit benefit) {
+        benefits.putAll(benefit.apply());
     }
 
 //    private static void addBenefits(boolean checkBenefit, Benefit benefit, Integer benefitAmount,
@@ -49,14 +76,14 @@ public class Benefits {
                     + Weekday.calculateWeekday(day, reservedMenu)
                     + Weekend.calculateWeekend(day, reservedMenu)
                     + Special.calculateSpecial(day)
-                    + Champagne.calculateFreeGift(totalAmount));
+                    + Champagne.calculateChampagne(totalAmount));
         }
 
         return 0;
     }
 
     public static Integer discount(Integer totalAmount, Integer totalDiscount) {
-        return (totalAmount - totalDiscount + Champagne.calculateFreeGift(totalAmount));
+        return (totalAmount - totalDiscount + Champagne.calculateChampagne(totalAmount));
     }
 
 

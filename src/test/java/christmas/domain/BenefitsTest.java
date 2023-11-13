@@ -153,14 +153,14 @@ public class BenefitsTest {
     @ParameterizedTest
     @CsvSource(value = {"119999,false", "120000,true", "150000,true", "240000,true"})
     void checkFreeGift(Integer totalAmount, boolean freeGift) {
-        assertThat(Champagne.checkFreeGift(totalAmount)).isEqualTo(freeGift);
+        assertThat(Champagne.checkChampagne(totalAmount)).isEqualTo(freeGift);
     }
 
     @DisplayName("증정 이벤트 금액 반환")
     @ParameterizedTest
     @CsvSource(value = {"119999,0", "120000,25000", "150000,25000", "240000,25000"})
     void calculateFreeGift(Integer totalAmount, Integer count) {
-        assertThat(Champagne.calculateFreeGift(totalAmount)).isEqualTo(count);
+        assertThat(Champagne.calculateChampagne(totalAmount)).isEqualTo(count);
     }
 
 
