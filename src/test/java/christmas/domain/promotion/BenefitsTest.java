@@ -132,4 +132,24 @@ public class BenefitsTest {
                 .isEqualTo(319000 - 9092); // 샴페인 제외, 주말 + 크리스마스 9092원 할인
     }
 
+    @DisplayName("증정 이벤트 대상 체크, 할인 전 총 주문 금액이 12만원 이상 => 대상")
+    @Test
+    void checkGiveaway(){
+        Benefits benefits = new Benefits(1, reservedMenu); // 총 주문 금액: 319,000원
+        assertThat(benefits.checkGiveaway()).isEqualTo(true);
+    }
+
+    @DisplayName("증정 이벤트 대상 체크, 할인 전 총 주문 금액이 12만원 미만 => not 대상")
+    @Test
+    void checkGiveawayByNotTarget(){
+        // given
+        Map<Food, Integer> menu = new HashMap<>();
+        menu.put(Food.CAESAR_SALAD, 1);
+        ReservedMenu reservedMenu = new ReservedMenu(menu); // 총 구매 금액 8,000원
+        Benefits benefits = new Benefits(1, reservedMenu);
+
+        // when, then
+        assertThat(benefits.checkGiveaway()).isEqualTo(false);
+    }
+
 }
