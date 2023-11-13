@@ -1,15 +1,16 @@
-package christmas.domain;
+package christmas.domain.promotion;
 
 import christmas.constants.Benefit;
+import christmas.domain.ReservedMenu;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DiscountPolicy {
+public class Benefits {
 
     private final Map<Benefit, Integer> benefits;
 
-    public DiscountPolicy(Integer day, ReservedMenu reservedMenu) {
+    public Benefits(Integer day, ReservedMenu reservedMenu) {
         Map<Benefit, Integer> temporaryBenefits = new HashMap<>();
         Integer totalAmount = reservedMenu.calculateTotalAmount();
 

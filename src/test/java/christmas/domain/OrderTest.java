@@ -3,6 +3,7 @@ package christmas.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.constants.Food;
+import christmas.domain.promotion.Benefits;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
@@ -58,6 +59,6 @@ public class OrderTest {
     @DisplayName("총 주문 금액에서 할인 후 금액 반환")
     @Test
     void discount() {
-        assertThat(DiscountPolicy.discount(10000, 2000)).isEqualTo(8000);
+        assertThat(Benefits.discount(10000, 2000)).isEqualTo(8000);
     }
 }

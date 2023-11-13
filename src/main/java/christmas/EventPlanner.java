@@ -1,7 +1,7 @@
 package christmas;
 
 import christmas.constants.Badge;
-import christmas.domain.DiscountPolicy;
+import christmas.domain.promotion.Benefits;
 import christmas.domain.ReservedDate;
 import christmas.domain.ReservedMenu;
 import christmas.utility.Converter;
@@ -12,22 +12,22 @@ public class EventPlanner {
     private ReservedDate reservedDate;
     private ReservedMenu reservedMenu;
 
-    private DiscountPolicy discountPolicy;
+    private Benefits benefits;
 
     public void run(){
         OutputView.printPlanner();
         reserveDate();
         reserveMenu();
-        discountPolicy = new DiscountPolicy(reservedDate.getDate(), reservedMenu);
+        benefits = new Benefits(reservedDate.getDate(), reservedMenu);
         Integer totalAmount = reservedMenu.calculateTotalAmount();
-        Integer totalDiscount = discountPolicy.calculateTotalDiscount(reservedDate.getDate(),totalAmount,reservedMenu);
+        Integer totalDiscount = benefits.calculateTotalDiscount(reservedDate.getDate(),totalAmount,reservedMenu);
         OutputView.printDate(reservedDate.getDate());
         OutputView.printMenu(reservedMenu.getMenu());
         OutputView.printTotalAmount(totalAmount);
-        OutputView.printFreeGift(discountPolicy.checkFreeGift(totalAmount));
-        OutputView.printBenefitDetails(discountPolicy.getBenefits());
+        OutputView.printFreeGift(benefits.checkFreeGift(totalAmount));
+        OutputView.printBenefitDetails(benefits.getBenefits());
         OutputView.printTotalBenefitAmount(totalDiscount);
-        OutputView.printPaymentAmount(discountPolicy.discount(totalAmount, totalDiscount));
+        OutputView.printPaymentAmount(benefits.discount(totalAmount, totalDiscount));
         OutputView.printBadge(Badge.grant(totalDiscount));
     }
 
