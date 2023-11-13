@@ -151,5 +151,4 @@ public class BenefitsTest {
         // when, then
         assertThat(benefits.checkGiveaway()).isEqualTo(false);
     }
-
 }
