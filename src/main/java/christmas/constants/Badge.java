@@ -6,7 +6,6 @@ public enum Badge {
     TREE("트리", 10_000),
     SANTA("산타", 20_000);
 
-
     private final String badge;
     private final Integer minimumAmount;
 
@@ -19,18 +18,15 @@ public enum Badge {
         return badge;
     }
 
-    public Integer getMinimumAmount() {
-        return minimumAmount;
-    }
 
     public static Badge grant(Integer totalDiscount) {
-        if (totalDiscount >= SANTA.getMinimumAmount()) {
+        if (totalDiscount >= SANTA.minimumAmount) {
             return SANTA;
         }
-        if (totalDiscount >= TREE.getMinimumAmount()) {
+        if (totalDiscount >= TREE.minimumAmount) {
             return TREE;
         }
-        if (totalDiscount >= STAR.getMinimumAmount()) {
+        if (totalDiscount >= STAR.minimumAmount) {
             return STAR;
         }
         return NOTHING;
