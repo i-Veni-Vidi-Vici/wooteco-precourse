@@ -47,14 +47,28 @@ public class BenefitsTest {
         reservedMenu = new ReservedMenu(menu);
     }
 
-//    @DisplayName("할인 대상 검증")
-//    @ParameterizedTest
-//    @CsvSource(value = {"10000,true", "25000,true", "9999,false", "3000,false"})
-//    void checkTarget(Integer totalAmount, boolean isTarget) {
-//        assertThat(DiscountPolicy.checkTarget(totalAmount)).isEqualTo(isTarget);
-//
-//    }
-//
+    @DisplayName("혜택 적용 대상 체크, 총 구매 금액 10,000원 이상 => 대상")
+    @Test
+    void checkTarget() {
+        Benefits benefits = new Benefits(1, reservedMenu);
+        assertThat(benefits.getBenefits()).isNotEmpty();
+    }
+
+    @DisplayName("혜택 적용 대상 체크, 총 구매 금액  10,000원 미만 => not 대상")
+    @Test
+    void checkTargetByNotApply() {
+        // given
+        Map<Food, Integer> menu = new HashMap<>();
+        menu.put(Food.CAESAR_SALAD, 1);
+        ReservedMenu reservedMenu = new ReservedMenu(menu); // 총 구매 금액 8,000원
+
+        // when
+        Benefits benefits = new Benefits(1, reservedMenu);
+
+        // then
+        assertThat(benefits.getBenefits()).isEmpty();
+    }
+
     @DisplayName("총 혜택 금액 계산, 샴페인 + 주말")
     @ParameterizedTest
     @ValueSource(ints = {29, 30})
