@@ -40,8 +40,14 @@ public class Benefits {
         return (totalAmount >= 10000);
     }
 
-    public Integer calculateTotalDiscount() {
+    public Integer calculateTotalBenefit() {
+        Integer totalBenefit = 0;
 
+        for (Benefit benefit : benefits.keySet()) {
+            totalBenefit += benefits.get(benefit);
+        }
+
+        return totalBenefit;
     }
 
     public Integer discount(Integer totalAmount, Integer totalDiscount) {

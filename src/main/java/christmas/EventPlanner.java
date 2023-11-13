@@ -21,7 +21,7 @@ public class EventPlanner {
         reserveMenu();
         benefits = new Benefits(reservedDate.getDate(), reservedMenu);
         Integer totalAmount = reservedMenu.calculateTotalAmount();
-        Integer totalDiscount = benefits.calculateTotalDiscount(reservedDate.getDate(),totalAmount,reservedMenu);
+        Integer totalDiscount = benefits.calculateTotalBenefit(reservedDate.getDate(),totalAmount,reservedMenu);
         OutputView.printDate(reservedDate.getDate());
         OutputView.printMenu(reservedMenu.getMenu());
         OutputView.printTotalAmount(totalAmount);
