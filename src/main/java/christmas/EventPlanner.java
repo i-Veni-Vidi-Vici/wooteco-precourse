@@ -4,7 +4,6 @@ import christmas.constants.Badge;
 import christmas.domain.promotion.Benefits;
 import christmas.domain.ReservedDate;
 import christmas.domain.ReservedMenu;
-import christmas.domain.promotion.giveaway.Champagne;
 import christmas.utility.Converter;
 import christmas.view.InputView;
 import christmas.view.OutputView;
@@ -12,24 +11,22 @@ import christmas.view.OutputView;
 public class EventPlanner {
     private ReservedDate reservedDate;
     private ReservedMenu reservedMenu;
-
     private Benefits benefits;
 
-    public void run(){
-        OutputView.printPlanner();
+    public void run() {
+        startPlanner();
+
         reserveDate();
         reserveMenu();
+
         benefits = new Benefits(reservedDate.getDate(), reservedMenu);
-        Integer totalAmount = reservedMenu.calculateTotalAmount();
-        Integer totalDiscount = benefits.calculateTotalBenefit(reservedDate.getDate(),totalAmount,reservedMenu);
-        OutputView.printDate(reservedDate.getDate());
-        OutputView.printMenu(reservedMenu.getMenu());
-        OutputView.printTotalAmount(totalAmount);
-        OutputView.printFreeGift(Champagne.isEligible(totalAmount));
-        OutputView.printBenefitDetails(benefits.getBenefits());
-        OutputView.printTotalBenefitAmount(totalDiscount);
-        OutputView.printPaymentAmount(benefits.discount(totalAmount, totalDiscount));
-        OutputView.printBadge(Badge.grant(totalDiscount));
+
+        showReservation();
+        showBenefits(benefits.calculateTotalBenefit());
+    }
+
+    public void startPlanner() {
+        OutputView.printPlanner();
     }
 
     public void reserveDate() {
@@ -56,4 +53,19 @@ public class EventPlanner {
             }
         }
     }
+
+    public void showReservation() {
+        OutputView.printDate(reservedDate.getDate());
+        OutputView.printMenu(reservedMenu.getMenu());
+        OutputView.printTotalAmount(reservedMenu.calculateTotalAmount());
+    }
+
+    public void showBenefits(Integer totalDiscount) {
+        OutputView.printFreeGift(benefits.checkGiveaway());
+        OutputView.printBenefitDetails(benefits.getBenefits());
+        OutputView.printTotalBenefitAmount(totalDiscount);
+        OutputView.printPaymentAmount(benefits.discount());
+        OutputView.printBadge(Badge.grant(totalDiscount));
+    }
+
 }
