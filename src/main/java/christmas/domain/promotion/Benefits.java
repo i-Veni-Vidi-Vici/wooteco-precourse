@@ -45,7 +45,7 @@ public class Benefits {
 
     public static Integer calculateTotalDiscount(Integer day, Integer totalAmount, ReservedMenu reservedMenu) {
         if (checkTarget(totalAmount)) {
-            return (Xmas.calculateChristmas(day)
+            return (Xmas.calculateXmas(day)
                     + Weekday.calculateWeekday(day, reservedMenu)
                     + Weekend.calculateWeekend(day, reservedMenu)
                     + Special.calculateSpecial(day)

@@ -49,14 +49,14 @@ public class BenefitsTest {
     @ParameterizedTest
     @CsvSource(value = {"1,1000", "10,1900", "25,3400", "26, 0", "31,0"})
     void calculateChristmas(Integer day, Integer discountPrice) {
-        assertThat(Xmas.calculateChristmas(day)).isEqualTo(discountPrice);
+        assertThat(Xmas.calculateXmas(day)).isEqualTo(discountPrice);
     }
 
     @DisplayName("크리스마스 디데이 할인 금액 반환, 25일 까지")
     @Test
     void calculateChristmasUntil25th() {
         for (int day = 1; day <= 25; day++) {
-            assertThat(Xmas.calculateChristmas(day)).isEqualTo(1000 + (day - 1) * 100);
+            assertThat(Xmas.calculateXmas(day)).isEqualTo(1000 + (day - 1) * 100);
         }
     }
 
@@ -64,7 +64,7 @@ public class BenefitsTest {
     @Test
     void calculateChristmasAfter25th() {
         for (int day = 26; day <= 31; day++) {
-            assertThat(Xmas.calculateChristmas(day)).isEqualTo(0);
+            assertThat(Xmas.calculateXmas(day)).isEqualTo(0);
         }
     }
 
