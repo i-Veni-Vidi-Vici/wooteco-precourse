@@ -19,7 +19,9 @@ public enum Value {
     XMAS_DATE(25),
 
     WEEKDAY_DISCOUNT(2023),
-
+    WEEKEND_DISCOUNT(2023),
+    FIRST_WEEKEND_DATE(1),
+    FIRST_WEEK_LAST_WEEKEND_DATE(2)
     ;
 
 
