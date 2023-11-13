@@ -1,5 +1,7 @@
 package christmas;
 
+import static christmas.constants.Condition.FALSE;
+import static christmas.constants.Condition.TRUE;
 import static christmas.constants.Error.INVALID_DATE_ERROR;
 import static christmas.constants.Error.INVALID_ORDER_ERROR;
 
@@ -40,26 +42,27 @@ public class EventPlanner {
     }
 
     private void reserveDate() {
-        boolean isReserving = true;
+        boolean isReserving = TRUE.get();
+
         while (isReserving) {
             try {
                 reservedDate = new ReservedDate(Converter.convertToNumber(inputView.getDate()));
-                isReserving = false;
+                isReserving = FALSE.get();
             } catch (IllegalArgumentException ex) {
-                System.out.println(INVALID_DATE_ERROR.getMessage());
+                outputView.printError(INVALID_DATE_ERROR.getMessage());
             }
         }
     }
 
     private void reserveMenu() {
-        boolean isReserving = true;
+        boolean isReserving = TRUE.get();
 
         while (isReserving) {
             try {
                 reservedMenu = new ReservedMenu(Converter.convertToReservedMenu(inputView.getMenu()));
-                isReserving = false;
+                isReserving = FALSE.get();
             } catch (IllegalArgumentException ex) {
-                System.out.println(INVALID_ORDER_ERROR.getMessage());
+                outputView.printError(INVALID_ORDER_ERROR.getMessage());
             }
         }
     }
