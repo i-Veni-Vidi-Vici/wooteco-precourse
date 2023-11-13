@@ -36,26 +36,18 @@ public class Benefits {
         benefits.putAll(promotion.apply());
     }
 
-    private static boolean checkTarget(Integer totalAmount) {
+    private boolean checkTarget(Integer totalAmount) {
         return (totalAmount >= 10000);
     }
 
-//    public static Integer calculateTotalDiscount(Integer day, Integer totalAmount, ReservedMenu reservedMenu) {
-//        if (checkTarget(totalAmount)) {
-//            return (Xmas.calculateXmas(day)
-//                    + Weekday.calculateWeekday(day, reservedMenu)
-//                    + Weekend.calculateWeekend(day, reservedMenu)
-//                    + Special.calculate(day)
-//                    + Champagne.calculateChampagne(totalAmount));
-//        }
-//
-//        return 0;
-//    }
-//
-//    public static Integer discount(Integer totalAmount, Integer totalDiscount) {
-//        return (totalAmount - totalDiscount + Champagne.calculateChampagne(totalAmount));
-//    }
-//
+    public Integer calculateTotalDiscount() {
+
+    }
+
+    public Integer discount(Integer totalAmount, Integer totalDiscount) {
+        return (totalAmount - totalDiscount + Champagne.calculateChampagne(totalAmount));
+    }
+
 
     public Map<Benefit, Integer> getBenefits() {
         return benefits;
