@@ -14,7 +14,7 @@ public class EventPlanner {
     private Benefits benefits;
 
     public void run() {
-        startPlanner();
+        showPlanner();
 
         reserveDate();
         reserveMenu();
@@ -25,11 +25,11 @@ public class EventPlanner {
         showBenefits(benefits.calculateTotalBenefit());
     }
 
-    public void startPlanner() {
+    private void showPlanner() {
         OutputView.printPlanner();
     }
 
-    public void reserveDate() {
+    private void reserveDate() {
         boolean isReserving = true;
         while (isReserving) {
             try {
@@ -41,7 +41,7 @@ public class EventPlanner {
         }
     }
 
-    public void reserveMenu() {
+    private void reserveMenu() {
         boolean isReserving = true;
 
         while (isReserving) {
@@ -54,13 +54,13 @@ public class EventPlanner {
         }
     }
 
-    public void showReservation() {
+    private void showReservation() {
         OutputView.printDate(reservedDate.getDate());
         OutputView.printMenu(reservedMenu.getMenu());
         OutputView.printTotalAmount(reservedMenu.calculateTotalAmount());
     }
 
-    public void showBenefits(Integer totalDiscount) {
+    private void showBenefits(Integer totalDiscount) {
         OutputView.printFreeGift(benefits.checkGiveaway());
         OutputView.printBenefitDetails(benefits.getBenefits());
         OutputView.printTotalBenefitAmount(totalDiscount);
