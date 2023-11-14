@@ -3,6 +3,7 @@ package christmas.view;
 import static christmas.constants.Message.BADGE;
 import static christmas.constants.Message.BENEFIT_DETAILS;
 import static christmas.constants.Message.COLON;
+import static christmas.constants.Message.COMMA;
 import static christmas.constants.Message.COMMA_INTEGER_FORMAT;
 import static christmas.constants.Message.COUNT;
 import static christmas.constants.Message.DATE;
@@ -23,6 +24,7 @@ import static christmas.constants.Message.WON;
 import christmas.constants.Badge;
 import christmas.constants.Benefit;
 import christmas.constants.Food;
+import christmas.constants.Type;
 import java.util.Map;
 
 public class OutputView {
@@ -100,5 +102,37 @@ public class OutputView {
 
     public void printError(String message) {
         System.out.println(message);
+    }
+
+    public void printALLMenu() {
+        for (Type type : Type.values()) {
+            printMenuByType(type);
+            System.out.println();
+        }
+    }
+
+    private void printMenuByType(Type type) {
+        boolean isOverOne = false;
+
+        System.out.println("<" + type.get() + ">");
+
+        for (Food food : Food.values()) {
+            if (food.getType().equals(type)) {
+                isOverOne = printFood(isOverOne, food);
+            }
+        }
+
+        System.out.println();
+    }
+
+    private boolean printFood(boolean isOverOne, Food food){
+        if (isOverOne) {
+            System.out.print(COMMA.getMessage() + WHITESPACE.getMessage());
+        }
+
+        System.out.print(food.getName() + "(" +
+                String.format(COMMA_INTEGER_FORMAT.getMessage(), food.getPrice()) + WON.getMessage() + ")");
+
+        return true;
     }
 }
