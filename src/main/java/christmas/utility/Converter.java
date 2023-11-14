@@ -53,6 +53,7 @@ public class Converter {
     }
 
     private static List<String> convertToList(String value, String delimiter) {
+        checkComma(value);
         return Arrays.asList(value.split(delimiter));
     }
 
@@ -64,6 +65,12 @@ public class Converter {
 
     private static void checkDuplication(List<String> inputMenus, Map<Food, Integer> menu) {
         if (inputMenus.size() != menu.size()) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private static void checkComma(String value){
+        if (value.endsWith(COMMA.getMessage())) {
             throw new IllegalArgumentException();
         }
     }

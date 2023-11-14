@@ -74,4 +74,12 @@ public class ConverterTest {
         assertThatThrownBy(() -> Converter.convertToReservedMenu("해산물파스타-2,해산물파스타-2,레드와인-1"))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("문자열 마지막에 콤마(,)가 있을 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"해산물파스타-2,", "해산물파스타-2,,", "해산물파스타-2,, ,"})
+    void convertToReservedMenuByEndComma(String value) {
+        assertThatThrownBy(() -> Converter.convertToReservedMenu(value))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
