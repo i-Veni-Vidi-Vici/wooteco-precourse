@@ -1,5 +1,8 @@
 package christmas.domain;
 
+import static christmas.constants.Value.MENU_SKIP_OPTION;
+import static christmas.constants.Value.MENU_VIEW_OPTION;
+
 public class MenuOption {
 
     private final Integer menuOption;
@@ -10,12 +13,12 @@ public class MenuOption {
     }
 
     private void checkOption(Integer menuOption) {
-        if ((menuOption != 1) && (menuOption != 2)) {
+        if ((!menuOption.equals(MENU_VIEW_OPTION.get())) && (!menuOption.equals(MENU_SKIP_OPTION.get()))) {
             throw new IllegalArgumentException();
         }
     }
 
     public boolean isOption() {
-        return (menuOption == 1);
+        return (menuOption.equals(MENU_VIEW_OPTION.get()));
     }
 }

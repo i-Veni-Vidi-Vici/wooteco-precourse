@@ -3,6 +3,7 @@ package christmas;
 import static christmas.constants.Condition.FALSE;
 import static christmas.constants.Condition.TRUE;
 import static christmas.constants.Error.INVALID_DATE_ERROR;
+import static christmas.constants.Error.INVALID_OPTION_ERROR;
 import static christmas.constants.Error.INVALID_ORDER_ERROR;
 
 import christmas.constants.Badge;
@@ -30,7 +31,7 @@ public class EventPlanner {
         showPlanner();
 
         reserveDate();
-        selectMenuOption();
+        // selectMenuOption(); // 메뉴 보기 옵션, ApplicationTest 오류로 인해 주석 처리
         reserveMenu();
 
         benefits = new Benefits(reservedDate.getDate(), reservedMenu);
@@ -78,7 +79,7 @@ public class EventPlanner {
                 outputView.printAllMenu(menuOption.isOption());
                 isReserving = FALSE.get();
             } catch (IllegalArgumentException ex) {
-                outputView.printError("[ERROR] 숫자 1 또는 2를 입력해 주세요.");
+                outputView.printError(INVALID_OPTION_ERROR.getMessage());
             }
         }
     }

@@ -1,5 +1,6 @@
 package christmas.view;
 
+import static christmas.constants.Condition.TRUE;
 import static christmas.constants.Message.BADGE;
 import static christmas.constants.Message.BENEFIT_DETAILS;
 import static christmas.constants.Message.COLON;
@@ -9,6 +10,9 @@ import static christmas.constants.Message.COUNT;
 import static christmas.constants.Message.DATE;
 import static christmas.constants.Message.DECEMBER;
 import static christmas.constants.Message.GIVEAWAY_MENU;
+import static christmas.constants.Message.GREATER_THAN_SYMBOL;
+import static christmas.constants.Message.LEFT_PARENTHESIS;
+import static christmas.constants.Message.LESS_THAN_SYMBOL;
 import static christmas.constants.Message.MENU;
 import static christmas.constants.Message.MINUS;
 import static christmas.constants.Message.NEW_LINE;
@@ -16,6 +20,7 @@ import static christmas.constants.Message.NOTHING;
 import static christmas.constants.Message.ONE_CHAMPAGNE;
 import static christmas.constants.Message.PAYMENT_AMOUNT;
 import static christmas.constants.Message.PLANNER;
+import static christmas.constants.Message.RIGHT_PARENTHESIS;
 import static christmas.constants.Message.TOTAL_AMOUNT;
 import static christmas.constants.Message.TOTAL_BENEFIT_AMOUNT;
 import static christmas.constants.Message.WHITESPACE;
@@ -116,7 +121,7 @@ public class OutputView {
     private void printMenuByType(Type type) {
         boolean isOverOne = false;
 
-        System.out.println("<" + type.get() + ">");
+        System.out.println(LESS_THAN_SYMBOL.getMessage() + type.get() + GREATER_THAN_SYMBOL.getMessage());
 
         for (Food food : Food.values()) {
             if (food.getType().equals(type)) {
@@ -132,9 +137,10 @@ public class OutputView {
             System.out.print(COMMA.getMessage() + WHITESPACE.getMessage());
         }
 
-        System.out.print(food.getName() + "(" +
-                String.format(COMMA_INTEGER_FORMAT.getMessage(), food.getPrice()) + WON.getMessage() + ")");
+        System.out.print(food.getName() + LEFT_PARENTHESIS.getMessage() +
+                String.format(COMMA_INTEGER_FORMAT.getMessage(), food.getPrice())
+                + WON.getMessage() + RIGHT_PARENTHESIS.getMessage());
 
-        return true;
+        return TRUE.get();
     }
 }
