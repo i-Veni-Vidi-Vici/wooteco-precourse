@@ -16,4 +16,11 @@ public class InputView {
         System.out.println(MENU_INPUT.getMessage());
         return Console.readLine();
     }
+
+
+    public String getMenuOption() {
+        // given
+        System.out.println("우테코 메뉴를 보기 원하시면 1번, 원치 않으시면 2번을 눌러주세요.");
+        return Console.readLine();
+    }
 }
