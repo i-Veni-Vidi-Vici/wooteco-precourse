@@ -18,5 +18,4 @@ public class MenuOption {
     public boolean isOption() {
         return (menuOption == 1);
     }
-
 }

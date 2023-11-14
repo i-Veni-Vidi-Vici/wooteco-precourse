@@ -190,11 +190,11 @@ public class OutputViewTest {
                 .contains("없음");
     }
 
-    @DisplayName("우테코 식당 전 메뉴 출력")
+    @DisplayName("true 일 때, 우테코 식당 전 메뉴 출력")
     @Test
-    void printALLMenu(){
+    void printAllMenu(){
         // when
-        outputView.printALLMenu();
+        outputView.printAllMenu(true);
 
         // then
         assertThat(out.toString())
@@ -206,5 +206,16 @@ public class OutputViewTest {
                 .contains("초코케이크(15,000원), 아이스크림(5,000원)")
                 .contains("<음료>")
                 .contains("제로콜라(3,000원), 레드와인(60,000원), 샴페인(25,000원)");
+    }
+
+    @DisplayName("false 일 때, 우테코 식당 전 메뉴 출력 x")
+    @Test
+    void printAllMenuByFalse(){
+        // when
+        outputView.printAllMenu(false);
+
+        // then
+        assertThat(out.toString())
+                .isEmpty();
     }
 }
