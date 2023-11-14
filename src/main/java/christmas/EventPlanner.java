@@ -6,6 +6,7 @@ import static christmas.constants.Error.INVALID_DATE_ERROR;
 import static christmas.constants.Error.INVALID_ORDER_ERROR;
 
 import christmas.constants.Badge;
+import christmas.domain.MenuOption;
 import christmas.domain.promotion.Benefits;
 import christmas.domain.ReservedDate;
 import christmas.domain.ReservedMenu;
@@ -29,6 +30,7 @@ public class EventPlanner {
         showPlanner();
 
         reserveDate();
+        selectMenuOption();
         reserveMenu();
 
         benefits = new Benefits(reservedDate.getDate(), reservedMenu);
@@ -63,6 +65,20 @@ public class EventPlanner {
                 isReserving = FALSE.get();
             } catch (IllegalArgumentException ex) {
                 outputView.printError(INVALID_ORDER_ERROR.getMessage());
+            }
+        }
+    }
+
+    private void selectMenuOption() {
+        boolean isReserving = TRUE.get();
+
+        while (isReserving) {
+            try {
+                MenuOption menuOption = new MenuOption(Converter.convertToNumber(inputView.getMenuOption()));
+                outputView.printAllMenu(menuOption.isOption());
+                isReserving = FALSE.get();
+            } catch (IllegalArgumentException ex) {
+                outputView.printError("[ERROR] 숫자 1 또는 2를 입력해 주세요.");
             }
         }
     }

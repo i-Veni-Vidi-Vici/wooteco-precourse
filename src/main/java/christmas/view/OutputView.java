@@ -104,10 +104,12 @@ public class OutputView {
         System.out.println(message);
     }
 
-    public void printALLMenu() {
-        for (Type type : Type.values()) {
-            printMenuByType(type);
-            System.out.println();
+    public void printAllMenu(boolean isOption) {
+        if (isOption) {
+            for (Type type : Type.values()) {
+                printMenuByType(type);
+                System.out.println();
+            }
         }
     }
 
@@ -125,7 +127,7 @@ public class OutputView {
         System.out.println();
     }
 
-    private boolean printFood(boolean isOverOne, Food food){
+    private boolean printFood(boolean isOverOne, Food food) {
         if (isOverOne) {
             System.out.print(COMMA.getMessage() + WHITESPACE.getMessage());
         }
