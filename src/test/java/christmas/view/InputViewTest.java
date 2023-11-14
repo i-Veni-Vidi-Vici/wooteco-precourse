@@ -24,7 +24,6 @@ public class InputViewTest {
     @ValueSource(strings = {"1", "20", "31"})
     void getDate(String userInput) {
         // given
-
         System.setIn(new ByteArrayInputStream(userInput.getBytes()));
 
         // when, then
@@ -40,6 +39,19 @@ public class InputViewTest {
 
         // when, then
         assertThat(inputView.getMenu()).isEqualTo("해산물파스타-2,레드와인-1");
+
+        Console.close();
+    }
+
+    @DisplayName("메뉴 보기 옵션 숫자 받기")
+    @ParameterizedTest
+    @ValueSource(strings = {"1", "2"})
+    void getMenuOption(String userInput){
+        // given
+        System.setIn(new ByteArrayInputStream(userInput.getBytes()));
+
+        // when, then
+        assertThat(inputView.getMenuOption()).isEqualTo(userInput);
 
         Console.close();
     }
