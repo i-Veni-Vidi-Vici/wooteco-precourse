@@ -26,6 +26,7 @@ public class Champagne implements Promotion {
         if (isEligible(totalAmount)) {
             return CHAMPAGNE_PRICE.get();
         }
+
         return ZERO.get();
     }
 

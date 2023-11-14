@@ -14,8 +14,10 @@ public class XmasTest {
     @ParameterizedTest
     @CsvSource(value = {"1,1000", "10,1900", "25,3400"})
     void calculateXmas(Integer date, Integer discountPrice) {
+        // given, when
         Xmas xmas = new Xmas(date);
 
+        // then
         assertThat(xmas.apply().get(Benefit.CHRISTMAS)).isEqualTo(discountPrice);
     }
 
@@ -23,7 +25,10 @@ public class XmasTest {
     @Test
     void calculateXmasUntil25th() {
         for (int date = 1; date <= 25; date++) {
+            // given, when
             Xmas xmas = new Xmas(date);
+
+            // then
             assertThat(xmas.apply().get(Benefit.CHRISTMAS)).isEqualTo(1000 + (date - 1) * 100);
         }
     }
@@ -32,7 +37,10 @@ public class XmasTest {
     @Test
     void calculateXmasAfter25th() {
         for (int date = 26; date <= 31; date++) {
+            // given, when
             Xmas xmas = new Xmas(date);
+
+            // then
             assertThat(xmas.apply()).isEmpty();
         }
     }

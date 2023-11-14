@@ -56,9 +56,11 @@ public class OutputViewTest {
     @DisplayName("예약한 메뉴 출력")
     @Test
     void printMenu() {
+        // given
         Map<Food, Integer> orderedMenu = new HashMap<>();
         orderedMenu.put(Food.T_BONE_STEAK, 1);
         orderedMenu.put(Food.ICE_CREAM, 2);
+
         // when
         outputView.printMenu(orderedMenu);
 
@@ -192,7 +194,7 @@ public class OutputViewTest {
 
     @DisplayName("true 일 때, 우테코 식당 전 메뉴 출력")
     @Test
-    void printAllMenu(){
+    void printAllMenu() {
         // when
         outputView.printAllMenu(true);
 
@@ -210,7 +212,7 @@ public class OutputViewTest {
 
     @DisplayName("false 일 때, 우테코 식당 전 메뉴 출력 x")
     @Test
-    void printAllMenuByFalse(){
+    void printAllMenuByFalse() {
         // when
         outputView.printAllMenu(false);
 

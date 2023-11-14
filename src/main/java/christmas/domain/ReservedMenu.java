@@ -43,6 +43,7 @@ public class ReservedMenu {
         for (Food food : reservedMenu.keySet()) {
             totalCount += reservedMenu.get(food);
         }
+
         if (totalCount > MAX_TOTAL_FOOD_COUNT.get()) {
             throw new IllegalArgumentException();
         }

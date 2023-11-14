@@ -120,7 +120,6 @@ public class OutputView {
 
     private void printMenuByType(Type type) {
         boolean isOverOne = false;
-
         System.out.println(LESS_THAN_SYMBOL.getMessage() + type.get() + GREATER_THAN_SYMBOL.getMessage());
 
         for (Food food : Food.values()) {

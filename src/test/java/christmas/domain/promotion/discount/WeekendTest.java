@@ -49,7 +49,10 @@ public class WeekendTest {
             29, 30
     })
     void calculateWeekendByWeekend(Integer date) {
+        // when
         Weekend weekend = new Weekend(date, reservedMenu);
+
+        // then
         assertThat(weekend.apply().get(Benefit.WEEKEND)).isEqualTo(2023 * 4);
     }
 
@@ -75,7 +78,6 @@ public class WeekendTest {
         assertThat(weekend.apply()).isEmpty();
     }
 
-
     @DisplayName("주말 할인 금액 계산, 메인 4개 + 평일 => not apply")
     @ParameterizedTest
     @ValueSource(ints = {
@@ -86,9 +88,10 @@ public class WeekendTest {
             31
     })
     void calculateWeekendByWeekday(Integer date) {
+        // when
         Weekend weekend = new Weekend(date, reservedMenu);
+
+        // then
         assertThat(weekend.apply()).isEmpty();
     }
-
-
 }

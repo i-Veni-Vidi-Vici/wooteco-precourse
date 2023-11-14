@@ -18,9 +18,7 @@ public class InputView {
         return Console.readLine();
     }
 
-
     public String getMenuOption() {
-        // given
         System.out.println(MENU_OPTION_INPUT.getMessage());
         return Console.readLine();
     }

@@ -71,13 +71,13 @@ public class EventPlanner {
     }
 
     private void selectMenuOption() {
-        boolean isReserving = TRUE.get();
+        boolean isSelecting = TRUE.get();
 
-        while (isReserving) {
+        while (isSelecting) {
             try {
                 MenuOption menuOption = new MenuOption(Converter.convertToNumber(inputView.getMenuOption()));
                 outputView.printAllMenu(menuOption.isOption());
-                isReserving = FALSE.get();
+                isSelecting = FALSE.get();
             } catch (IllegalArgumentException ex) {
                 outputView.printError(INVALID_OPTION_ERROR.getMessage());
             }

@@ -69,7 +69,7 @@ public class Converter {
         }
     }
 
-    private static void checkComma(String value){
+    private static void checkComma(String value) {
         if (value.endsWith(COMMA.getMessage())) {
             throw new IllegalArgumentException();
         }

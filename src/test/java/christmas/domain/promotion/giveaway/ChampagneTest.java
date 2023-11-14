@@ -12,7 +12,10 @@ public class ChampagneTest {
     @ParameterizedTest
     @ValueSource(ints = {120000, 150000, 240000})
     void checkFreeGift(Integer totalAmount) {
+        // given, when
         Champagne champagne = new Champagne(totalAmount);
+
+        // then
         assertThat(champagne.apply().get(Benefit.GIVEAWAY)).isEqualTo(25000);
     }
 
@@ -20,7 +23,10 @@ public class ChampagneTest {
     @ParameterizedTest
     @ValueSource(ints = {0, 50000, 119999})
     void calculateFreeGift(Integer totalAmount) {
+        // given, when
         Champagne champagne = new Champagne(totalAmount);
+
+        // then
         assertThat(champagne.apply()).isEmpty();
     }
 }

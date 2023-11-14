@@ -20,7 +20,6 @@ public class Benefits {
 
     public Benefits(Integer date, ReservedMenu reservedMenu) {
         benefits = new HashMap<>();
-
         totalAmount = reservedMenu.calculateTotalAmount();
 
         if (checkTarget(totalAmount)) {

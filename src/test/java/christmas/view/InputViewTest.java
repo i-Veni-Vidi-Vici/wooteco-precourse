@@ -35,6 +35,7 @@ public class InputViewTest {
     @DisplayName("주문 메뉴 입력 받기")
     @Test
     void getOrder() {
+        // given
         System.setIn(new ByteArrayInputStream("해산물파스타-2,레드와인-1".getBytes()));
 
         // when, then
@@ -46,7 +47,7 @@ public class InputViewTest {
     @DisplayName("메뉴 보기 옵션 숫자 받기")
     @ParameterizedTest
     @ValueSource(strings = {"1", "2"})
-    void getMenuOption(String userInput){
+    void getMenuOption(String userInput) {
         // given
         System.setIn(new ByteArrayInputStream(userInput.getBytes()));
 

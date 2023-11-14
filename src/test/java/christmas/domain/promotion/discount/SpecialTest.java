@@ -13,7 +13,10 @@ public class SpecialTest {
     @ParameterizedTest
     @ValueSource(ints = {3, 10, 17, 24, 25, 31})
     void calculateSpecialByTheDay(Integer date) {
+        // given, when
         Special special = new Special(date);
+
+        // then
         assertThat(special.apply().get(Benefit.SPECIAL)).isEqualTo(1000);
     }
 
@@ -27,7 +30,10 @@ public class SpecialTest {
             26, 27, 28, 29
     })
     void calculateSpecialByNotTheDay(Integer date) {
+        // given, when
         Special special = new Special(date);
+
+        // then
         assertThat(special.apply()).isEmpty();
     }
 }

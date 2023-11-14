@@ -17,6 +17,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 public class ReservedMenuTest {
     private static ReservedMenu reservedMenu;
     private Map<Food, Integer> menu;
+
     @BeforeAll
     static void beforeAll() {
         Map<Food, Integer> menu = new HashMap<>();
@@ -76,7 +77,7 @@ public class ReservedMenuTest {
         menu.put(Food.MUSHROOM_SOUP, 5);
 
         // when, then
-        assertDoesNotThrow(() ->new ReservedMenu(menu));
+        assertDoesNotThrow(() -> new ReservedMenu(menu));
     }
 
     @DisplayName("음료만 주문할 때, 예외 처리")
