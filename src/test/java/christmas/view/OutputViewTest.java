@@ -189,4 +189,22 @@ public class OutputViewTest {
                 .contains("<12월 이벤트 배지>")
                 .contains("없음");
     }
+
+    @DisplayName("우테코 식당 전 메뉴 출력")
+    @Test
+    void printALLMenu(){
+        // when
+        outputView.printALLMenu();
+
+        // then
+        assertThat(out.toString())
+                .contains("<애피타이저>")
+                .contains("양송이수프(6,000), 타파스(5,500), 시저샐러드(8,000)")
+                .contains("<메인>")
+                .contains("티본스테이크(55,000), 바비큐립(54,000), 해산물파스타(35,000), 크리스마스파스타(25,000)")
+                .contains("<디저트>")
+                .contains("초코케이크(15,000), 아이스크림(5,000)")
+                .contains("<음료>")
+                .contains("제로콜라(3,000), 레드와인(60,000), 샴페인(25,000)");
+    }
 }
