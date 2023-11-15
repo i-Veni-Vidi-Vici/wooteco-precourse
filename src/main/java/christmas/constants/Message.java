@@ -17,18 +17,7 @@ public enum Message {
     DECEMBER("12월"),
     NOTHING("없음"),
     COUNT("개"),
-    WON("원"),
-    NEW_LINE("\n"),
-    WHITESPACE(" "),
-    COLON(":"),
-    MINUS("-"),
-    HYPHEN("-"),
-    COMMA(","),
-    LESS_THAN_SYMBOL("<"),
-    GREATER_THAN_SYMBOL(">"),
-    LEFT_PARENTHESIS("("),
-    RIGHT_PARENTHESIS(")"),
-    COMMA_INTEGER_FORMAT("%,d");
+    WON("원");
 
     private final String message;
 

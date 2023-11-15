@@ -1,7 +1,7 @@
 package christmas.utility;
 
-import static christmas.constants.Message.COMMA;
-import static christmas.constants.Message.HYPHEN;
+import static christmas.constants.Symbol.COMMA;
+import static christmas.constants.Symbol.HYPHEN;
 import static christmas.constants.Value.ASCII_ZERO;
 import static christmas.constants.Value.FIRST_CHARACTER;
 import static christmas.constants.Value.FIRST_INDEX;
@@ -39,10 +39,10 @@ public class Converter {
 
     public static Map<Food, Integer> convertToReservedMenu(String value) {
         Map<Food, Integer> orderedMenu = new HashMap<>();
-        List<String> inputMenus = convertToList(value, COMMA.getMessage());
+        List<String> inputMenus = convertToList(value, COMMA.get());
 
         for (String inputMenu : inputMenus) {
-            List<String> foodAndPrice = convertToList(inputMenu, HYPHEN.getMessage());
+            List<String> foodAndPrice = convertToList(inputMenu, HYPHEN.get());
             checkForm(foodAndPrice);
             orderedMenu.put(Food.checkExistence(foodAndPrice.get(FIRST_INDEX.get())),
                     convertToNumber(foodAndPrice.get(SECOND_INDEX.get())));
@@ -70,7 +70,7 @@ public class Converter {
     }
 
     private static void checkComma(String value) {
-        if (value.endsWith(COMMA.getMessage())) {
+        if (value.endsWith(COMMA.get())) {
             throw new IllegalArgumentException();
         }
     }
