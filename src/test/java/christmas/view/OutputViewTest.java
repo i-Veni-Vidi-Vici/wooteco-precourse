@@ -1,5 +1,6 @@
 package christmas.view;
 
+import static christmas.constants.Error.INVALID_DATE_ERROR;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.constants.Badge;
@@ -101,7 +102,7 @@ public class OutputViewTest {
     void printBenefitDetails() {
         // given
         Map<Benefit, Integer> benefits = new HashMap<>();
-        benefits.put(Benefit.CHRISTMAS, 1000);
+        benefits.put(Benefit.XMAS, 1000);
         benefits.put(Benefit.WEEKDAY, 2023);
         benefits.put(Benefit.GIVEAWAY, 25000);
 
@@ -190,6 +191,17 @@ public class OutputViewTest {
         assertThat(out.toString())
                 .contains("<12월 이벤트 배지>")
                 .contains("없음");
+    }
+
+    @DisplayName("에러 메시지 출력")
+    @Test
+    void printError(){
+        // when
+        outputView.printError(INVALID_DATE_ERROR.getMessage());
+
+        // then
+        assertThat(out.toString())
+                .contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
     }
 
     @DisplayName("true 일 때, 우테코 식당 전 메뉴 출력")

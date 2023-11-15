@@ -48,7 +48,7 @@ public class WeekendTest {
             22, 23,
             29, 30
     })
-    void calculateWeekendByWeekend(Integer date) {
+    void calculateByWeekend(Integer date) {
         // when
         Weekend weekend = new Weekend(date, reservedMenu);
 
@@ -65,7 +65,7 @@ public class WeekendTest {
             22, 23,
             29, 30
     })
-    void calculateWeekendByNotMain(Integer date) {
+    void calculateByNotMain(Integer date) {
         // given
         Map<Food, Integer> menu = new HashMap<>();
         menu.put(Food.CHOCO_CAKE, 3);
@@ -87,7 +87,7 @@ public class WeekendTest {
             24, 25, 26, 27, 28,
             31
     })
-    void calculateWeekendByWeekday(Integer date) {
+    void calculateByWeekday(Integer date) {
         // when
         Weekend weekend = new Weekend(date, reservedMenu);
 

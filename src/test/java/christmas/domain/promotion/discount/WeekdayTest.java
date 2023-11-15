@@ -48,7 +48,7 @@ public class WeekdayTest {
             24, 25, 26, 27, 28,
             31
     })
-    void calculateWeekdayByWeekday(Integer date) {
+    void calculateByWeekday(Integer date) {
         Weekday weekday = new Weekday(date, reservedMenu);
         assertThat(weekday.apply().get(Benefit.WEEKDAY)).isEqualTo(2023 * 2);
     }
@@ -62,7 +62,7 @@ public class WeekdayTest {
             24, 25, 26, 27, 28,
             31
     })
-    void calculateWeekdayByNotDessert(Integer date) {
+    void calculateByNotDessert(Integer date) {
         // given
         Map<Food, Integer> menu = new HashMap<>();
         menu.put(Food.T_BONE_STEAK, 1);

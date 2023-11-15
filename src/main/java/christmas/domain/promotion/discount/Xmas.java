@@ -19,7 +19,7 @@ public class Xmas implements Promotion {
         xmas = new HashMap<>();
 
         if (isEligible(date)) {
-            xmas.put(Benefit.CHRISTMAS, calculate(date));
+            xmas.put(Benefit.XMAS, calculate(date));
         }
     }
 

@@ -12,7 +12,7 @@ public class SpecialTest {
     @DisplayName("특별 할인 받는 날 = 일요일 or 크리스마스 => 1000원 할인")
     @ParameterizedTest
     @ValueSource(ints = {3, 10, 17, 24, 25, 31})
-    void calculateSpecialByTheDay(Integer date) {
+    void calculateByTheDay(Integer date) {
         // given, when
         Special special = new Special(date);
 
@@ -29,7 +29,7 @@ public class SpecialTest {
             18, 19, 20, 21, 22,
             26, 27, 28, 29
     })
-    void calculateSpecialByNotTheDay(Integer date) {
+    void calculateByNotTheDay(Integer date) {
         // given, when
         Special special = new Special(date);
 

@@ -11,7 +11,7 @@ public class ChampagneTest {
     @DisplayName("증정 이벤트 금액 계산, 12만원 이상 => 25,000원")
     @ParameterizedTest
     @ValueSource(ints = {120000, 150000, 240000})
-    void checkFreeGift(Integer totalAmount) {
+    void check(Integer totalAmount) {
         // given, when
         Champagne champagne = new Champagne(totalAmount);
 
@@ -22,7 +22,7 @@ public class ChampagneTest {
     @DisplayName("증정 이벤트 금액 계산, 12만원 미만 => not apply")
     @ParameterizedTest
     @ValueSource(ints = {0, 50000, 119999})
-    void calculateFreeGift(Integer totalAmount) {
+    void calculate(Integer totalAmount) {
         // given, when
         Champagne champagne = new Champagne(totalAmount);
 

@@ -25,6 +25,7 @@ import static christmas.constants.Message.TOTAL_AMOUNT;
 import static christmas.constants.Message.TOTAL_BENEFIT_AMOUNT;
 import static christmas.constants.Symbol.WHITESPACE;
 import static christmas.constants.Message.WON;
+import static christmas.constants.Value.ZERO;
 
 import christmas.constants.Badge;
 import christmas.constants.Benefit;
@@ -90,8 +91,15 @@ public class OutputView {
 
     public void printTotalBenefitAmount(Integer totalBenefitAmount) {
         System.out.println(TOTAL_BENEFIT_AMOUNT.getMessage());
-        System.out.println(MINUS.get() + String.format(COMMA_INTEGER_FORMAT.get(), totalBenefitAmount)
-                + WON.getMessage() + NEW_LINE.get());
+
+        if (totalBenefitAmount > ZERO.get()) {
+            System.out.println(MINUS.get() + String.format(COMMA_INTEGER_FORMAT.get(), totalBenefitAmount)
+                    + WON.getMessage() + NEW_LINE.get());
+        }
+
+        if (totalBenefitAmount.equals(ZERO.get())) {
+            System.out.println(ZERO.get() + WON.getMessage() + NEW_LINE.get());
+        }
     }
 
     public void printPaymentAmount(Integer paymentAmount) {
