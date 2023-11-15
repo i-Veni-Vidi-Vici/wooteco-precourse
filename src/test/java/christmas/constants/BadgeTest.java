@@ -15,24 +15,25 @@ public class BadgeTest {
         assertThat(Badge.grant(totalDiscount)).isEqualTo(Badge.SANTA);
     }
 
-    @DisplayName("총 혜택 금액에 따라, 배지 부여 - 트리 ")
+    @DisplayName("총 혜택 금액에 따라, 배지 부여 - 트리")
     @ParameterizedTest
     @ValueSource(ints = {10000, 19999})
     void grantBadgeByTree(Integer totalDiscount) {
         assertThat(Badge.grant(totalDiscount)).isEqualTo(Badge.TREE);
     }
 
-    @DisplayName("총 혜택 금액에 따라, 배지 부여 - 트리 ")
+    @DisplayName("총 혜택 금액에 따라, 배지 부여 - 트리")
     @ParameterizedTest
     @ValueSource(ints = {5000, 9999})
     void grantBadgeByStar(Integer totalDiscount) {
         assertThat(Badge.grant(totalDiscount)).isEqualTo(Badge.STAR);
     }
 
-    @DisplayName("총 혜택 금액에 따라, 배지 부여 - 트리 ")
+    @DisplayName("총 혜택 금액에 따라, 배지 부여 - 트리")
     @ParameterizedTest
     @ValueSource(ints = {0, 4999})
     void grantBadgeByNothing(Integer totalDiscount) {
         assertThat(Badge.grant(totalDiscount)).isEqualTo(Badge.NOTHING);
     }
 }
+
