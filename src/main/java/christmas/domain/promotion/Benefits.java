@@ -1,6 +1,6 @@
 package christmas.domain.promotion;
 
-import static christmas.constants.Value.BENEFIT_MIN_AMOUNT_CONDITION;
+import static christmas.constants.BenefitAmount.BENEFIT_MIN_AMOUNT_CONDITION;
 import static christmas.constants.Value.INITIAL_ZERO;
 
 import christmas.constants.Benefit;

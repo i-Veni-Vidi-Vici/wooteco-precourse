@@ -2,12 +2,12 @@ package christmas.domain.promotion.discount;
 
 import static christmas.constants.Condition.FALSE;
 import static christmas.constants.Condition.TRUE;
-import static christmas.constants.Value.FIRST_SPECIAL_DATE;
-import static christmas.constants.Value.FIVE_WEEKS;
+import static christmas.constants.DateValue.FIRST_SPECIAL_DATE;
+import static christmas.constants.DateValue.FIVE_WEEKS;
 import static christmas.constants.Value.INITIAL_ZERO;
-import static christmas.constants.Value.SEVEN_DAYS;
-import static christmas.constants.Value.SPECIAL_DISCOUNT;
-import static christmas.constants.Value.XMAS_DATE;
+import static christmas.constants.DateValue.SEVEN_DAYS;
+import static christmas.constants.BenefitAmount.SPECIAL_DISCOUNT;
+import static christmas.constants.DateValue.XMAS_DATE;
 import static christmas.constants.Value.ZERO;
 
 import christmas.constants.Benefit;

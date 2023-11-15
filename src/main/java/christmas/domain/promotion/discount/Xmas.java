@@ -1,9 +1,9 @@
 package christmas.domain.promotion.discount;
 
-import static christmas.constants.Value.FIRST_XMAS_DISCOUNT;
-import static christmas.constants.Value.ONE_DATE;
-import static christmas.constants.Value.XMAS_DATE;
-import static christmas.constants.Value.XMAS_INCREMENT_DISCOUNT;
+import static christmas.constants.BenefitAmount.FIRST_XMAS_DISCOUNT;
+import static christmas.constants.DateValue.ONE_DATE;
+import static christmas.constants.DateValue.XMAS_DATE;
+import static christmas.constants.BenefitAmount.XMAS_INCREMENT_DISCOUNT;
 import static christmas.constants.Value.ZERO;
 
 import christmas.constants.Benefit;

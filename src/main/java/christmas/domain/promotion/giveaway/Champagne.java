@@ -1,7 +1,7 @@
 package christmas.domain.promotion.giveaway;
 
-import static christmas.constants.Value.CHAMPAGNE_PRICE;
-import static christmas.constants.Value.GIVEAWAY_MIN_AMOUNT_CONDITION;
+import static christmas.constants.BenefitAmount.CHAMPAGNE_PRICE;
+import static christmas.constants.BenefitAmount.GIVEAWAY_MIN_AMOUNT_CONDITION;
 import static christmas.constants.Value.ZERO;
 
 import christmas.constants.Benefit;

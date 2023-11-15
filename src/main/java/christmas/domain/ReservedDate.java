@@ -1,7 +1,7 @@
 package christmas.domain;
 
-import static christmas.constants.Value.MAX_DATE;
-import static christmas.constants.Value.MIN_DATE;
+import static christmas.constants.DateValue.MAX_DATE;
+import static christmas.constants.DateValue.MIN_DATE;
 
 public class ReservedDate {
 
