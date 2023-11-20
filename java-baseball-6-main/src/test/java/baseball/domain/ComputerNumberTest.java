@@ -2,7 +2,6 @@ package baseball.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
 import java.util.Set;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -14,9 +13,8 @@ public class ComputerNumberTest {
     void generate(){
         ComputerNumber computerNumber = new ComputerNumber();
 
-        List<Integer> numbers = computerNumber.generate();
         for (int i = 0; i <3 ; i++) {
-            assertThat(numbers.get(i)).isGreaterThan(0)
+            assertThat(computerNumber.get().get(i)).isGreaterThan(0)
                     .isLessThan(10);
         }
     }
@@ -26,7 +24,6 @@ public class ComputerNumberTest {
     void generateByDifferentNumbers(){
         ComputerNumber computerNumber = new ComputerNumber();
 
-        List<Integer> numbers = computerNumber.generate();
-        assertThat(numbers.size()).isEqualTo(Set.of(numbers.toArray()).size());
+        assertThat(computerNumber.get().size()).isEqualTo(Set.of(computerNumber.get().toArray()).size());
     }
 }
