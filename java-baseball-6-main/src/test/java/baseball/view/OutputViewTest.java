@@ -26,7 +26,7 @@ public class OutputViewTest {
 
     @DisplayName("입력된 숫자에 대한 결과 출력")
     @ParameterizedTest
-    @CsvSource(value = {"1,1,1볼 1스트라이크","1,0,1볼","0,1,,1스트라이크","0,0,낫싱"})
+    @CsvSource(value = {"1,1,1볼 1스트라이크","1,0,1볼","0,1,1스트라이크","0,0,낫싱"})
     void printResult(Integer ballCount, Integer strikeCount, String result){
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
