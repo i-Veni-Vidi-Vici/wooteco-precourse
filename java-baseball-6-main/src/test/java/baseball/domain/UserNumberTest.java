@@ -18,4 +18,16 @@ public class UserNumberTest {
         assertThatThrownBy(() -> userNumber.checkRange(List.of(0,1,2)))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("중복된 숫자가 있을 때, 예외 처리")
+    @Test
+    void checkDuplication(){
+
+        UserNumber userNumber = new UserNumber();
+
+        assertThatThrownBy(() -> userNumber.checkDuplication(List.of(1, 1, 2)))
+                .isInstanceOf(IllegalArgumentException.class);
+        assertThatThrownBy(() -> userNumber.checkDuplication(List.of(3, 5, 5)))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
