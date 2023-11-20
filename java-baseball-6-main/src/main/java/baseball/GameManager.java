@@ -1,10 +1,12 @@
 package baseball;
 
+import static baseball.constants.Value.THREE_STRIKE;
+
 import baseball.domain.Comparator;
 import baseball.domain.ComputerNumber;
 import baseball.domain.Restart;
 import baseball.domain.UserNumber;
-import baseball.util.Converter;
+import baseball.utility.Converter;
 import baseball.view.InputView;
 import baseball.view.OutputView;
 
@@ -37,13 +39,13 @@ public class GameManager {
         while (isRunning) {
             UserNumber userNumber = new UserNumber(converter.convertToList(inputView.getThreeNumber()));
             Integer strikeCount = comparator.calculateStrike(userNumber.get(), computerNumber.get());
-            outputView.printResult(comparator.calculateBall(userNumber.get(), computerNumber.get()),strikeCount);
+            outputView.printResult(comparator.calculateBall(userNumber.get(), computerNumber.get()), strikeCount);
             isRunning = isRun(strikeCount);
         }
     }
 
-    private boolean isRun(Integer strikeCount){
-        if (strikeCount == 3) {
+    private boolean isRun(Integer strikeCount) {
+        if (strikeCount.equals(THREE_STRIKE.get())) {
             outputView.printExit();
             return false;
         }

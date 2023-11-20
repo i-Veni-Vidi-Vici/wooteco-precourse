@@ -1,5 +1,9 @@
 package baseball.domain;
 
+import static baseball.constants.Value.MAX_NUMBER;
+import static baseball.constants.Value.MIN_NUMBER;
+import static baseball.constants.Value.NUMBERS_SIZE;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -16,15 +20,15 @@ public class UserNumber {
         this.userNumber = userNumber;
     }
 
-    private void checkSize(List<Integer> userNumbers){
-        if (userNumbers.size() !=3) {
+    private void checkSize(List<Integer> userNumbers) {
+        if (userNumbers.size() != NUMBERS_SIZE.get()) {
             throw new IllegalArgumentException();
         }
     }
 
-    private void checkRange(List<Integer> userNumbers){
+    private void checkRange(List<Integer> userNumbers) {
         for (Integer userNumber : userNumbers) {
-            if((userNumber < 1) || (userNumber > 9)){
+            if ((userNumber < MIN_NUMBER.get()) || (userNumber > MAX_NUMBER.get())) {
                 throw new IllegalArgumentException();
             }
         }
@@ -37,7 +41,6 @@ public class UserNumber {
             throw new IllegalArgumentException();
         }
     }
-
 
 
     public List<Integer> get() {

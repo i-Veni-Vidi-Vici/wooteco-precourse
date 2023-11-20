@@ -1,5 +1,9 @@
 package baseball.domain;
 
+import static baseball.constants.Value.MAX_NUMBER;
+import static baseball.constants.Value.MIN_NUMBER;
+import static baseball.constants.Value.NUMBERS_SIZE;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,8 +19,8 @@ public class ComputerNumber {
     private void generate() {
         computerNumber = new ArrayList<>();
 
-        while (computerNumber.size() < 3) {
-            Integer randomNumber = Randoms.pickNumberInRange(1, 9);
+        while (computerNumber.size() < NUMBERS_SIZE.get()) {
+            Integer randomNumber = Randoms.pickNumberInRange(MIN_NUMBER.get(), MAX_NUMBER.get());
 
             if (!computerNumber.contains(randomNumber)) {
                 computerNumber.add(randomNumber);

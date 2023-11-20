@@ -1,15 +1,18 @@
 package baseball.view;
 
+import static baseball.constants.Message.RESTART_NUMBER_INPUT;
+import static baseball.constants.Message.THREE_NUMBER_INPUT;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public String getThreeNumber() {
-        System.out.print("숫자를 입력해주세요 : ");
+        System.out.print(THREE_NUMBER_INPUT.getMessage());
         return Console.readLine();
     }
 
     public String getRestartNumber() {
-        System.out.println("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+        System.out.println(RESTART_NUMBER_INPUT.getMessage());
         return Console.readLine();
     }
 }

@@ -1,26 +1,34 @@
 package baseball.view;
 
+import static baseball.constants.Message.BALL;
+import static baseball.constants.Message.EXIT;
+import static baseball.constants.Message.NOTHING;
+import static baseball.constants.Message.START_BASEBALL_GAME;
+import static baseball.constants.Message.STRIKE;
+import static baseball.constants.Message.WHITESPACE;
+import static baseball.constants.Value.ZERO;
+
 public class OutputView {
 
     public void printStart() {
-        System.out.println("숫자 야구 게임을 시작합니다.");
+        System.out.println(START_BASEBALL_GAME.getMessage());
     }
 
     public void printResult(Integer ballCount, Integer strikeCount) {
-        if (ballCount > 0) {
-            System.out.print(ballCount + "볼 ");
+        if (ballCount > ZERO.get()) {
+            System.out.print(ballCount + BALL.getMessage() + WHITESPACE.getMessage());
         }
-        if (strikeCount > 0) {
-            System.out.print(strikeCount + "스트라이크");
+        if (strikeCount > ZERO.get()) {
+            System.out.print(strikeCount + STRIKE.getMessage());
         }
-        if ((ballCount + strikeCount) == 0) {
-            System.out.print("낫싱");
+        if ((ballCount + strikeCount) == ZERO.get()) {
+            System.out.print(NOTHING.getMessage());
         }
 
         System.out.println();
     }
 
     public void printExit() {
-        System.out.println("3개의 숫자를 모두 맞히셨습니다! 게임 종료");
+        System.out.println(EXIT.getMessage());
     }
 }
