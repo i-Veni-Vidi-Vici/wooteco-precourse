@@ -24,4 +24,8 @@ public class Converter {
         }
     }
 
+    public static Integer convertToNumber(String number) {
+        checkNumber(number);
+        return Integer.parseInt(number);
+    }
 }
