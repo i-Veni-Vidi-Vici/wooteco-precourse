@@ -10,9 +10,16 @@ public class UserNumber {
     private final List<Integer> userNumber;
 
     public UserNumber(List<Integer> userNumber) {
+        checkSize(userNumber);
         checkRange(userNumber);
         checkDuplication(userNumber);
         this.userNumber = userNumber;
+    }
+
+    private void checkSize(List<Integer> userNumbers){
+        if (userNumbers.size() !=3) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void checkRange(List<Integer> userNumbers){
@@ -30,6 +37,8 @@ public class UserNumber {
             throw new IllegalArgumentException();
         }
     }
+
+
 
     public List<Integer> get() {
         return Collections.unmodifiableList(userNumber);
