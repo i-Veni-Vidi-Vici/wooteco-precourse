@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Converter {
-    public static List<Integer> convertToList(String number) {
+
+    public List<Integer> convertToList(String number) {
         checkNumber(number);
         List<String> splitNumbers =  List.of(number.split(""));
         List<Integer> numbers = new ArrayList<>();
@@ -16,7 +17,7 @@ public class Converter {
         return numbers;
     }
 
-    private static void checkNumber(String number){
+    private void checkNumber(String number){
         try {
             Integer.parseInt(number);
         } catch (NumberFormatException exception) {
@@ -24,7 +25,7 @@ public class Converter {
         }
     }
 
-    public static Integer convertToNumber(String number) {
+    public Integer convertToNumber(String number) {
         checkNumber(number);
         return Integer.parseInt(number);
     }

@@ -11,36 +11,38 @@ import baseball.view.OutputView;
 public class GameManager {
     private final OutputView outputView;
     private final InputView inputView;
+    private final Converter converter;
 
     public GameManager() {
         outputView = new OutputView();
         inputView = new InputView();
+        converter = new Converter();
     }
 
-    void run() {
+    public void run() {
         outputView.printStart();
         Restart restart;
 
         do {
             matchNumber();
-            restart = new Restart(Converter.convertToNumber(inputView.getRestartNumber()));
+            restart = new Restart(converter.convertToNumber(inputView.getRestartNumber()));
         } while (restart.isRestart());
     }
 
-    void matchNumber() {
+    private void matchNumber() {
         ComputerNumber computerNumber = new ComputerNumber();
         Comparator comparator = new Comparator();
         boolean isRunning = true;
 
         while (isRunning) {
-            UserNumber userNumber = new UserNumber(Converter.convertToList(inputView.getThreeNumber()));
+            UserNumber userNumber = new UserNumber(converter.convertToList(inputView.getThreeNumber()));
             Integer strikeCount = comparator.calculateStrike(userNumber.get(), computerNumber.get());
             outputView.printResult(comparator.calculateBall(userNumber.get(), computerNumber.get()),strikeCount);
             isRunning = isRun(strikeCount);
         }
     }
 
-    boolean isRun(Integer strikeCount){
+    private boolean isRun(Integer strikeCount){
         if (strikeCount == 3) {
             outputView.printExit();
             return false;

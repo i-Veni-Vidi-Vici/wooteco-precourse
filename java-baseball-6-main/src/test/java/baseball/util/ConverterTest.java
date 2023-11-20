@@ -14,29 +14,36 @@ public class ConverterTest {
     @DisplayName("문자열을 Integer 리스트로 변환")
     @Test
     void convertToList() {
-        assertThat(Converter.convertToList("12345")).isEqualTo(List.of(1, 2, 3, 4, 5));
+        Converter converter = new Converter();
+
+        assertThat(converter.convertToList("12345")).isEqualTo(List.of(1, 2, 3, 4, 5));
     }
 
     @DisplayName("문자열이 정수가 아닐 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {" ", "", "a", "1.0", "a1", "12 3"})
     void convertToListByNotInteger(String number) {
+        Converter converter = new Converter();
 
-        assertThatThrownBy(() -> Converter.convertToList(number))
+        assertThatThrownBy(() -> converter.convertToList(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("문자열을 정수로 변환")
     @Test
-    void convertToNumber(){
-        assertThat(Converter.convertToNumber("123")).isEqualTo(123);
+    void convertToNumber() {
+        Converter converter = new Converter();
+
+        assertThat(converter.convertToNumber("123")).isEqualTo(123);
     }
 
     @DisplayName("문자열이 정수가 아닐 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {" ", "", "a", "1.0", "a1", "12 3"})
-    void convertToNumberByNotInteger(String number){
-        assertThatThrownBy(() -> Converter.convertToNumber(number))
+    void convertToNumberByNotInteger(String number) {
+        Converter converter = new Converter();
+
+        assertThatThrownBy(() -> converter.convertToNumber(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
