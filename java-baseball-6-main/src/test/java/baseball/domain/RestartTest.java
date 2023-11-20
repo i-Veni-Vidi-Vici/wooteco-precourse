@@ -12,16 +12,17 @@ public class RestartTest {
 
     @DisplayName("1(재시작) = true, 2(종료) = false")
     @ParameterizedTest
-    @CsvSource(value = {"1,true","2,false"})
-    void isRestart(Integer restartNumber,boolean isRestart){
+    @CsvSource(value = {"1,true", "2,false"})
+    void isRestart(Integer restartNumber, boolean isRestart) {
         Restart restart = new Restart(restartNumber);
+
         assertThat(restart.isRestart()).isEqualTo(isRestart);
     }
 
     @DisplayName("1과 2가 아닐 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(ints = {-1,0,3})
-    void checkRange(Integer restartNumber){
+    @ValueSource(ints = {-1, 0, 3})
+    void checkRange(Integer restartNumber) {
         assertThatThrownBy(() -> new Restart(restartNumber))
                 .isInstanceOf(IllegalArgumentException.class);
     }
