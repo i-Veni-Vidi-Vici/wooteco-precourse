@@ -1,7 +1,6 @@
 package baseball.domain;
 
 import java.util.List;
-import java.util.Set;
 
 public class Comparator {
     public Integer calculateStrike(List<Integer> userNumbers, List<Integer> computerNumbers) {
