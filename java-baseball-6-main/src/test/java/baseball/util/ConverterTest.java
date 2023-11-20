@@ -11,7 +11,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class ConverterTest {
 
-
     @DisplayName("문자열을 Integer 리스트로 변환")
     @Test
     void convertToList(){
@@ -21,9 +20,9 @@ public class ConverterTest {
     @DisplayName("문자열이 정수가 아닐 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {" ","","a","1.0","a1"})
-    void convertToListByNotInteger(String value){
+    void convertToListByNotInteger(String number){
 
-        assertThatThrownBy(() -> Converter.convertToList(value))
+        assertThatThrownBy(() -> Converter.convertToList(number))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
