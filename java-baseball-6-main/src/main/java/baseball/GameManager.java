@@ -30,17 +30,22 @@ public class GameManager {
     void matchNumber() {
         ComputerNumber computerNumber = new ComputerNumber();
         Comparator comparator = new Comparator();
-        System.out.println(computerNumber.get());
         boolean isRunning = true;
 
         while (isRunning) {
             UserNumber userNumber = new UserNumber(Converter.convertToList(inputView.getThreeNumber()));
             Integer strikeCount = comparator.calculateStrike(userNumber.get(), computerNumber.get());
             outputView.printResult(comparator.calculateBall(userNumber.get(), computerNumber.get()),strikeCount);
-            if (strikeCount == 3) {
-                outputView.printExit();
-                isRunning = false;
-            }
+            isRunning = isRun(strikeCount);
         }
+    }
+
+    boolean isRun(Integer strikeCount){
+        if (strikeCount == 3) {
+            outputView.printExit();
+            return false;
+        }
+
+        return true;
     }
 }
