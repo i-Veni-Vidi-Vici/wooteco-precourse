@@ -15,8 +15,10 @@ public class JudgeTest {
     void selectWinnerByMany() {
         Judge judge = new Judge();
 
-        Map<String, String> car = new LinkedHashMap<>(Map.of("pobi", "-",
-                "woni", "", "jun", "-"));
+        Map<String, String> car = new LinkedHashMap<>();
+        car.put("pobi", "-");
+        car.put("woni", "");
+        car.put("jun", "-");
         assertThat(judge.selectWinner(car)).isEqualTo(List.of("pobi","jun"));
     }
 
@@ -25,8 +27,10 @@ public class JudgeTest {
     void selectWinnerByOne() {
         Judge judge = new Judge();
 
-        Map<String, String> car = new LinkedHashMap<>(Map.of("pobi", "---",
-                "woni", "--", "jun", "-"));
+        Map<String, String> car = new LinkedHashMap<>();
+        car.put("pobi", "---");
+        car.put("woni", "--");
+        car.put("jun", "-");
         assertThat(judge.selectWinner(car)).isEqualTo(List.of("pobi"));
     }
 }
