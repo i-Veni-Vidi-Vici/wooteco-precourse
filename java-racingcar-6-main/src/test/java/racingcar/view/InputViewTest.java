@@ -26,7 +26,7 @@ public class InputViewTest {
         InputView inputView = new InputView();
         System.setIn(new ByteArrayInputStream("3" .getBytes()));
 
-        assertThat(inputView.getCarName()).isEqualTo("3");
+        assertThat(inputView.getRoundCount()).isEqualTo("3");
 
         Console.close();
     }
