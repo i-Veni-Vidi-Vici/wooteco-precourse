@@ -12,6 +12,8 @@ public class OutputView {
         for (String carName : car.keySet()) {
             System.out.println(carName + " : " + car.get(carName));
         }
+
+        System.out.println();
     }
 
 
