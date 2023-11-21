@@ -20,7 +20,7 @@ public class OutputViewTest {
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
 
-        outputView.printRun(car);
+        outputView.printRun();
 
         assertThat(out.toString())
                 .contains("실행 결과");
@@ -48,7 +48,7 @@ public class OutputViewTest {
 
     @DisplayName("최종 우승자 출력 -> 여러 명일 때 콤마로 구분")
     @Test
-    void printWinner(){
+    void printWinnerByMany(){
         OutputView outputView = new OutputView();
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
@@ -62,7 +62,7 @@ public class OutputViewTest {
 
     @DisplayName("최종 우승자 출력-> 1명 ")
     @Test
-    void printWinner(){
+    void printWinnerByOne(){
         OutputView outputView = new OutputView();
         OutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
