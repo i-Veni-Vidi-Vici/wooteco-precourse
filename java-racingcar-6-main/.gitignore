@@ -5,6 +5,8 @@ build/
 !**/src/main/**
 !**/src/test/**
 
+# files
+*.class
 ### STS ###
 .apt_generated
 .classpath
