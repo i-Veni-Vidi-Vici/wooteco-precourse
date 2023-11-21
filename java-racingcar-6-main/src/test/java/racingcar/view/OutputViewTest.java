@@ -8,18 +8,24 @@ import java.io.PrintStream;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class OutputViewTest {
+    private static OutputView outputView;
+    private static OutputStream out;
+
+    @BeforeAll
+    static void beforeAll() {
+        outputView = new OutputView();
+        out = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(out));
+    }
 
     @DisplayName("실행 시작 문구 출력")
     @Test
-    void printRun(){
-        OutputView outputView = new OutputView();
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
+    void printRun() {
         outputView.printRun();
 
         assertThat(out.toString())
@@ -29,10 +35,7 @@ public class OutputViewTest {
 
     @DisplayName("실행 결과 출력")
     @Test
-    void printResult(){
-        OutputView outputView = new OutputView();
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
+    void printResult() {
         Map<String, String> car = new LinkedHashMap<>();
         car.put("pobi", "-");
         car.put("woni", "");
@@ -48,12 +51,7 @@ public class OutputViewTest {
 
     @DisplayName("최종 우승자 출력 -> 여러 명일 때 콤마로 구분")
     @Test
-    void printWinnerByMany(){
-        OutputView outputView = new OutputView();
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
-
+    void printWinnerByMany() {
         outputView.printWinner(List.of("pobi", "jun"));
 
         assertThat(out.toString())
@@ -62,12 +60,7 @@ public class OutputViewTest {
 
     @DisplayName("최종 우승자 출력-> 1명 ")
     @Test
-    void printWinnerByOne(){
-        OutputView outputView = new OutputView();
-        OutputStream out = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(out));
-
-
+    void printWinnerByOne() {
         outputView.printWinner(List.of("pobi"));
 
         assertThat(out.toString())

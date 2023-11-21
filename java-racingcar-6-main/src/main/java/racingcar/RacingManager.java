@@ -1,5 +1,7 @@
 package racingcar;
 
+import static racingcar.constants.Value.INITIAL_ZERO;
+
 import racingcar.domain.Car;
 import racingcar.domain.Judge;
 import racingcar.domain.Round;
@@ -19,7 +21,7 @@ public class RacingManager {
         converter = new Converter();
     }
 
-    public void run(){
+    public void run() {
         Car car = new Car(converter.convertToMap(inputView.getCarName()));
         Round round = new Round(converter.convertToNumber(inputView.getRoundCount()));
 
@@ -28,16 +30,16 @@ public class RacingManager {
         selectWinner(car);
     }
 
-    private void race(Car car, Round round){
+    private void race(Car car, Round round) {
         outputView.printRun();
 
-        for (int roundCount = 0; roundCount < round.getRoundCount(); roundCount++) {
+        for (int roundCount = INITIAL_ZERO.get(); roundCount < round.getRoundCount(); roundCount++) {
             car.move();
             outputView.printResult(car.get());
         }
     }
 
-    private void selectWinner(Car car){
+    private void selectWinner(Car car) {
         Judge judge = new Judge();
         outputView.printWinner(judge.selectWinner(car.get()));
     }

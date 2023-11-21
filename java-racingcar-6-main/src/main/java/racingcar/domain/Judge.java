@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.constants.Value.INITIAL_ZERO;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +21,7 @@ public class Judge {
     }
 
     private Integer calculateMaxDistance(Map<String, String> car) {
-        Integer maxDistance = 0;
+        Integer maxDistance = INITIAL_ZERO.get();
 
         for (String carName : car.keySet()) {
             if (maxDistance < car.get(carName).length()) {

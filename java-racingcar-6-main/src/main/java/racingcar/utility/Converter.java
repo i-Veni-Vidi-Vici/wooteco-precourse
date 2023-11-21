@@ -1,5 +1,11 @@
 package racingcar.utility;
 
+import static racingcar.constants.Symbol.COMMA;
+import static racingcar.constants.Symbol.EMPTY;
+import static racingcar.constants.Value.ASCII_ZERO;
+import static racingcar.constants.Value.FIRST_CHARACTER;
+import static racingcar.constants.Value.TWO_LENGTH;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,12 +13,12 @@ import java.util.Map;
 public class Converter {
 
     public Map<String, String> convertToMap(String value) {
-        List<String> splitValues = List.of(value.split(","));
+        List<String> splitValues = List.of(value.split(COMMA.get()));
         Map<String, String> values = new LinkedHashMap<>();
 
         for (String splitValue : splitValues) {
             checkWhitespace(splitValue);
-            values.put(splitValue, "");
+            values.put(splitValue, EMPTY.get());
         }
 
         checkDuplication(splitValues, values);
@@ -46,7 +52,7 @@ public class Converter {
     }
 
     private void checkFirstZero(String value) {
-        if ((value.length() > 1) && (value.charAt(0) == '0')) {
+        if ((value.length() >= TWO_LENGTH.get()) && (value.charAt(FIRST_CHARACTER.get()) == ASCII_ZERO.get())) {
             throw new IllegalArgumentException();
         }
     }

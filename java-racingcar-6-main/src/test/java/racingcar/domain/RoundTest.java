@@ -10,8 +10,8 @@ public class RoundTest {
 
     @DisplayName("1미만 일 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(ints = {-1,0})
-    void checkCount(Integer roundCount){
+    @ValueSource(ints = {-1, 0})
+    void checkCount(Integer roundCount) {
         assertThatThrownBy(() -> new Round(roundCount));
     }
 }
