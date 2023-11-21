@@ -26,6 +26,14 @@ public class ConverterTest {
                 .isEqualTo(Map.of("pobi", "", "woni", "", "jun", ""));
     }
 
+    @DisplayName("문자열 마지막에 콤마(,)가 있을 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"pobi,woni,,,","a,b,"})
+    void convertToMapByEndComma(String value) {
+        assertThatThrownBy(() -> converter.convertToMap(value))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("앞 뒤 공백 있을 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {" pobi,a", "woni ,a", "a, jun "})

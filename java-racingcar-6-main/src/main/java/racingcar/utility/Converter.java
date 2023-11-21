@@ -13,6 +13,7 @@ import java.util.Map;
 public class Converter {
 
     public Map<String, String> convertToMap(String value) {
+        checkComma(value);
         List<String> splitValues = List.of(value.split(COMMA.get()));
         Map<String, String> values = new LinkedHashMap<>();
 
@@ -23,6 +24,12 @@ public class Converter {
 
         checkDuplication(splitValues, values);
         return values;
+    }
+
+    private void checkComma(String value){
+        if (value.endsWith(COMMA.get())) {
+            throw new IllegalArgumentException();
+        }
     }
 
     private void checkWhitespace(String splitValue) {
