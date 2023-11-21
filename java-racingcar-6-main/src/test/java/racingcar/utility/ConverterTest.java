@@ -64,6 +64,4 @@ public class ConverterTest {
         assertThatThrownBy(() -> converter.convertToNumber(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
-
-
 }
