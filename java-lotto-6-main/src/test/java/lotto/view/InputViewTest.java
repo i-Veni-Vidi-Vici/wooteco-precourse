@@ -25,7 +25,7 @@ public class InputViewTest {
     @DisplayName("로또 구입 금액 입력")
     @Test
     void getMoney() {
-        System.setIn(new ByteArrayInputStream("1000" .getBytes()));
+        System.setIn(new ByteArrayInputStream("1000".getBytes()));
 
         assertThat(inputView.getMoney()).isEqualTo("1000");
     }
@@ -33,7 +33,7 @@ public class InputViewTest {
     @DisplayName("당첨 번호 입력")
     @Test
     void getWinningNumber() {
-        System.setIn(new ByteArrayInputStream("1,2,3,4,5,6" .getBytes()));
+        System.setIn(new ByteArrayInputStream("1,2,3,4,5,6".getBytes()));
 
         assertThat(inputView.getWinningNumber()).isEqualTo("1,2,3,4,5,6");
     }
@@ -41,8 +41,8 @@ public class InputViewTest {
     @DisplayName("보너스 번호 입력")
     @Test
     void getBonusNumber() {
-        System.setIn(new ByteArrayInputStream("7" .getBytes()));
+        System.setIn(new ByteArrayInputStream("7".getBytes()));
 
-        assertThat(inputView.getWinningNumber()).isEqualTo("7");
+        assertThat(inputView.getBonusNumber()).isEqualTo("7");
     }
 }
