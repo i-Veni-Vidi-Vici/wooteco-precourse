@@ -15,16 +15,16 @@ public class LottoResultTest {
     @DisplayName("당첨 통계 계산, 1등 2개 + 2등 1개")
     @Test
     void calculate() {
-        LottoResult lottoResult = new LottoResult();
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 7)));
-
         List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 6);
         Integer bonusNumber = 7;
 
-        lottoResult.calculate(lottos, winningLotto, bonusNumber);
+        LottoResult lottoResult = new LottoResult(lottos, winningLotto, bonusNumber);
+
+
         assertThat(lottoResult.get().get(Prize.FIRST)).isEqualTo(2);
         assertThat(lottoResult.get().get(Prize.SECOND)).isEqualTo(1);
     }
@@ -32,14 +32,13 @@ public class LottoResultTest {
     @DisplayName("당첨 통계 계산, 1등")
     @Test
     void calculateByFirst() {
-        LottoResult lottoResult = new LottoResult();
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-
         List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 6);
         Integer bonusNumber = 7;
 
-        lottoResult.calculate(lottos, winningLotto, bonusNumber);
+        LottoResult lottoResult = new LottoResult(lottos, winningLotto, bonusNumber);
+
         assertThat(lottoResult.get().get(Prize.FIRST)).isEqualTo(1);
 
         for (Prize prize : lottoResult.get().keySet()) {
@@ -54,14 +53,13 @@ public class LottoResultTest {
     @DisplayName("당첨 통계 계산, 2등")
     @Test
     void calculateBySecond() {
-        LottoResult lottoResult = new LottoResult();
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-
         List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 7);
         Integer bonusNumber = 6;
 
-        lottoResult.calculate(lottos, winningLotto, bonusNumber);
+        LottoResult lottoResult = new LottoResult(lottos, winningLotto, bonusNumber);
+
         assertThat(lottoResult.get().get(Prize.SECOND)).isEqualTo(1);
 
         for (Prize prize : lottoResult.get().keySet()) {
@@ -76,14 +74,13 @@ public class LottoResultTest {
     @DisplayName("당첨 통계 계산, 3등")
     @Test
     void calculateByThird() {
-        LottoResult lottoResult = new LottoResult();
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-
         List<Integer> winningLotto = List.of(1, 2, 3, 4, 5, 7);
         Integer bonusNumber = 8;
 
-        lottoResult.calculate(lottos, winningLotto, bonusNumber);
+        LottoResult lottoResult = new LottoResult(lottos, winningLotto, bonusNumber);
+
         assertThat(lottoResult.get().get(Prize.THIRD)).isEqualTo(1);
 
         for (Prize prize : lottoResult.get().keySet()) {
@@ -99,13 +96,12 @@ public class LottoResultTest {
     @ParameterizedTest
     @ValueSource(ints = {6, 9})
     void calculateByFourth(Integer bonusNumber) {
-        LottoResult lottoResult = new LottoResult();
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-
         List<Integer> winningLotto = List.of(1, 2, 3, 4, 7, 8);
 
-        lottoResult.calculate(lottos, winningLotto, bonusNumber);
+        LottoResult lottoResult = new LottoResult(lottos, winningLotto, bonusNumber);
+
         assertThat(lottoResult.get().get(Prize.FOURTH)).isEqualTo(1);
 
         for (Prize prize : lottoResult.get().keySet()) {
@@ -121,13 +117,12 @@ public class LottoResultTest {
     @ParameterizedTest
     @ValueSource(ints = {6, 10})
     void calculateByFifth(Integer bonusNumber) {
-        LottoResult lottoResult = new LottoResult();
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-
         List<Integer> winningLotto = List.of(1, 2, 3, 7, 8, 9);
 
-        lottoResult.calculate(lottos, winningLotto, bonusNumber);
+        LottoResult lottoResult = new LottoResult(lottos, winningLotto, bonusNumber);
+
         assertThat(lottoResult.get().get(Prize.FIFTH)).isEqualTo(1);
 
         for (Prize prize : lottoResult.get().keySet()) {
@@ -143,17 +138,28 @@ public class LottoResultTest {
     @ParameterizedTest
     @ValueSource(ints = {3, 11})
     void calculateByNothing(Integer bonusNumber) {
-        LottoResult lottoResult = new LottoResult();
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-
         List<Integer> winningLotto = List.of(1, 2, 7, 8, 9, 10);
 
-        lottoResult.calculate(lottos, winningLotto, bonusNumber);
+        LottoResult lottoResult = new LottoResult(lottos, winningLotto, bonusNumber);
+
 
         for (Prize prize : lottoResult.get().keySet()) {
             assertThat(lottoResult.get().get(prize)).isEqualTo(0);
         }
     }
 
+    @DisplayName("수익률 계산")
+    @Test
+    void calculateEarningsRate() {
+        List<Lotto> lottos = new ArrayList<>();
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
+        lottos.add(new Lotto(List.of(1, 2, 11, 12, 13, 14)));
+        List<Integer> winningLotto = List.of(1, 2, 3, 7, 8, 9);
+
+        LottoResult lottoResult = new LottoResult(lottos, winningLotto, 10);
+
+        assertThat(lottoResult.calculateEarningsRate()).isEqualTo();
+    }
 }

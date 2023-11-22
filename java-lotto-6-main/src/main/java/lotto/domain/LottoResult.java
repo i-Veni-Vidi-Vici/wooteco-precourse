@@ -9,8 +9,9 @@ import lotto.constants.Prize;
 public class LottoResult {
     private Map<Prize, Integer> lottoResult;
 
-    public LottoResult() {
+    public LottoResult(List<Lotto> lottos, List<Integer> winningLotto, Integer bonusNumber) {
         initialize();
+        calculate(lottos, winningLotto, bonusNumber);
     }
 
     private void initialize() {
@@ -21,18 +22,18 @@ public class LottoResult {
         }
     }
 
-    public void calculate(List<Lotto> lottos, List<Integer> winningLotto, Integer bonusNumber) {
+    private void calculate(List<Lotto> lottos, List<Integer> winningLotto, Integer bonusNumber) {
         for (Lotto lotto : lottos) {
             Integer matchingCount = calculateMatchingCount(lotto, winningLotto);
 
             if (matchingCount >= 3) {
-                Prize prize = Prize.calculate(matchingCount, hasBonusNumber(lotto,bonusNumber));
+                Prize prize = Prize.calculate(matchingCount, hasBonusNumber(lotto, bonusNumber));
                 lottoResult.put(prize, lottoResult.get(prize) + 1);
             }
         }
     }
 
-    private Integer calculateMatchingCount(Lotto lotto, List<Integer> winningLotto){
+    private Integer calculateMatchingCount(Lotto lotto, List<Integer> winningLotto) {
         Integer matchingCount = 0;
 
         for (Integer winningNumber : winningLotto) {
@@ -44,7 +45,7 @@ public class LottoResult {
         return matchingCount;
     }
 
-    private boolean hasBonusNumber(Lotto lotto, Integer bonusNumber){
+    private boolean hasBonusNumber(Lotto lotto, Integer bonusNumber) {
         return lotto.getNumbers().contains(bonusNumber);
     }
 
