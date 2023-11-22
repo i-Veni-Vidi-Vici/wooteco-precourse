@@ -11,10 +11,10 @@ public class LottoResult {
 
     private final Integer lottoCount;
 
-    public LottoResult(List<Lotto> lottos, List<Integer> winningLotto, Integer bonusNumber) {
+    public LottoResult(List<Lotto> lottos, WinningLotto winningLotto) {
         initialize();
         lottoCount = lottos.size();
-        calculate(lottos, winningLotto, bonusNumber);
+        calculate(lottos, winningLotto.getWinningNumber().getNumbers(), winningLotto.getBonusNumber());
     }
 
     private void initialize() {

@@ -13,7 +13,7 @@ public class WinningLotto {
 
     private void checkBonusNumber(Integer bonusNumber){
         if (winningNumber.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복된 숫자 입니다.");
         }
     }
 

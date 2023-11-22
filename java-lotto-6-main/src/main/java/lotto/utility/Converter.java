@@ -14,13 +14,13 @@ public class Converter {
         try {
             Integer.parseInt(value);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 정수가 아닙니다.");
         }
     }
 
     private void checkFirstZero(String value) {
         if ((value.length() >= 2) && (value.charAt(0) == '0')) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자 앞에 0이 존재합니다.");
         }
     }
 
@@ -38,7 +38,7 @@ public class Converter {
 
     private void checkComma(String value) {
         if (value.endsWith(",")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 마지막에 콤마가 존재합니다.");
         }
     }
 }

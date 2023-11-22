@@ -19,7 +19,7 @@ public class LottoMachine {
 
     private void checkMoney(Integer money) {
         if (((money % 1000) != 0) || (money == 0)) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 1000단위의 금액이여야 합니다.");
         }
     }
 }

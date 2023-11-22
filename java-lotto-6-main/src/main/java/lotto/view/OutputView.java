@@ -9,8 +9,8 @@ import lotto.domain.Lotto;
 
 public class OutputView {
 
-
     public void printLotto(List<Lotto> lottos) {
+        System.out.println();
         System.out.println(lottos.size() + "개를 구매했습니다.");
 
         for (Lotto lotto : lottos) {
@@ -21,6 +21,7 @@ public class OutputView {
     }
 
     public void printResult(Map<Prize, Integer> lottoResult) {
+        System.out.println();
         System.out.println("당첨 통계");
         System.out.println("---");
 
@@ -33,6 +34,5 @@ public class OutputView {
 
     public void printEarningsRate(Double earningsRate) {
         System.out.println("총 수익률은 " + String.format("%,.1f",earningsRate) +"%입니다.");
-
     }
 }
