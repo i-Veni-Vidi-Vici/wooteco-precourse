@@ -36,7 +36,6 @@ public class Converter {
         return numbers;
     }
 
-
     private void checkComma(String value) {
         if (value.endsWith(",")) {
             throw new IllegalArgumentException();
