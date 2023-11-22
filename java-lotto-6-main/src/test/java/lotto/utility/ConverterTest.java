@@ -66,7 +66,7 @@ public class ConverterTest {
     @DisplayName("문자열 마지막에 콤마가 있을 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"1,2,3,,,","1,2,3,"})
-    void convertToListByFirstZero(String value) {
+    void convertToListByComma(String value) {
         assertThatThrownBy(() -> converter.convertToList(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
