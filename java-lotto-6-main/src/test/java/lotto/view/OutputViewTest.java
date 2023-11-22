@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import lotto.constants.Prize;
 import lotto.domain.Lotto;
-import lotto.domain.LottoMachine;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,7 +32,6 @@ public class OutputViewTest {
     @DisplayName("발행한 로또 수량 및 번호 오름차순 출력")
     @Test
     void printLotto() {
-        LottoMachine lottoMachine = new LottoMachine();
         List<Lotto> lottos = new ArrayList<>();
         lottos.add(new Lotto(List.of(6, 5, 4, 3, 2, 1)));
         outputView.printLotto(lottos);
@@ -46,7 +44,7 @@ public class OutputViewTest {
     @DisplayName("당첨 내역 출력")
     @Test
     void printResult() {
-        Map<Prize, Integer> lottoResult =  new HashMap<>();
+        Map<Prize, Integer> lottoResult = new HashMap<>();
         for (Prize prize : Prize.values()) {
             lottoResult.put(prize, 0);
         }
@@ -67,7 +65,7 @@ public class OutputViewTest {
 
     @DisplayName("수익률(둘째 자리에서 반올림) 출력")
     @ParameterizedTest
-    @ValueSource(doubles = {62.455,62.46})
+    @ValueSource(doubles = {62.455, 62.46})
     void printEarningsRate(Double earningsRate) {
         outputView.printEarningsRate(earningsRate);
 

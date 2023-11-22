@@ -1,5 +1,11 @@
 package lotto.domain;
 
+import static lotto.constants.Value.INITIAL_ZERO;
+import static lotto.constants.Value.MIN_MATCHING_COUNT;
+import static lotto.constants.Value.ONE;
+import static lotto.constants.Value.PERCENT;
+import static lotto.constants.Value.THOUSAND_WON;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -8,7 +14,6 @@ import lotto.constants.Prize;
 
 public class LottoResult {
     private Map<Prize, Integer> lottoResult;
-
     private final Integer lottoCount;
 
     public LottoResult(List<Lotto> lottos, WinningLotto winningLotto) {
@@ -21,7 +26,7 @@ public class LottoResult {
         lottoResult = new HashMap<>();
 
         for (Prize prize : Prize.values()) {
-            lottoResult.put(prize, 0);
+            lottoResult.put(prize, INITIAL_ZERO.get());
         }
     }
 
@@ -29,15 +34,15 @@ public class LottoResult {
         for (Lotto lotto : lottos) {
             Integer matchingCount = calculateMatchingCount(lotto, winningLotto);
 
-            if (matchingCount >= 3) {
+            if (matchingCount >= MIN_MATCHING_COUNT.get()) {
                 Prize prize = Prize.calculate(matchingCount, hasBonusNumber(lotto, bonusNumber));
-                lottoResult.put(prize, lottoResult.get(prize) + 1);
+                lottoResult.put(prize, lottoResult.get(prize) + ONE.get());
             }
         }
     }
 
     private Integer calculateMatchingCount(Lotto lotto, List<Integer> winningLotto) {
-        Integer matchingCount = 0;
+        Integer matchingCount = INITIAL_ZERO.get();
 
         for (Integer winningNumber : winningLotto) {
             if (lotto.getNumbers().contains(winningNumber)) {
@@ -57,11 +62,11 @@ public class LottoResult {
     }
 
     public double calculateEarningsRate() {
-        double sum = 0;
+        double sum = INITIAL_ZERO.get();
         for (Prize prize : lottoResult.keySet()) {
             sum += lottoResult.get(prize) * prize.getPrizeMoney();
         }
 
-        return ((sum / (1000 * lottoCount)) * 100);
+        return ((sum / (THOUSAND_WON.get() * lottoCount)) * PERCENT.get());
     }
 }

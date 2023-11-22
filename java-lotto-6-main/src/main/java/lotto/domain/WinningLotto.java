@@ -1,7 +1,8 @@
 package lotto.domain;
 
-public class WinningLotto {
+import static lotto.constants.ERROR.BONUS_NUMBER_DUPLICATION_ERROR;
 
+public class WinningLotto {
     private final Lotto winningNumber;
     private final Integer bonusNumber;
 
@@ -11,9 +12,9 @@ public class WinningLotto {
         this.bonusNumber = bonusNumber;
     }
 
-    private void checkBonusNumber(Integer bonusNumber){
+    private void checkBonusNumber(Integer bonusNumber) {
         if (winningNumber.getNumbers().contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호와 중복된 숫자 입니다.");
+            throw new IllegalArgumentException(BONUS_NUMBER_DUPLICATION_ERROR.getMessage());
         }
     }
 

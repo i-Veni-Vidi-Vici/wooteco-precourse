@@ -1,8 +1,10 @@
 package lotto;
 
+import static lotto.constants.Condition.FALSE;
+import static lotto.constants.Condition.TRUE;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMachine;
 import lotto.domain.LottoResult;
@@ -12,7 +14,6 @@ import lotto.view.InputView;
 import lotto.view.OutputView;
 
 public class LottoManager {
-
     private final InputView inputView;
     private final OutputView outputView;
     private final Converter converter;
@@ -32,16 +33,16 @@ public class LottoManager {
     }
 
     private List<Lotto> purchaseLotto() {
-        boolean isPurchasing = true;
+        boolean isPurchasing = TRUE.get();
         LottoMachine lottoMachine = new LottoMachine();
         List<Lotto> lottos = new ArrayList<>();
 
         while (isPurchasing) {
             try {
                 lottos = lottoMachine.generate(converter.convertToNumber(inputView.getMoney()));
-                isPurchasing = false;
+                isPurchasing = FALSE.get();
             } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());
+                outputView.printError(ex.getMessage());
             }
         }
 
@@ -49,15 +50,15 @@ public class LottoManager {
     }
 
     private Lotto createWinningNumber() {
-        boolean isCreating = true;
+        boolean isCreating = TRUE.get();
         Lotto lotto = null;
 
         while (isCreating) {
             try {
                 lotto = new Lotto(converter.convertToList(inputView.getWinningNumber()));
-                isCreating = false;
+                isCreating = FALSE.get();
             } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());
+                outputView.printError(ex.getMessage());
             }
         }
 
@@ -65,15 +66,15 @@ public class LottoManager {
     }
 
     private WinningLotto createWinningLotto(Lotto lotto) {
-        boolean isCreating = true;
+        boolean isCreating = TRUE.get();
         WinningLotto winningLotto = null;
 
         while (isCreating) {
             try {
                 winningLotto = new WinningLotto(lotto, converter.convertToNumber(inputView.getBonusNumber()));
-                isCreating = false;
+                isCreating = FALSE.get();
             } catch (IllegalArgumentException ex) {
-                System.out.println(ex.getMessage());
+                outputView.printError(ex.getMessage());
             }
         }
 

@@ -7,11 +7,9 @@ public enum Prize {
     SECOND(5, "5개 일치, 보너스 볼 일치", 30_000_000),
     FIRST(6, "6개 일치", 2_000_000_000);
 
-
     private final Integer matchingCount;
     private final String message;
     private final Integer prizeMoney;
-
 
     Prize(Integer matchingCount, String message, Integer prizeMoney) {
         this.matchingCount = matchingCount;
@@ -20,16 +18,16 @@ public enum Prize {
     }
 
     public static Prize calculate(Integer matchingCount, boolean bonusNumber) {
-        if (matchingCount == 6) {
+        if (matchingCount.equals(FIRST.matchingCount)) {
             return FIRST;
         }
-        if (matchingCount == 5) {
+        if (matchingCount.equals(SECOND.matchingCount)) {
             return calculateSecond(bonusNumber);
         }
-        if (matchingCount == 4) {
+        if (matchingCount.equals(FOURTH.matchingCount)) {
             return FOURTH;
         }
-        if (matchingCount == 3) {
+        if (matchingCount.equals(FIFTH.matchingCount)) {
             return FIFTH;
         }
         return null;
@@ -40,10 +38,6 @@ public enum Prize {
             return SECOND;
         }
         return THIRD;
-    }
-
-    public Integer getMatchingCount() {
-        return matchingCount;
     }
 
     public String getMessage() {
