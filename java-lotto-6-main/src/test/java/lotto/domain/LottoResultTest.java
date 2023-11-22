@@ -154,12 +154,12 @@ public class LottoResultTest {
     @Test
     void calculateEarningsRate() {
         List<Lotto> lottos = new ArrayList<>();
-        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6)));
-        lottos.add(new Lotto(List.of(1, 2, 11, 12, 13, 14)));
+        lottos.add(new Lotto(List.of(1, 2, 3, 4, 5, 6))); // 5등
+        lottos.add(new Lotto(List.of(1, 2, 11, 12, 13, 14))); // 당첨x
         List<Integer> winningLotto = List.of(1, 2, 3, 7, 8, 9);
 
         LottoResult lottoResult = new LottoResult(lottos, winningLotto, 10);
 
-        assertThat(lottoResult.calculateEarningsRate()).isEqualTo();
+        assertThat(lottoResult.calculateEarningsRate()).isEqualTo(250.0);
     }
 }

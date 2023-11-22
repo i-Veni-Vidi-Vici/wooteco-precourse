@@ -9,8 +9,11 @@ import lotto.constants.Prize;
 public class LottoResult {
     private Map<Prize, Integer> lottoResult;
 
+    private final Integer lottoCount;
+
     public LottoResult(List<Lotto> lottos, List<Integer> winningLotto, Integer bonusNumber) {
         initialize();
+        lottoCount = lottos.size();
         calculate(lottos, winningLotto, bonusNumber);
     }
 
@@ -51,5 +54,14 @@ public class LottoResult {
 
     public Map<Prize, Integer> get() {
         return Collections.unmodifiableMap(lottoResult);
+    }
+
+    public double calculateEarningsRate() {
+        double sum = 0;
+        for (Prize prize : lottoResult.keySet()) {
+            sum += lottoResult.get(prize) * prize.getPrizeMoney();
+        }
+
+        return ((sum / (1000 * lottoCount)) * 100);
     }
 }

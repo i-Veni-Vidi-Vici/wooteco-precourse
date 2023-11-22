@@ -43,4 +43,15 @@ public enum Prize {
         return THIRD;
     }
 
+    public Integer getMatchingCount() {
+        return matchingCount;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public Integer getPrizeMoney() {
+        return prizeMoney;
+    }
 }
