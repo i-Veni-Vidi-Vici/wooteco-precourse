@@ -1,0 +1,54 @@
+package lotto.domain;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import lotto.constants.Prize;
+
+public class LottoResult {
+    private Map<Prize, Integer> lottoResult;
+
+    public LottoResult() {
+        initialize();
+    }
+
+    private void initialize() {
+        lottoResult = new HashMap<>();
+
+        for (Prize prize : Prize.values()) {
+            lottoResult.put(prize, 0);
+        }
+    }
+
+    public void calculate(List<Lotto> lottos, List<Integer> winningLotto, Integer bonusNumber) {
+        for (Lotto lotto : lottos) {
+            Integer matchingCount = calculateMatchingCount(lotto, winningLotto);
+
+            if (matchingCount >= 3) {
+                Prize prize = Prize.calculate(matchingCount, hasBonusNumber(lotto,bonusNumber));
+                lottoResult.put(prize, lottoResult.get(prize) + 1);
+            }
+        }
+    }
+
+    private Integer calculateMatchingCount(Lotto lotto, List<Integer> winningLotto){
+        Integer matchingCount = 0;
+
+        for (Integer winningNumber : winningLotto) {
+            if (lotto.getNumbers().contains(winningNumber)) {
+                matchingCount++;
+            }
+        }
+
+        return matchingCount;
+    }
+
+    private boolean hasBonusNumber(Lotto lotto, Integer bonusNumber){
+        return lotto.getNumbers().contains(bonusNumber);
+    }
+
+    public Map<Prize, Integer> get() {
+        return Collections.unmodifiableMap(lottoResult);
+    }
+}
