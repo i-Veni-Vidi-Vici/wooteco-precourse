@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-public class benefitTest {
+public class BenefitTest {
 
     @DisplayName("크리스마스 디데이 할인, 1~25")
     @Test
@@ -121,7 +121,32 @@ public class benefitTest {
     void discountWeekendByNotWeekend(Integer date) {
         Benefit benefit = new Benefit();
 
-            assertThat(benefit.discountWeekend(date, 1)).isEqualTo(0);
+        assertThat(benefit.discountWeekend(date, 1)).isEqualTo(0);
     }
 
+    @DisplayName("특별 할인, 별표 날")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            3, 10, 17, 24, 25, 31
+    })
+    void discountSpecial(Integer date) {
+        Benefit benefit = new Benefit();
+
+        assertThat(benefit.discountSpecial(date)).isEqualTo(1000);
+    }
+
+    @DisplayName("특별 할인, 별표 날x")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            1, 2,
+            4, 5, 6, 7, 8, 9,
+            11, 12, 13, 14, 15, 16,
+            18, 19, 20, 21, 22, 23,
+            26, 27, 28, 29, 30
+    })
+    void discountSpecialByNotSpecialDay(Integer date) {
+        Benefit benefit = new Benefit();
+
+        assertThat(benefit.discountSpecial(date)).isEqualTo(0);
+    }
 }
