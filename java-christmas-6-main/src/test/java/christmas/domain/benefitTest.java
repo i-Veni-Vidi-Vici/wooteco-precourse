@@ -19,7 +19,7 @@ public class benefitTest {
 
     @DisplayName("크리스마스 디데이 할인, 26~31 할인 x")
     @Test
-    void discountXmas() {
+    void discountXmasByNotPeriod() {
         Benefit benefit = new Benefit();
 
         for (int date = 26; date <= 31; date++) {
