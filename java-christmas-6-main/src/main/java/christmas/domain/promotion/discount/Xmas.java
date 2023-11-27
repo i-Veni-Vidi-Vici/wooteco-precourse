@@ -1,5 +1,11 @@
 package christmas.domain.promotion.discount;
 
+import static christmas.constants.DiscountValue.FIRST_XMAS_DISCOUNT;
+import static christmas.constants.DateValue.ONE_DAY;
+import static christmas.constants.DateValue.XMAS_DATE;
+import static christmas.constants.DiscountValue.XMAS_INCREASE_DISCOUNT;
+import static christmas.constants.Value.ZERO;
+
 import christmas.constants.Benefit;
 import christmas.domain.promotion.Promotion;
 import java.util.Collections;
@@ -12,17 +18,17 @@ public class Xmas implements Promotion {
     public Xmas(Integer date) {
         xmas = new HashMap<>();
 
-        if (discount(date) > 0) {
+        if (discount(date) > ZERO.get()) {
             xmas.put(Benefit.XMAS, discount(date));
         }
     }
 
     private Integer discount(Integer date) {
-        if (date <= 25) {
-            return (1000 + ((date - 1) * 100));
+        if (date <= XMAS_DATE.get()) {
+            return (FIRST_XMAS_DISCOUNT.get() + ((date - ONE_DAY.get()) * XMAS_INCREASE_DISCOUNT.get()));
         }
 
-        return 0;
+        return ZERO.get();
     }
 
     @Override

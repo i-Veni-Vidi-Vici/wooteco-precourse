@@ -1,5 +1,8 @@
 package christmas.domain.promotion;
 
+import static christmas.constants.Value.INITIAL_ZERO;
+import static christmas.constants.DiscountValue.MIN_BENEFIT_CONDITION;
+
 import christmas.constants.Benefit;
 import christmas.constants.Food;
 import christmas.domain.ReservedDate;
@@ -38,7 +41,7 @@ public class Benefits {
     }
 
     private boolean isTarget(Integer purchaseAmount) {
-        return (purchaseAmount >= 10_000);
+        return (purchaseAmount >= MIN_BENEFIT_CONDITION.get());
     }
 
     public boolean checkGiveaway() {
@@ -58,7 +61,7 @@ public class Benefits {
     }
 
     private Integer calculateDiscountAmount() {
-        Integer discountAmount = 0;
+        Integer discountAmount = INITIAL_ZERO.get();
 
         for (Benefit benefit : benefits.keySet()) {
             if (benefit == Benefit.GIVEAWAY) {

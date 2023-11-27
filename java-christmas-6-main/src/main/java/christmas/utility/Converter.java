@@ -1,5 +1,14 @@
 package christmas.utility;
 
+import static christmas.constants.Symbol.COMMA;
+import static christmas.constants.Symbol.HYPHEN;
+import static christmas.constants.Value.ASCII_ZERO;
+import static christmas.constants.Value.FIRST_CHARACTER;
+import static christmas.constants.Value.FIRST_INDEX;
+import static christmas.constants.Value.SECOND_INDEX;
+import static christmas.constants.Value.TWO_LENGTH;
+import static christmas.constants.Value.TWO_SIZE;
+
 import christmas.constants.Food;
 import java.util.HashMap;
 import java.util.List;
@@ -21,20 +30,20 @@ public class Converter {
     }
 
     private void checkFirstZero(String value) {
-        if ((value.length() >= 2) && (value.charAt(0) == '0')) {
+        if ((value.length() >= TWO_LENGTH.get()) && (value.charAt(FIRST_CHARACTER.get()) == ASCII_ZERO.get())) {
             throw new IllegalArgumentException();
         }
     }
 
     public Map<Food, Integer> convertToMap(String value) {
         checkComma(value);
-        List<String> splitValues = List.of(value.split(","));
+        List<String> splitValues = List.of(value.split(COMMA.get()));
         Map<Food, Integer> menu = new HashMap<>();
 
         for (String splitValue : splitValues) {
-            List<String> splitMenu = List.of(splitValue.split("-"));
+            List<String> splitMenu = List.of(splitValue.split(HYPHEN.get()));
             checkForm(splitMenu);
-            menu.put(checkMenu(splitMenu), convertToNumber(splitMenu.get(1)));
+            menu.put(checkMenu(splitMenu), convertToNumber(splitMenu.get(SECOND_INDEX.get())));
         }
 
         checkDuplication(splitValues, menu);
@@ -49,7 +58,7 @@ public class Converter {
 
     private Food checkMenu(List<String> splitMenu) {
         for (Food food : Food.values()) {
-            if (splitMenu.get(0).equals(food.getName())) {
+            if (splitMenu.get(FIRST_INDEX.get()).equals(food.getName())) {
                 return food;
             }
         }
@@ -58,13 +67,13 @@ public class Converter {
     }
 
     private void checkForm(List<String> splitMenu) {
-        if (splitMenu.size() != 2) {
+        if (splitMenu.size() != TWO_SIZE.get()) {
             throw new IllegalArgumentException();
         }
     }
 
     private void checkComma(String value) {
-        if (value.endsWith(",")) {
+        if (value.endsWith(COMMA.get())) {
             throw new IllegalArgumentException();
         }
     }

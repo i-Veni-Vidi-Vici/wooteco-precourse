@@ -1,5 +1,10 @@
 package christmas;
 
+import static christmas.constants.Condition.FALSE;
+import static christmas.constants.Condition.TRUE;
+import static christmas.constants.Error.INVALID_DATE_ERROR;
+import static christmas.constants.Error.INVALID_MENU_ERROR;
+
 import christmas.constants.Badge;
 import christmas.domain.promotion.Benefits;
 import christmas.domain.ReservedDate;
@@ -47,15 +52,15 @@ public class EventPlanner {
     }
 
     private ReservedDate reserveDate() {
-        boolean isReserving = true;
+        boolean isReserving = TRUE.get();
         ReservedDate reservedDate = null;
 
         while (isReserving) {
             try {
                 reservedDate = new ReservedDate(converter.convertToNumber(inputView.getDate()));
-                isReserving = false;
+                isReserving = FALSE.get();
             } catch (IllegalArgumentException exception) {
-                outputView.printError("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+                outputView.printError(INVALID_DATE_ERROR.getMessage());
             }
         }
 
@@ -63,15 +68,15 @@ public class EventPlanner {
     }
 
     private ReservedMenu reserveMenu() {
-        boolean isReserving = true;
+        boolean isReserving = TRUE.get();
         ReservedMenu reservedMenu = null;
 
         while (isReserving) {
             try {
                 reservedMenu = new ReservedMenu(converter.convertToMap(inputView.getMenu()));
-                isReserving = false;
+                isReserving = FALSE.get();
             } catch (IllegalArgumentException exception) {
-                outputView.printError("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                outputView.printError(INVALID_MENU_ERROR.getMessage());
             }
         }
 

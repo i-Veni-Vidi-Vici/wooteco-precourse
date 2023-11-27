@@ -1,6 +1,10 @@
 package christmas.domain.promotion.giveaway;
 
+import static christmas.constants.DiscountValue.MIN_AMOUNT_OF_GIVEAWAY_CONDITION;
+import static christmas.constants.Value.ZERO;
+
 import christmas.constants.Benefit;
+import christmas.constants.Food;
 import christmas.domain.promotion.Promotion;
 import java.util.Collections;
 import java.util.HashMap;
@@ -12,17 +16,17 @@ public class Champagne implements Promotion {
     public Champagne(Integer purchaseAmount) {
         champagne = new HashMap<>();
 
-        if (present(purchaseAmount) > 0) {
+        if (present(purchaseAmount) > ZERO.get()) {
             champagne.put(Benefit.GIVEAWAY, present(purchaseAmount));
         }
     }
 
     private Integer present(Integer purchaseAmount) {
-        if (purchaseAmount >= 1200000) {
-            return 25_000;
+        if (purchaseAmount >= MIN_AMOUNT_OF_GIVEAWAY_CONDITION.get()) {
+            return Food.CHAMPAGNE.getPrice();
         }
 
-        return 0;
+        return ZERO.get();
     }
 
     @Override

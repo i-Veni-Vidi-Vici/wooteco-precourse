@@ -1,5 +1,13 @@
 package christmas.domain.promotion.discount;
 
+import static christmas.constants.DateValue.FIRST_WEEKEND_DATE;
+import static christmas.constants.DateValue.FIRST_WEEK_LSAT_WEEKEND_DATE;
+import static christmas.constants.DateValue.FIVE_WEEKS;
+import static christmas.constants.Value.INITIAL_ZERO;
+import static christmas.constants.DateValue.SEVEN_DAYS;
+import static christmas.constants.DiscountValue.WEEKEND_DISCOUNT;
+import static christmas.constants.Value.ZERO;
+
 import christmas.constants.Benefit;
 import christmas.domain.promotion.Promotion;
 import java.util.Collections;
@@ -13,19 +21,20 @@ public class Weekend implements Promotion {
     public Weekend(Integer date, Integer mainCount) {
         weekend = new HashMap<>();
 
-        if (discount(date,mainCount) > 0) {
-            weekend.put(Benefit.WEEKEND, discount(date,mainCount));
+        if (discount(date, mainCount) > ZERO.get()) {
+            weekend.put(Benefit.WEEKEND, discount(date, mainCount));
         }
     }
 
     private Integer discount(Integer date, Integer mainCount) {
-        for (int week = 0; week < 5; week++) {
-            if ((date == (1 + (7 * week))) || (date == (2 + (7 * week)))) {
-                return (mainCount * 2023);
+        for (int week = INITIAL_ZERO.get(); week < FIVE_WEEKS.get(); week++) {
+            if ((date == (FIRST_WEEKEND_DATE.get() + (SEVEN_DAYS.get() * week)))
+                    || (date == (FIRST_WEEK_LSAT_WEEKEND_DATE.get() + (SEVEN_DAYS.get() * week)))) {
+                return (mainCount * WEEKEND_DISCOUNT.get());
             }
         }
 
-        return 0;
+        return ZERO.get();
     }
 
     @Override
