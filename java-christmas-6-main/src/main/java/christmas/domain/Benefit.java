@@ -43,4 +43,12 @@ public class Benefit {
 
         return 0;
     }
+
+    public boolean presentGiveaway(Integer purchaseAmount) {
+        if (purchaseAmount >= 120_000) {
+            return true;
+        }
+
+        return false;
+    }
 }

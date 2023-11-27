@@ -154,7 +154,7 @@ public class BenefitTest {
     @DisplayName("증정 이벤트, 12만원 이상일 때 샴페인 증정")
     @ParameterizedTest
     @ValueSource(ints = {120_000, 150_000})
-    void presentGiveaway(Integer purchaseAmount){
+    void presentGiveaway(Integer purchaseAmount) {
         Benefit benefit = new Benefit();
 
         assertThat(benefit.presentGiveaway(purchaseAmount)).isEqualTo(true);
@@ -163,9 +163,19 @@ public class BenefitTest {
     @DisplayName("증정 이벤트, 12만원 미만일 때 증정x")
     @ParameterizedTest
     @ValueSource(ints = {0, 119_000})
-    void presentGiveawayByNotApplicable(Integer purchaseAmount){
+    void presentGiveawayByNotApplicable(Integer purchaseAmount) {
         Benefit benefit = new Benefit();
 
         assertThat(benefit.presentGiveaway(purchaseAmount)).isEqualTo(false);
+    }
+
+    @DisplayName("배지 부여")
+    @Test
+    @CsvSource(value = {"0,없음","5000,별","10000,트리","20000,산타"})
+    void grantBadge(Integer benefitAmount, String badge){
+        Benefit benefit = new Benefit();
+
+        assertThat(benefit.grantBadge(benefitAmount)).isEqualTo(badge);
+
     }
 }
