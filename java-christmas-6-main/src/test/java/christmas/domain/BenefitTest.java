@@ -264,9 +264,12 @@ public class BenefitTest {
 
     @DisplayName("할인 후 예상 결제 금액 계산")
     @Test
-    void calculatePaymentAmount(){
+    void calculatePaymentAmount() {
         Benefit benefit = new Benefit();
+        ReservedMenu reservedMenu = new ReservedMenu(Map.of(T_BONE_STEAK, 1, CHRISTMAS_PASTA, 1,
+                CHOCO_CAKE, 1)); // 메인 2개, 디저트 1개 = 95,000원
+        ReservedDate reservedDate = new ReservedDate(26); // 평일 할인 2023
 
-        assertThat(benefit.calculatePaymentAmount()).isEqualTo();
+        assertThat(benefit.calculatePaymentAmount(reservedDate, reservedMenu)).isEqualTo(95000 - 2023);
     }
 }

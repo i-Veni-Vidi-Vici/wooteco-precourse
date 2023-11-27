@@ -57,14 +57,28 @@ public class Benefit {
         return 0;
     }
 
+    private Integer calculateDiscountAmount(ReservedDate reservedDate, ReservedMenu reservedMenu) {
+        return discountXmas(reservedDate.get())
+                + discountWeekday(reservedDate.get(), reservedMenu.countDessert())
+                + discountWeekend(reservedDate.get(), reservedMenu.countMain())
+                + discountSpecial(reservedDate.get());
+
+    }
+
     public Integer calculateBenefitAmount(ReservedDate reservedDate, ReservedMenu reservedMenu) {
         if (isTarget(reservedMenu.calculateAmount())) {
-            return discountXmas(reservedDate.get())
-                    + discountWeekday(reservedDate.get(), reservedMenu.countDessert())
-                    + discountWeekend(reservedDate.get(), reservedMenu.countMain())
-                    + discountSpecial(reservedDate.get()) + presentGiveaway(reservedMenu.calculateAmount());
+            return calculateDiscountAmount(reservedDate, reservedMenu)
+                    + presentGiveaway(reservedMenu.calculateAmount());
         }
 
         return 0;
+    }
+
+    public Integer calculatePaymentAmount(ReservedDate reservedDate, ReservedMenu reservedMenu) {
+        if (isTarget(reservedMenu.calculateAmount())) {
+            return reservedMenu.calculateAmount() - calculateDiscountAmount(reservedDate, reservedMenu);
+        }
+
+        return reservedMenu.calculateAmount();
     }
 }
