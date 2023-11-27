@@ -33,4 +33,14 @@ public class Benefit {
 
         return 0;
     }
+
+    public Integer discountSpecial(Integer date) {
+        for (int week = 0; week < 5; week++) {
+            if ((date == (3 + (7 * week))) || date == 25) {
+                return 1000;
+            }
+        }
+
+        return 0;
+    }
 }
