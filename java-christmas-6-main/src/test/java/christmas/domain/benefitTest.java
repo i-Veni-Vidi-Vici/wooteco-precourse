@@ -41,9 +41,7 @@ public class benefitTest {
     void discountWeekday(Integer date) {
         Benefit benefit = new Benefit();
 
-        ReservedMenu reservedMenu = new ReservedMenu();
-
-        assertThat(benefit.discountWeekday(date, reservedMenu.get())).isEqualTo(2023);
+        assertThat(benefit.discountWeekday(date, 1)).isEqualTo(2023);
     }
 
     @DisplayName("평일 할인, 평일x")
@@ -58,9 +56,7 @@ public class benefitTest {
     void discountWeekdayByNotWeekday(Integer date) {
         Benefit benefit = new Benefit();
 
-        ReservedMenu reservedMenu = new ReservedMenu();
-
-        assertThat(benefit.discountWeekday(date, reservedMenu.get())).isEqualTo(0);
+        assertThat(benefit.discountWeekday(date, 1)).isEqualTo(0);
     }
 
     @DisplayName("평일 할인, 평일 + 디저트x ")
@@ -75,8 +71,6 @@ public class benefitTest {
     void discountWeekdayByNotDessert(Integer date) {
         Benefit benefit = new Benefit();
 
-        ReservedMenu reservedMenu = new ReservedMenu();
-
-        assertThat(benefit.discountWeekday(date, reservedMenu.get())).isEqualTo(0);
+        assertThat(benefit.discountWeekday(date, 0)).isEqualTo(0);
     }
 }
