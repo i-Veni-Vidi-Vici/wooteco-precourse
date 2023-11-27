@@ -2,8 +2,13 @@ package christmas.domain;
 
 public class Benefit {
 
-    private void checkTarget() {
 
+    private boolean isTarget(Integer purchaseAmount) {
+        if (purchaseAmount >= 10_000) {
+            return true;
+        }
+
+        return false;
     }
 
     public Integer discountXmas(Integer date) {
@@ -44,13 +49,23 @@ public class Benefit {
         return 0;
     }
 
-    public boolean presentGiveaway(Integer purchaseAmount) {
+    public Integer presentGiveaway(Integer purchaseAmount) {
         if (purchaseAmount >= 120_000) {
-            return true;
+            return 25_000;
         }
 
-        return false;
+        return 0;
     }
 
 
+    public Integer calculateBenefitAmount(ReservedDate reservedDate, ReservedMenu reservedMenu) {
+        if (isTarget(reservedMenu.calculateAmount())) {
+            return discountXmas(reservedDate.get())
+                    + discountWeekday(reservedDate.get(), reservedMenu.countDessert())
+                    + discountWeekend(reservedDate.get(), reservedMenu.countMain())
+                    + discountSpecial(reservedDate.get()) + presentGiveaway(reservedMenu.calculateAmount());
+        }
+
+        return 0;
+    }
 }
