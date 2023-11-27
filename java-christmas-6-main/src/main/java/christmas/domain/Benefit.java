@@ -11,7 +11,7 @@ public class Benefit {
         return false;
     }
 
-    public Integer discountXmas(Integer date) {
+    private Integer discountXmas(Integer date) {
         if (date <= 25) {
             return 1000 + ((date - 1) * 100);
         }
@@ -19,7 +19,7 @@ public class Benefit {
         return 0;
     }
 
-    public Integer discountWeekday(Integer date, Integer dessertCount) {
+    private Integer discountWeekday(Integer date, Integer dessertCount) {
         for (int week = 0; week < 5; week++) {
             if ((date >= (3 + (7 * week))) && (date <= (7 + (7 * week))) && (date <= 31)) {
                 return dessertCount * 2023;
@@ -29,7 +29,7 @@ public class Benefit {
         return 0;
     }
 
-    public Integer discountWeekend(Integer date, Integer mainCount) {
+    private Integer discountWeekend(Integer date, Integer mainCount) {
         for (int week = 0; week < 5; week++) {
             if ((date == (1 + (7 * week))) || (date == (2 + (7 * week)))) {
                 return mainCount * 2023;
@@ -39,7 +39,7 @@ public class Benefit {
         return 0;
     }
 
-    public Integer discountSpecial(Integer date) {
+    private Integer discountSpecial(Integer date) {
         for (int week = 0; week < 5; week++) {
             if ((date == (3 + (7 * week))) || date == 25) {
                 return 1000;
@@ -56,7 +56,6 @@ public class Benefit {
 
         return 0;
     }
-
 
     public Integer calculateBenefitAmount(ReservedDate reservedDate, ReservedMenu reservedMenu) {
         if (isTarget(reservedMenu.calculateAmount())) {
