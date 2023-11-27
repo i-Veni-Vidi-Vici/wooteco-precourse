@@ -12,7 +12,7 @@ public enum Badge {
         this.badge = badge;
     }
 
-    public String getBadge() {
+    public String get() {
         return badge;
     }
 

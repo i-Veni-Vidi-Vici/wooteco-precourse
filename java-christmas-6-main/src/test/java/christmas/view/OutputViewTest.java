@@ -1,26 +1,24 @@
 package christmas.view;
 
+import static christmas.constants.Benefit.GIVEAWAY;
+import static christmas.constants.Benefit.SPECIAL;
+import static christmas.constants.Benefit.WEEKDAY;
+import static christmas.constants.Benefit.XMAS;
 import static christmas.constants.Food.CHOCO_CAKE;
 import static christmas.constants.Food.T_BONE_STEAK;
 import static christmas.constants.Food.ZERO_COLA;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.constants.Badge;
-import christmas.domain.Benefit;
-import christmas.domain.ReservedDate;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 public class OutputViewTest {
 
@@ -68,7 +66,7 @@ public class OutputViewTest {
     @DisplayName("할인 전 총 주문 금액 출력")
     @Test
     void printAmount() {
-        outputView.printAmount(Map.of(T_BONE_STEAK, 1, CHOCO_CAKE, 2, ZERO_COLA, 3)); // 94,000원
+        outputView.printAmount(94000);
 
         assertThat(out.toString())
                 .contains("<할인 전 총주문 금액>")
@@ -77,11 +75,11 @@ public class OutputViewTest {
 
     @DisplayName("증정 메뉴 12만 이상일 때 출력")
     @Test
-    void printGiveawayByNotTarget() {
-        outputView.printGiveaway(Map.of(T_BONE_STEAK, 2, CHOCO_CAKE, 2, ZERO_COLA, 3)); // 149,000원
+    void printGiveaway() {
+        outputView.printGiveaway(true);
 
         assertThat(out.toString())
-                .contains("<할인 전 총주문 금액>")
+                .contains("<증정 메뉴>")
                 .contains("샴페인 1개");
     }
 
@@ -89,21 +87,21 @@ public class OutputViewTest {
     @DisplayName("증정 메뉴 12만 미만일 때 없음 출력")
     @Test
     void printGiveawayByNotTarget() {
-        outputView.printGiveaway(Map.of(T_BONE_STEAK, 1, CHOCO_CAKE, 2, ZERO_COLA, 3)); // 94,000원
+        outputView.printGiveaway(false);
 
         assertThat(out.toString())
-                .contains("<할인 전 총주문 금액>")
+                .contains("<증정 메뉴>")
                 .contains("없음");
     }
 
     @DisplayName("혜택 내역 출력")
     @Test
-    void printBenefit() {
-        outputView.printBenefit(Map.of(
-                "크리스마스 디데이 할인", 1000,
-                "평일 할인", 2023,
-                "특별 할인", 1000,
-                "증정 이벤트", 25000));
+    void printBenefits() {
+        outputView.printBenefits(Map.of(
+                XMAS, 1000,
+                WEEKDAY, 2023,
+                SPECIAL, 1000,
+                GIVEAWAY, 25000));
 
         assertThat(out.toString())
                 .contains("<혜택 내역>")
@@ -115,8 +113,8 @@ public class OutputViewTest {
 
     @DisplayName("혜택 내역 출력")
     @Test
-    void printBenefitByNoting() {
-        outputView.printBenefit(Map.of());
+    void printBenefitsByNoting() {
+        outputView.printBenefits(Map.of());
 
         assertThat(out.toString())
                 .contains("<혜택 내역>")
@@ -137,7 +135,7 @@ public class OutputViewTest {
     @DisplayName("할인 후 예상 결제 금액 출력")
     @Test
     void printPaymentAmount() {
-        outputView.printPaymentAmount(31246);
+        outputView.printPaymentAmount(135754);
 
         assertThat(out.toString())
                 .contains("<할인 후 예상 결제 금액>")

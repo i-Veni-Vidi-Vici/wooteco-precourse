@@ -12,6 +12,6 @@ public class BadgeTest {
     @ParameterizedTest
     @CsvSource(value = {"0,없음","5000,별","10000,트리","20000,산타"})
     void grantBadge(Integer benefitAmount, String badge){
-        assertThat(Badge.grant(benefitAmount).getBadge()).isEqualTo(badge);
+        assertThat(Badge.grant(benefitAmount).get()).isEqualTo(badge);
     }
 }

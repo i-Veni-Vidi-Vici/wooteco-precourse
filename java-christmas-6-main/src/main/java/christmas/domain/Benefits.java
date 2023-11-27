@@ -1,6 +1,6 @@
 package christmas.domain;
 
-public class Benefit {
+public class Benefits {
 
 
     private boolean isTarget(Integer purchaseAmount) {
