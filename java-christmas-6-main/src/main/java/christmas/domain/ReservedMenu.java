@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Map;
 
 public class ReservedMenu {
-
     private final Map<Food, Integer> reservedMenu;
 
     public ReservedMenu(Map<Food, Integer> reservedMenu) {
@@ -48,27 +47,23 @@ public class ReservedMenu {
     }
 
     public Integer countDessert() {
-        Integer dessertCount = 0;
-
-        for (Food food : reservedMenu.keySet()) {
-            if (food.getType() == Type.DESSERT) {
-                dessertCount += reservedMenu.get(food);
-            }
-        }
-
-        return dessertCount;
+        return count(Type.DESSERT);
     }
 
     public Integer countMain() {
-        Integer mainCount = 0;
+        return count(Type.MAIN);
+    }
+
+    private Integer count(Type type) {
+        Integer count = 0;
 
         for (Food food : reservedMenu.keySet()) {
-            if (food.getType() == Type.MAIN) {
-                mainCount += reservedMenu.get(food);
+            if (food.getType() == type) {
+                count += reservedMenu.get(food);
             }
         }
 
-        return mainCount;
+        return count;
     }
 
     private Integer countDrink(Map<Food, Integer> reservedMenu) {

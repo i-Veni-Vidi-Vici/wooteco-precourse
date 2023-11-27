@@ -1,7 +1,7 @@
 package christmas;
 
 import christmas.constants.Badge;
-import christmas.domain.Benefits;
+import christmas.domain.promotion.Benefits;
 import christmas.domain.ReservedDate;
 import christmas.domain.ReservedMenu;
 import christmas.utility.Converter;
@@ -36,16 +36,15 @@ public class EventPlanner {
 
 
     private void printBenefits(ReservedDate reservedDate, ReservedMenu reservedMenu) {
-        Benefits benefits = new Benefits();
-        outputView.printGiveaway(benefits.checkGiveaway(reservedMenu.calculateAmount()));
-        outputView.printBenefits(benefits.create(reservedDate, reservedMenu));
+        Benefits benefits = new Benefits(reservedDate, reservedMenu);
+        outputView.printGiveaway(benefits.checkGiveaway());
+        outputView.printBenefits(benefits.get());
 
-        Integer benefitAmount = benefits.calculateBenefitAmount(reservedDate, reservedMenu);
+        Integer benefitAmount = benefits.calculateBenefitAmount();
         outputView.printBenefitAmount(benefitAmount);
-        outputView.printPaymentAmount(benefits.calculatePaymentAmount(reservedDate, reservedMenu));
+        outputView.printPaymentAmount(benefits.calculatePaymentAmount());
         outputView.printBadge(Badge.grant(benefitAmount));
     }
-
 
     private ReservedDate reserveDate() {
         boolean isReserving = true;

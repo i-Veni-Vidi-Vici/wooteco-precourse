@@ -6,6 +6,7 @@ import static christmas.constants.Food.CHRISTMAS_PASTA;
 import static christmas.constants.Food.T_BONE_STEAK;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import christmas.domain.promotion.Benefits;
 import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -179,12 +180,13 @@ public class BenefitsTest {
             26, 27, 28
     })
     void calculateBenefitAmountByWeekday(Integer date) {
-        Benefits benefits = new Benefits();
+
         ReservedMenu reservedMenu = new ReservedMenu(Map.of(T_BONE_STEAK, 1, CHRISTMAS_PASTA, 1,
                 CHOCO_CAKE, 1)); // 메인 2개, 디저트 1개 = 95,000원
         ReservedDate reservedDate = new ReservedDate(date);
+        Benefits benefits = new Benefits(reservedDate, reservedMenu);
 
-        assertThat(benefits.calculateBenefitAmount(reservedDate, reservedMenu)).isEqualTo(2023);
+        assertThat(benefits.calculateBenefitAmount()).isEqualTo(2023);
     }
 
     @DisplayName("총 혜택 금액 계산, 주말 할인")
@@ -193,23 +195,23 @@ public class BenefitsTest {
             29, 30
     })
     void calculateBenefitAmountByWeekend(Integer date) {
-        Benefits benefits = new Benefits();
         ReservedMenu reservedMenu = new ReservedMenu(Map.of(T_BONE_STEAK, 1, CHRISTMAS_PASTA, 1,
                 CHOCO_CAKE, 1)); // 메인 2개, 디저트 1개 = 95,000원
         ReservedDate reservedDate = new ReservedDate(date);
+        Benefits benefits = new Benefits(reservedDate, reservedMenu);
 
-        assertThat(benefits.calculateBenefitAmount(reservedDate, reservedMenu)).isEqualTo(2023 * 2);
+        assertThat(benefits.calculateBenefitAmount()).isEqualTo(2023 * 2);
     }
 
     @DisplayName("총 혜택 금액 계산, 평일 + 특별")
     @Test
     void calculateBenefitAmountByWeekdayAndSpecial() {
-        Benefits benefits = new Benefits();
         ReservedMenu reservedMenu = new ReservedMenu(Map.of(T_BONE_STEAK, 1, CHRISTMAS_PASTA, 1,
                 CHOCO_CAKE, 1)); // 메인 2개, 디저트 1개 = 95,000원
         ReservedDate reservedDate = new ReservedDate(31);
+        Benefits benefits = new Benefits(reservedDate, reservedMenu);
 
-        assertThat(benefits.calculateBenefitAmount(reservedDate, reservedMenu)).isEqualTo(2023 + 1000);
+        assertThat(benefits.calculateBenefitAmount()).isEqualTo(2023 + 1000);
     }
 
     @DisplayName("총 혜택 금액 계산, 평일 + 특별 + 크리스마스")
@@ -218,12 +220,12 @@ public class BenefitsTest {
             3, 10, 17, 24, 25
     })
     void calculateBenefitAmountByWeekdayAndSpecialAndXmas(Integer date) {
-        Benefits benefits = new Benefits();
         ReservedMenu reservedMenu = new ReservedMenu(Map.of(T_BONE_STEAK, 1, CHRISTMAS_PASTA, 1,
                 CHOCO_CAKE, 1)); // 메인 2개, 디저트 1개 = 95,000원
         ReservedDate reservedDate = new ReservedDate(date);
+        Benefits benefits = new Benefits(reservedDate, reservedMenu);
 
-        assertThat(benefits.calculateBenefitAmount(reservedDate, reservedMenu)).isEqualTo(
+        assertThat(benefits.calculateBenefitAmount()).isEqualTo(
                 2023 + 1000 + (1000 + ((date - 1) * 100)));
     }
 
@@ -235,12 +237,12 @@ public class BenefitsTest {
             18, 19, 20, 21
     })
     void calculateBenefitAmountByWeekdayAndXmas(Integer date) {
-        Benefits benefits = new Benefits();
         ReservedMenu reservedMenu = new ReservedMenu(Map.of(T_BONE_STEAK, 1, CHRISTMAS_PASTA, 1,
                 CHOCO_CAKE, 1)); // 메인 2개, 디저트 1개 = 95,000원
         ReservedDate reservedDate = new ReservedDate(date);
+        Benefits benefits = new Benefits(reservedDate, reservedMenu);
 
-        assertThat(benefits.calculateBenefitAmount(reservedDate, reservedMenu)).isEqualTo(
+        assertThat(benefits.calculateBenefitAmount()).isEqualTo(
                 2023 + (1000 + ((date - 1) * 100)));
     }
 
@@ -253,35 +255,35 @@ public class BenefitsTest {
             22, 23
     })
     void calculateBenefitAmountByWeekendAndXmas(Integer date) {
-        Benefits benefits = new Benefits();
         ReservedMenu reservedMenu = new ReservedMenu(Map.of(T_BONE_STEAK, 1, CHRISTMAS_PASTA, 1,
                 CHOCO_CAKE, 1)); // 메인 2개, 디저트 1개 = 95,000원
         ReservedDate reservedDate = new ReservedDate(date);
+        Benefits benefits = new Benefits(reservedDate, reservedMenu);
 
-        assertThat(benefits.calculateBenefitAmount(reservedDate, reservedMenu))
+        assertThat(benefits.calculateBenefitAmount())
                 .isEqualTo(2023 * 2 + (1000 + ((date - 1) * 100)));
     }
 
     @DisplayName("할인 후 예상 결제 금액 계산")
     @Test
     void calculatePaymentAmount() {
-        Benefits benefits = new Benefits();
         ReservedMenu reservedMenu = new ReservedMenu(Map.of(T_BONE_STEAK, 1, CHRISTMAS_PASTA, 1,
                 CHOCO_CAKE, 1)); // 메인 2개, 디저트 1개 = 95,000원
         ReservedDate reservedDate = new ReservedDate(26); // 평일 할인 2023
+        Benefits benefits = new Benefits(reservedDate, reservedMenu);
 
-        assertThat(benefits.calculatePaymentAmount(reservedDate, reservedMenu)).isEqualTo(95000 - 2023);
+        assertThat(benefits.calculatePaymentAmount()).isEqualTo(95000 - 2023);
     }
 
     @DisplayName("혜택 내역 생성")
     @Test
     void create() {
-        Benefits benefits = new Benefits();
         ReservedMenu reservedMenu = new ReservedMenu(Map.of(T_BONE_STEAK, 1, CHRISTMAS_PASTA, 1,
                 CHOCO_CAKE, 1)); // 메인 2개, 디저트 1개 = 95,000원
         ReservedDate reservedDate = new ReservedDate(26); // 평일 할인 2023
+        Benefits benefits = new Benefits(reservedDate, reservedMenu);
 
-        assertThat(benefits.create(reservedDate,reservedMenu)).isEqualTo(Map.of(WEEKDAY,2023));
-        assertThat(benefits.create(reservedDate,reservedMenu).size()).isEqualTo(1);
+        assertThat(benefits.get()).isEqualTo(Map.of(WEEKDAY,2023));
+        assertThat(benefits.get().size()).isEqualTo(1);
     }
 }
