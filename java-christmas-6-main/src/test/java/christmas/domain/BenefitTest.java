@@ -169,5 +169,11 @@ public class BenefitTest {
         assertThat(benefit.presentGiveaway(purchaseAmount)).isEqualTo(false);
     }
 
+    @DisplayName("총 혜택 금액 계산")
+    @Test
+    void calculateBenefitAmount(){
+        Benefit benefit = new Benefit();
 
+        assertThat(benefit.calculateBenefitAmount()).isEqualTo(1);
+    }
 }
