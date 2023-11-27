@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class BenefitTest {
@@ -148,5 +149,23 @@ public class BenefitTest {
         Benefit benefit = new Benefit();
 
         assertThat(benefit.discountSpecial(date)).isEqualTo(0);
+    }
+
+    @DisplayName("증정 이벤트, 12만원 이상일 때 샴페인 증정")
+    @ParameterizedTest
+    @ValueSource(ints = {120_000, 150_000})
+    void presentGiveaway(Integer purchaseAmount){
+        Benefit benefit = new Benefit();
+
+        assertThat(benefit.presentGiveaway(purchaseAmount)).isEqualTo(true);
+    }
+
+    @DisplayName("증정 이벤트, 12만원 미만일 때 증정x")
+    @ParameterizedTest
+    @ValueSource(ints = {0, 119_000})
+    void presentGiveawayByNotApplicable(Integer purchaseAmount){
+        Benefit benefit = new Benefit();
+
+        assertThat(benefit.presentGiveaway(purchaseAmount)).isEqualTo(false);
     }
 }
