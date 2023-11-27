@@ -20,6 +20,17 @@ public class Benefit {
                 return dessertCount * 2023;
             }
         }
+
+        return 0;
+    }
+
+    public Integer discountWeekend(Integer date, Integer mainCount) {
+        for (int week = 0; week < 5; week++) {
+            if ((date == (1 + (7 * week))) || (date == (2 + (7 * week)))) {
+                return mainCount * 2023;
+            }
+        }
+
         return 0;
     }
 }
