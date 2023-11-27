@@ -1,7 +1,6 @@
 package christmas.utility;
 
 import christmas.constants.Food;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,13 +41,13 @@ public class Converter {
         return menu;
     }
 
-    private void checkDuplication(List<String> splitValues, Map<Food, Integer> menu){
+    private void checkDuplication(List<String> splitValues, Map<Food, Integer> menu) {
         if (splitValues.size() != menu.size()) {
             throw new IllegalArgumentException();
         }
     }
 
-    private Food checkMenu(List<String> splitMenu){
+    private Food checkMenu(List<String> splitMenu) {
         for (Food food : Food.values()) {
             if (splitMenu.get(0).equals(food.getName())) {
                 return food;
@@ -58,7 +57,7 @@ public class Converter {
         throw new IllegalArgumentException();
     }
 
-    private void checkForm(List<String> splitMenu){
+    private void checkForm(List<String> splitMenu) {
         if (splitMenu.size() != 2) {
             throw new IllegalArgumentException();
         }
