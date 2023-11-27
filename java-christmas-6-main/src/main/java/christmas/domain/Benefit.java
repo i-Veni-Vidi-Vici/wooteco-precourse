@@ -2,6 +2,10 @@ package christmas.domain;
 
 public class Benefit {
 
+    private void checkTarget(){
+
+    }
+
     public Integer discountXmas(Integer date) {
         if (date <= 25) {
             return 1000 + ((date - 1) * 100);
