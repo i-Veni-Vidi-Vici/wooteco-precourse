@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import static christmas.constants.Benefit.WEEKDAY;
 import static christmas.constants.Food.CHOCO_CAKE;
 import static christmas.constants.Food.CHRISTMAS_PASTA;
 import static christmas.constants.Food.T_BONE_STEAK;
@@ -270,5 +271,17 @@ public class BenefitsTest {
         ReservedDate reservedDate = new ReservedDate(26); // 평일 할인 2023
 
         assertThat(benefits.calculatePaymentAmount(reservedDate, reservedMenu)).isEqualTo(95000 - 2023);
+    }
+
+    @DisplayName("혜택 내역 생성")
+    @Test
+    void create() {
+        Benefits benefits = new Benefits();
+        ReservedMenu reservedMenu = new ReservedMenu(Map.of(T_BONE_STEAK, 1, CHRISTMAS_PASTA, 1,
+                CHOCO_CAKE, 1)); // 메인 2개, 디저트 1개 = 95,000원
+        ReservedDate reservedDate = new ReservedDate(26); // 평일 할인 2023
+
+        assertThat(benefits.create(reservedDate,reservedMenu)).isEqualTo(Map.of(WEEKDAY,2023));
+        assertThat(benefits.create(reservedDate,reservedMenu).size()).isEqualTo(1);
     }
 }

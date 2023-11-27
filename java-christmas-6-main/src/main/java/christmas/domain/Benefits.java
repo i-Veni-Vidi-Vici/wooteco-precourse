@@ -1,7 +1,30 @@
 package christmas.domain;
 
+import christmas.constants.Benefit;
+import java.util.HashMap;
+import java.util.Map;
+
 public class Benefits {
 
+    public Map<Benefit, Integer> create(ReservedDate reservedDate, ReservedMenu reservedMenu) {
+        Map<Benefit, Integer> benefits = new HashMap<>();
+
+        if (isTarget(reservedMenu.calculateAmount())) {
+            apply(benefits, Benefit.XMAS, discountXmas(reservedDate.get()));
+            apply(benefits, Benefit.WEEKDAY, discountWeekday(reservedDate.get(), reservedMenu.countDessert()));
+            apply(benefits, Benefit.WEEKEND, discountWeekend(reservedDate.get(), reservedMenu.countDessert()));
+            apply(benefits, Benefit.SPECIAL, discountSpecial(reservedDate.get()));
+            apply(benefits, Benefit.GIVEAWAY, presentGiveaway(reservedMenu.calculateAmount()));
+        }
+
+        return benefits;
+    }
+
+    private void apply(Map<Benefit, Integer> benefits, Benefit benefit, Integer benefitMoney) {
+        if (benefitMoney > 0) {
+            benefits.put(benefit, benefitMoney);
+        }
+    }
 
     private boolean isTarget(Integer purchaseAmount) {
         if (purchaseAmount >= 10_000) {
