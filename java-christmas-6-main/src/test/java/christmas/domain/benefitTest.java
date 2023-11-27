@@ -29,7 +29,7 @@ public class benefitTest {
         }
     }
 
-    @DisplayName("평일 할인, 평일 + 디저트 1개")
+    @DisplayName("평일 할인, 평일 + 디저트 ")
     @ParameterizedTest
     @ValueSource(ints = {
             3, 4, 5, 6, 7,
@@ -41,10 +41,12 @@ public class benefitTest {
     void discountWeekday(Integer date) {
         Benefit benefit = new Benefit();
 
-        assertThat(benefit.discountWeekday(date, 1)).isEqualTo(2023);
+        for (int dessertCount = 1; dessertCount < 3; dessertCount++) {
+            assertThat(benefit.discountWeekday(date, dessertCount)).isEqualTo(2023 * dessertCount);
+        }
     }
 
-    @DisplayName("평일 할인, 평일x")
+    @DisplayName("평일 할인, 주말")
     @ParameterizedTest
     @ValueSource(ints = {
             1, 2,
@@ -73,4 +75,53 @@ public class benefitTest {
 
         assertThat(benefit.discountWeekday(date, 0)).isEqualTo(0);
     }
+
+    @DisplayName("주말 할인, 주말 + 메인 ")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            1, 2,
+            8, 9,
+            15, 16,
+            22, 23,
+            29, 30
+    })
+    void discountWeekend(Integer date) {
+        Benefit benefit = new Benefit();
+
+        for (int mainCount = 1; mainCount < 3; mainCount++) {
+            assertThat(benefit.discountWeekend(date, mainCount)).isEqualTo(2023 * mainCount);
+
+        }
+    }
+
+    @DisplayName("주말 할인, 주말 + 메인 x")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            1, 2,
+            8, 9,
+            15, 16,
+            22, 23,
+            29, 30
+    })
+    void discountWeekendByNotMain(Integer date) {
+        Benefit benefit = new Benefit();
+
+        assertThat(benefit.discountWeekend(date, 0)).isEqualTo(0);
+    }
+
+    @DisplayName("주말 할인, 평일")
+    @ParameterizedTest
+    @ValueSource(ints = {
+            3, 4, 5, 6, 7,
+            10, 11, 12, 13, 14,
+            17, 18, 19, 20, 21,
+            24, 25, 26, 27, 28,
+            31
+    })
+    void discountWeekendByNotWeekend(Integer date) {
+        Benefit benefit = new Benefit();
+
+            assertThat(benefit.discountWeekend(date, 1)).isEqualTo(0);
+    }
+
 }
