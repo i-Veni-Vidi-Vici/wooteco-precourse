@@ -5,7 +5,6 @@ import static christmas.constants.Food.T_BONE_STEAK;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -63,8 +62,8 @@ public class ConverterTest {
     @DisplayName("메뉴 개수가 정수가 아닐 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"티본스테이크- ", "티본스테이크-", "티본스테이크-a", "티본스테이크-1.0"})
-    void convertToNumberByNotInteger(String value) {
-        assertThatThrownBy(() -> converter.convertToNumber(value))
+    void convertToMapByNotInteger(String value) {
+        assertThatThrownBy(() -> converter.convertToMap(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -95,7 +94,7 @@ public class ConverterTest {
     @DisplayName("없는 메뉴일 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"abc-1", "티본스테이크-1,abc-1"})
-    void convertToMapByDuplication(String value) {
+    void convertToMapByNotMenu(String value) {
         assertThatThrownBy(() -> converter.convertToMap(value))
                 .isInstanceOf(IllegalArgumentException.class);
     }
