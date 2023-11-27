@@ -1,7 +1,10 @@
 package christmas.domain;
 
+import static christmas.constants.Food.BBQ_RIB;
+import static christmas.constants.Food.T_BONE_STEAK;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Map;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -173,7 +176,9 @@ public class BenefitTest {
     @Test
     void calculateBenefitAmount(){
         Benefit benefit = new Benefit();
+        ReservedMenu reservedMenu = new ReservedMenu(Map.of(T_BONE_STEAK,1));
+        ReservedDate reservedDate = new ReservedDate(1);
 
-        assertThat(benefit.calculateBenefitAmount()).isEqualTo(1);
+        assertThat(benefit.calculateBenefitAmount(reservedDate, reservedMenu)).isEqualTo(1);
     }
 }
