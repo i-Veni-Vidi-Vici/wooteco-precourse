@@ -1,8 +1,8 @@
 package lotto.utility;
 
-import static lotto.constants.ERROR.COMMA_ERROR;
-import static lotto.constants.ERROR.FIRST_ZERO_ERROR;
-import static lotto.constants.ERROR.NOT_INTEGER_ERROR;
+import static lotto.constants.Error.COMMA_ERROR;
+import static lotto.constants.Error.FIRST_ZERO_ERROR;
+import static lotto.constants.Error.NOT_INTEGER_ERROR;
 import static lotto.constants.Symbol.COMMA;
 import static lotto.constants.Value.ASCII_ZERO;
 import static lotto.constants.Value.FIRST_CHARACTER;

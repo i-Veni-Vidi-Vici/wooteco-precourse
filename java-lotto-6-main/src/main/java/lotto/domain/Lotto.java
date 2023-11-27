@@ -1,8 +1,8 @@
 package lotto.domain;
 
-import static lotto.constants.ERROR.LOTTO_DUPLICATION_ERROR;
-import static lotto.constants.ERROR.LOTTO_NUMBER_SIZE_ERROR;
-import static lotto.constants.ERROR.RANGE_ERROR;
+import static lotto.constants.Error.LOTTO_DUPLICATION_ERROR;
+import static lotto.constants.Error.LOTTO_NUMBER_SIZE_ERROR;
+import static lotto.constants.Error.RANGE_ERROR;
 import static lotto.constants.LottoValue.LOTTO_NUMBER_SIZE;
 import static lotto.constants.LottoValue.MAX_LOTTO_NUMBER;
 import static lotto.constants.LottoValue.MIN_LOTTO_NUMBER;

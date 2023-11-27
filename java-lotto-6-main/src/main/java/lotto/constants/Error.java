@@ -1,6 +1,6 @@
 package lotto.constants;
 
-public enum ERROR {
+public enum Error {
     LOTTO_NUMBER_SIZE_ERROR("[ERROR] 로또 번호는 6개의 숫자 여야 합니다."),
     LOTTO_DUPLICATION_ERROR("[ERROR] 로또 번호에 중복된 숫자가 존재합니다."),
     RANGE_ERROR("[ERROR] 로또 번호는 1~45 사이의 숫자여야 합니다."),
@@ -12,7 +12,7 @@ public enum ERROR {
 
     private final String error;
 
-    ERROR(String error) {
+    Error(String error) {
         this.error = error;
     }
 

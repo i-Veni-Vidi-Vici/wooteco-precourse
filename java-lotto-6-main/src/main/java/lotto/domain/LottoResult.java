@@ -63,6 +63,7 @@ public class LottoResult {
 
     public double calculateEarningsRate() {
         double sum = INITIAL_ZERO.get();
+
         for (Prize prize : lottoResult.keySet()) {
             sum += lottoResult.get(prize) * prize.getPrizeMoney();
         }

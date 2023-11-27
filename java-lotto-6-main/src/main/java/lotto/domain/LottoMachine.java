@@ -1,6 +1,6 @@
 package lotto.domain;
 
-import static lotto.constants.ERROR.THOUSAND_ERROR;
+import static lotto.constants.Error.THOUSAND_ERROR;
 import static lotto.constants.LottoValue.LOTTO_NUMBER_SIZE;
 import static lotto.constants.LottoValue.MAX_LOTTO_NUMBER;
 import static lotto.constants.LottoValue.MIN_LOTTO_NUMBER;
