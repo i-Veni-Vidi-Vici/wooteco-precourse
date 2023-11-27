@@ -51,4 +51,17 @@ public class Benefit {
 
         return false;
     }
+
+    public String grantBadge(Integer benefitAmount) {
+        if (benefitAmount >= 20_000) {
+            return "산타";
+        }
+        if (benefitAmount >= 10_000) {
+            return "트리";
+        }
+        if (benefitAmount >= 5_000) {
+            return "별";
+        }
+        return "없음";
+    }
 }
