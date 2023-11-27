@@ -2,6 +2,7 @@ package christmas.domain;
 
 import christmas.constants.Food;
 import christmas.constants.Type;
+import java.util.Collections;
 import java.util.Map;
 
 public class ReservedMenu {
@@ -90,5 +91,9 @@ public class ReservedMenu {
         }
 
         return menuCount;
+    }
+
+    public Map<Food, Integer> get() {
+        return Collections.unmodifiableMap(reservedMenu);
     }
 }
