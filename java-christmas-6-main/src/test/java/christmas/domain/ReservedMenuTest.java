@@ -43,7 +43,7 @@ class ReservedMenuTest {
     @DisplayName("총 주문 금액 계산")
     @Test
     void calculateAmount() {
-        ReservedMenu reservedMenu = new ReservedMenu(Map.of(CAESAR_SALAD,1,T_BONE_STEAK,1)); // 63,000 원
+        ReservedMenu reservedMenu = new ReservedMenu(Map.of(CAESAR_SALAD, 1, T_BONE_STEAK, 1)); // 63,000 원
 
         assertThat(reservedMenu.calculateAmount()).isEqualTo(63000);
     }
@@ -51,8 +51,8 @@ class ReservedMenuTest {
     @DisplayName("디저트 개수 계산")
     @Test
     void countDessert() {
-        ReservedMenu reservedMenu = new ReservedMenu(Map.of(CAESAR_SALAD,1,T_BONE_STEAK,1,
-                CHOCO_CAKE,3, ICE_CREAM,2));
+        ReservedMenu reservedMenu = new ReservedMenu(Map.of(CAESAR_SALAD, 1, T_BONE_STEAK, 1,
+                CHOCO_CAKE, 3, ICE_CREAM, 2));
 
         assertThat(reservedMenu.countDessert()).isEqualTo(5);
     }
@@ -60,7 +60,7 @@ class ReservedMenuTest {
     @DisplayName("메인 개수 계산")
     @Test
     void countMain() {
-        ReservedMenu reservedMenu = new ReservedMenu(Map.of(CAESAR_SALAD,1,T_BONE_STEAK,1, BBQ_RIB,2));
+        ReservedMenu reservedMenu = new ReservedMenu(Map.of(CAESAR_SALAD, 1, T_BONE_STEAK, 1, BBQ_RIB, 2));
 
         assertThat(reservedMenu.countMain()).isEqualTo(3);
     }

@@ -10,7 +10,7 @@ public enum DiscountValue {
     WEEKEND_DISCOUNT(2_023),
 
     MIN_BENEFIT_CONDITION(10_000),
-    MIN_AMOUNT_OF_GIVEAWAY_CONDITION(1_200_000);
+    MIN_AMOUNT_OF_GIVEAWAY_CONDITION(120_000);
 
     private final Integer discountValue;
 
