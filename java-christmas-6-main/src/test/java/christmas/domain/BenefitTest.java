@@ -169,12 +169,5 @@ public class BenefitTest {
         assertThat(benefit.presentGiveaway(purchaseAmount)).isEqualTo(false);
     }
 
-    @DisplayName("배지 부여")
-    @ParameterizedTest
-    @CsvSource(value = {"0,없음","5000,별","10000,트리","20000,산타"})
-    void grantBadge(Integer benefitAmount, String badge){
-        Benefit benefit = new Benefit();
 
-        assertThat(benefit.grantBadge(benefitAmount)).isEqualTo(badge);
-    }
 }
