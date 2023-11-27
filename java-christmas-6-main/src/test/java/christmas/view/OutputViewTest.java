@@ -151,4 +151,13 @@ public class OutputViewTest {
                 .contains("<12월 이벤트 배지>")
                 .contains("산타");
     }
+
+    @DisplayName("에러 메시지 출력")
+    @Test
+    void printError() {
+        outputView.printError("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+
+        assertThat(out.toString())
+                .contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+    }
 }

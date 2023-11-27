@@ -72,4 +72,8 @@ public class OutputView {
         System.out.println("<12월 이벤트 배지>");
         System.out.println(badge.get());
     }
+
+    public void printError(String error) {
+        System.out.println(error);
+    }
 }
