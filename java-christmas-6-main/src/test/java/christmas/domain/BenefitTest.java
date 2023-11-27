@@ -261,4 +261,12 @@ public class BenefitTest {
         assertThat(benefit.calculateBenefitAmount(reservedDate, reservedMenu))
                 .isEqualTo(2023 * 2 + (1000 + ((date - 1) * 100)));
     }
+
+    @DisplayName("할인 후 예상 결제 금액 계산")
+    @Test
+    void calculatePaymentAmount(){
+        Benefit benefit = new Benefit();
+
+        assertThat(benefit.calculatePaymentAmount()).isEqualTo();
+    }
 }
