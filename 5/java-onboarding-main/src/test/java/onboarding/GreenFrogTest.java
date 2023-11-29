@@ -13,6 +13,6 @@ public class GreenFrogTest {
     @CsvSource(value = {"A,Z,","z,a"})
     void reverse(String value, String result){
         GreenFrog greenFrog = new GreenFrog();
-        assertThat(greenFrog.convert(value)).isEqualTo(result);
+        assertThat(greenFrog.speak(value)).isEqualTo(result);
     }
 }

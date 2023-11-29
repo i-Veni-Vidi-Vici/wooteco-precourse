@@ -3,6 +3,6 @@ package onboarding;
 public class Problem4 {
     public static String solution(String word) {
         GreenFrog greenFrog = new GreenFrog();
-        return greenFrog.convert(word);
+        return greenFrog.speak(word);
     }
 }
