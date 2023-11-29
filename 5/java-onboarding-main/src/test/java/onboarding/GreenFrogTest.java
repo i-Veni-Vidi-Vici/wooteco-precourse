@@ -8,11 +8,11 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 public class GreenFrogTest {
 
-    @DisplayName("문자열 뒤집기")
+    @DisplayName("문자열 변환")
     @ParameterizedTest
-    @CsvSource(value = {"abc,cba","abcd,dcba", "bb,bb"})
+    @CsvSource(value = {"A,Z,","z,a"})
     void reverse(String value, String result){
         GreenFrog greenFrog = new GreenFrog();
-        assertThat(greenFrog.reverse(value)).isEqualTo(result);
+        assertThat(greenFrog.convert(value)).isEqualTo(result);
     }
 }
