@@ -43,7 +43,8 @@ public class Converter {
         for (String splitValue : splitValues) {
             List<String> splitMenu = List.of(splitValue.split(HYPHEN.get()));
             checkForm(splitMenu);
-            menu.put(checkMenu(splitMenu), convertToNumber(splitMenu.get(SECOND_INDEX.get())));
+            menu.put(checkExistence(splitMenu.get(FIRST_INDEX.get())),
+                    convertToNumber(splitMenu.get(SECOND_INDEX.get())));
         }
 
         checkDuplication(splitValues, menu);
@@ -56,9 +57,9 @@ public class Converter {
         }
     }
 
-    private Food checkMenu(List<String> splitMenu) {
+    private Food checkExistence(String orderedFood) {
         for (Food food : Food.values()) {
-            if (splitMenu.get(FIRST_INDEX.get()).equals(food.getName())) {
+            if (food.getName().equals(orderedFood)) {
                 return food;
             }
         }
