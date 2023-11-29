@@ -8,14 +8,15 @@ class Problem1 {
         int pobiMax = max.calculate(pobi);
         int crongMax = max.calculate(crong);
 
+        if ((pobiMax == -1) || (crongMax == -1)) {
+            return -1;
+        }
         if (pobiMax > crongMax) {
             return 1;
         }
         if (pobiMax < crongMax) {
             return 2;
         }
-        if (pobiMax == crongMax) {
-            return 0;
-        }
+        return 0;
     }
 }

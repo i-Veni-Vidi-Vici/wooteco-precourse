@@ -27,21 +27,16 @@ public class Max {
     }
 
     private int compare(Integer leftNumber, Integer rightNumber) {
-        if (leftNumber >= rightNumber) {
-            return leftNumber;
-        }
-
-        return rightNumber;
+        return Math.max(leftNumber, rightNumber);
     }
 
     public int calculate(List<Integer> numbers) {
-        int sum = compare(sum(numbers.get(0)), sum(numbers.get(1)));
-        int multiplication = compare(multiply(numbers.get(0)), multiply(numbers.get(1)));
-
-        if (sum >= multiplication) {
-            return sum;
+        if ((numbers.get(0) + 1) != numbers.get(1)) {
+            return -1;
         }
 
-        return multiplication;
+        int sum = compare(sum(numbers.get(0)), sum(numbers.get(1)));
+        int multiplication = compare(multiply(numbers.get(0)), multiply(numbers.get(1)));
+        return Math.max(sum, multiplication);
     }
 }
