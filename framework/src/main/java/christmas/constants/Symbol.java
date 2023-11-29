@@ -9,6 +9,7 @@ public enum Symbol {
 
     MONEY_FORMAT("%,d"),
 
+    EMPTY(""),
     LESS_THAN_SYMBOL("<"),
     GREATER_THAN_SYMBOL(">"),
     LEFT_PARENTHESIS("("),

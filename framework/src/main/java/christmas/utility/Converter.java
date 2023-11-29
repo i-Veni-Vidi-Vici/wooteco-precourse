@@ -1,5 +1,6 @@
 package christmas.utility;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,24 @@ public class Converter {
         }
     }
 
+    // 라스트로 변환
+    public List<Integer> convertToList(String value) {
+        checkComma(value);
+        List<Integer> numbers = new ArrayList<>();
+        List<String> splitValues = List.of(value.split(","));
 
+        for (String splitValue : splitValues) {
+            numbers.add(convertToNumber(splitValue));
+        }
+
+        return numbers;
+    }
+
+    private void checkComma(String value) {
+        if (value.endsWith(",")) {
+            throw new IllegalArgumentException();
+        }
+    }
 
 
     // a-1,b-1  => {"a", 1 ,"b",1} Map String 변환필요
@@ -43,11 +61,13 @@ public class Converter {
         checkDuplication(splitValues, menu);
         return menu;
     }
-    private void checkDuplication(List<String> splitValues, Map<String, Integer> menu) {
-        if (splitValues.size() != menu.size()) {
+
+    private void checkDuplication(List<String> originalValues, Map<String, Integer> processedValues) {
+        if (originalValues.size() != processedValues.size()) {
             throw new IllegalArgumentException();
         }
     }
+
     private String checkExistence(String orderedFood) {
         for (String food : Food.values()) {
             if (food.getName().equals(orderedFood)) {
@@ -57,13 +77,9 @@ public class Converter {
 
         throw new IllegalArgumentException();
     }
+
     private void checkForm(List<String> splitMenu) {
         if (splitMenu.size() != 2) {
-            throw new IllegalArgumentException();
-        }
-    }
-    private void checkComma(String value) {
-        if (value.endsWith(",")) {
             throw new IllegalArgumentException();
         }
     }

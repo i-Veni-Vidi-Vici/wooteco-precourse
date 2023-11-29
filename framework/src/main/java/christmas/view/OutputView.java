@@ -24,6 +24,11 @@ import christmas.constants.Badge;
 import java.util.Map;
 
 public class OutputView {
+
+    public void printError(String error) {
+        System.out.println(error);
+    }
+
     public void printPlanner() {
         System.out.println(PLANNER.getMessage());
     }
@@ -50,7 +55,5 @@ public class OutputView {
     }
 
 
-    public void printError(String error) {
-        System.out.println(error);
-    }
+
 }

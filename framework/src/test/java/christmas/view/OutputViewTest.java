@@ -1,21 +1,14 @@
 package christmas.view;
 
-
-import static christmas.constants.Food.CHOCO_CAKE;
-import static christmas.constants.Food.T_BONE_STEAK;
-import static christmas.constants.Food.ZERO_COLA;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import christmas.constants.Badge;
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.util.Map;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
+
 
 public class OutputViewTest {
 

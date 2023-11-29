@@ -4,13 +4,13 @@ public enum Condition {
     TRUE(true),
     FALSE(false);
 
-    private final boolean trueAndFalse;
+    private final boolean condition;
 
-    Condition(boolean trueAndFalse) {
-        this.trueAndFalse = trueAndFalse;
+    Condition(boolean condition) {
+        this.condition = condition;
     }
 
     public boolean get() {
-        return trueAndFalse;
+        return condition;
     }
 }
