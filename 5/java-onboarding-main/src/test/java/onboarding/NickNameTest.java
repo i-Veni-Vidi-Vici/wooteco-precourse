@@ -6,12 +6,12 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class NickNameTest {
+public class NicknameTest {
 
     @DisplayName("닉네임 중 같은 글자가 연속으로 포함되면, 이메일 반환")
     @Test
     void checkDuplication() {
-        NickName nickName = new NickName();
+        Nickname nickName = new Nickname();
 
         assertThat(nickName.checkDuplication(List.of(
                 List.of("jm@email.com", "제이엠"),
