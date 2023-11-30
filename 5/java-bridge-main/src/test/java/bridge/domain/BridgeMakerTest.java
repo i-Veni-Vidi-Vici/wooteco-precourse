@@ -1,6 +1,7 @@
 package bridge.domain;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import bridge.BridgeRandomNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
@@ -16,5 +17,15 @@ public class BridgeMakerTest {
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
 
         assertThat(bridgeMaker.makeBridge(size).size()).isEqualTo(size);
+    }
+
+    @DisplayName("다리 크기가 범위를 벗어날 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(ints =  {0,1,2,21})
+    void makeBridgeByNotRange(int size){
+        BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
+
+        assertThatThrownBy(() -> bridgeMaker.makeBridge(size))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
