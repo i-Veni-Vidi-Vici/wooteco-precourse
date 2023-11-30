@@ -1,21 +1,24 @@
 package bridge.view;
 
+import static bridge.constants.Message.BRIDGE_LENGTH_INPUT;
+import static bridge.constants.Message.DIRECTION_INPUT;
+import static bridge.constants.Message.RETRY_INPUT;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
-
     public String getBridgeLength() {
-        System.out.println("다리의 길이를 입력해주세요.");
+        System.out.println(BRIDGE_LENGTH_INPUT.getMessage());
         return Console.readLine();
     }
 
     public String getDirection() {
-        System.out.println("이동할 칸을 선택해주세요. (위: U, 아래: D)");
+        System.out.println(DIRECTION_INPUT.getMessage());
         return Console.readLine();
     }
 
     public String getRetry() {
-        System.out.println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+        System.out.println(RETRY_INPUT.getMessage());
         return Console.readLine();
     }
 }

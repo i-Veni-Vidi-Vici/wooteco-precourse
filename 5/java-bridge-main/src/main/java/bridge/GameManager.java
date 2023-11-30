@@ -1,5 +1,9 @@
 package bridge;
 
+import static bridge.constants.Condition.FALSE;
+import static bridge.constants.Condition.TRUE;
+import static bridge.constants.Message.WRONG;
+
 import bridge.domain.BridgeGame;
 import bridge.domain.BridgeMaker;
 import bridge.utility.BridgeRandomNumberGenerator;
@@ -28,7 +32,7 @@ public class GameManager {
     }
 
     private void startGame(BridgeGame bridgeGame, List<String> bridge) {
-        boolean isRunning = true;
+        boolean isRunning = TRUE.get();
         while (bridge.size() != bridgeGame.getResult().size() && isRunning) {
             crossBridge(bridge, bridgeGame);
             outputView.printMap(bridgeGame.getResult());
@@ -37,10 +41,10 @@ public class GameManager {
     }
 
     private boolean isRunning(BridgeGame bridgeGame) {
-        boolean isRunning = true;
+        boolean isRunning = TRUE.get();
 
         for (List<String> stage : bridgeGame.getResult()) {
-            if (stage.contains("X")) {
+            if (stage.contains(WRONG.getMessage())) {
                 isRunning = retry(bridgeGame);
                 initialize(isRunning, bridgeGame);
                 break;
@@ -57,15 +61,15 @@ public class GameManager {
     }
 
     private boolean retry(BridgeGame bridgeGame) {
-        boolean isSelecting = true;
-        boolean isRetry = false;
+        boolean isSelecting = TRUE.get();
+        boolean isRetry = FALSE.get();
 
         while (isSelecting) {
             try {
                 isRetry = bridgeGame.retry(inputView.getRetry());
-                isSelecting = false;
+                isSelecting = FALSE.get();
             } catch (IllegalArgumentException exception) {
-                outputView.printError("[ERROR]");
+                outputView.printError(exception.getMessage());
             }
         }
 
@@ -73,16 +77,16 @@ public class GameManager {
     }
 
     private List<String> makeBridge() {
-        boolean isMaking = true;
+        boolean isMaking = TRUE.get();
         BridgeMaker bridgeMaker = new BridgeMaker(new BridgeRandomNumberGenerator());
         List<String> bridge = null;
 
         while (isMaking) {
             try {
                 bridge = bridgeMaker.makeBridge(converter.convertToNumber(inputView.getBridgeLength()));
-                isMaking = false;
+                isMaking = FALSE.get();
             } catch (IllegalArgumentException exception) {
-                outputView.printError("[ERROR]");
+                outputView.printError(exception.getMessage());
             }
         }
 
@@ -90,14 +94,14 @@ public class GameManager {
     }
 
     private void crossBridge(List<String> bridge, BridgeGame bridgeGame) {
-        boolean isCrossing = true;
+        boolean isCrossing = TRUE.get();
 
         while (isCrossing) {
             try {
                 bridgeGame.move(bridge, inputView.getDirection());
-                isCrossing = false;
+                isCrossing = FALSE.get();
             } catch (IllegalArgumentException exception) {
-                outputView.printError("[ERROR]");
+                outputView.printError(exception.getMessage());
             }
         }
     }

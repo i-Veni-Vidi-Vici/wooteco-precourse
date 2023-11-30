@@ -1,12 +1,19 @@
 package bridge.domain;
 
+import static bridge.constants.Error.INVALID_MOVE_ERROR;
+import static bridge.constants.Error.INVALID_RETRY_ERROR;
+import static bridge.constants.Message.BELOW_BRIDGE;
+import static bridge.constants.Message.EXIT;
+import static bridge.constants.Message.WRONG;
+import static bridge.constants.Message.RETRY;
+import static bridge.constants.Message.RIGHT;
+import static bridge.constants.Message.UPPER_BRIDGE;
+import static bridge.constants.Value.INITIAL_ONE;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 public class BridgeGame {
 
     private final List<List<String>> result;
@@ -14,7 +21,7 @@ public class BridgeGame {
     private Integer retryCount;
 
     public BridgeGame() {
-        retryCount = 1;
+        retryCount = INITIAL_ONE.get();
         result = new ArrayList<>();
     }
 
@@ -22,36 +29,35 @@ public class BridgeGame {
         checkMove(direction);
 
         if (bridge.get(result.size()).equals(direction)) {
-            result.add(List.of(direction, "O"));
+            result.add(List.of(direction, RIGHT.getMessage()));
             return;
         }
 
-        result.add(List.of(direction, "X"));
+        result.add(List.of(direction, WRONG.getMessage()));
     }
 
     private void checkMove(String direction) {
-        if (!direction.equals("U") && !direction.equals("D")) {
-            throw new IllegalArgumentException();
+        if (!direction.equals(UPPER_BRIDGE.getMessage()) && !direction.equals(BELOW_BRIDGE.getMessage())) {
+            throw new IllegalArgumentException(INVALID_MOVE_ERROR.getMessage());
         }
     }
-
 
     public boolean retry(String retryValue) {
         checkRetry(retryValue);
         countRetry(retryValue);
 
-        return retryValue.equals("R");
+        return retryValue.equals(RETRY.getMessage());
     }
 
     private void countRetry(String retryValue) {
-        if (retryValue.equals("R")) {
+        if (retryValue.equals(RETRY.getMessage())) {
             retryCount++;
         }
     }
 
     private void checkRetry(String retryValue) {
-        if ((!retryValue.equals("R")) && (!retryValue.equals("Q"))) {
-            throw new IllegalArgumentException();
+        if ((!retryValue.equals(RETRY.getMessage())) && (!retryValue.equals(EXIT.getMessage()))) {
+            throw new IllegalArgumentException(INVALID_RETRY_ERROR.getMessage());
         }
     }
 

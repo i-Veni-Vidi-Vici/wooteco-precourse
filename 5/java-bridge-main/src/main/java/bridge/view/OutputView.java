@@ -1,57 +1,74 @@
 package bridge.view;
 
+import static bridge.constants.Message.BELOW_BRIDGE;
+import static bridge.constants.Message.FAILURE;
+import static bridge.constants.Message.SUCCESS;
+import static bridge.constants.Message.WRONG;
+import static bridge.constants.Message.RESULT;
+import static bridge.constants.Message.RETRY_COUNT;
+import static bridge.constants.Message.START_GAME;
+import static bridge.constants.Message.SUCCESS_RESULT;
+import static bridge.constants.Message.UPPER_BRIDGE;
+import static bridge.constants.Symbol.LEFT_SQUARE_BRACKET;
+import static bridge.constants.Symbol.RIGHT_SQUARE_BRACKET;
+import static bridge.constants.Symbol.VERTICAL_BAR;
+import static bridge.constants.Symbol.WHITESPACE;
+import static bridge.constants.Value.FIRST_INDEX;
+import static bridge.constants.Value.ONE_LENGTH;
+import static bridge.constants.Value.SECOND_INDEX;
+
 import java.util.List;
 
 public class OutputView {
     public void printStart() {
-        System.out.println("다리 건너기 게임을 시작합니다.");
+        System.out.println(START_GAME.getMessage());
     }
 
     public void printMap(List<List<String>> result) {
-        printOneMap(result, "U");
-        printOneMap(result, "D");
+        printOneMap(result, UPPER_BRIDGE.getMessage());
+        printOneMap(result, BELOW_BRIDGE.getMessage());
     }
 
     private void printOneMap(List<List<String>> result, String direction) {
-        StringBuilder oneMap = new StringBuilder("[");
+        StringBuilder oneMap = new StringBuilder(LEFT_SQUARE_BRACKET.get());
 
         for (List<String> stage : result) {
-            if (oneMap.length() > 1) {
-                oneMap.append("|");
+            if (oneMap.length() > ONE_LENGTH.get()) {
+                oneMap.append(VERTICAL_BAR.get());
             }
 
             oneMap.append(expressMap(stage, direction));
         }
 
-        oneMap.append("]");
+        oneMap.append(RIGHT_SQUARE_BRACKET.get());
         System.out.println(oneMap);
     }
 
     private String expressMap(List<String> stage, String direction) {
-        if (stage.get(0).equals(direction)) {
-            return (" " + stage.get(1) + " ");
+        if (stage.get(FIRST_INDEX.get()).equals(direction)) {
+            return (WHITESPACE.get() + stage.get(SECOND_INDEX.get()) + WHITESPACE.get());
 
         }
 
-        return (" " + " " + " ");
+        return (WHITESPACE.get() + WHITESPACE.get() + WHITESPACE.get());
     }
 
     public void printResult(List<List<String>> result, Integer retryCount) {
-        System.out.println("최종 게임 결과");
+        System.out.println(RESULT.getMessage());
         printMap(result);
 
-        System.out.println("게임 성공 여부: " + calculateResult(result));
-        System.out.println("총 시도한 횟수: " + retryCount);
+        System.out.println(SUCCESS_RESULT.getMessage() + calculateResult(result));
+        System.out.println(RETRY_COUNT.getMessage() + retryCount);
     }
 
     private String calculateResult(List<List<String>> result) {
         for (List<String> stage : result) {
-            if (stage.contains("X")) {
-                return "실패";
+            if (stage.contains(WRONG.getMessage())) {
+                return FAILURE.getMessage();
             }
         }
 
-        return "성공";
+        return SUCCESS.getMessage();
     }
 
     public void printError(String error) {
