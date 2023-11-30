@@ -17,6 +17,9 @@ build/
 .springBeans
 .sts4-cache
 
+### file ###
+*.class
+
 ### IntelliJ IDEA ###
 .idea
 *.iws
