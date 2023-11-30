@@ -26,7 +26,7 @@ public class Converter {
         }
     }
 
-    // 라스트로 변환
+    // 리스트로 변환
     public List<Integer> convertToList(String value) {
         checkComma(value);
         List<Integer> numbers = new ArrayList<>();
