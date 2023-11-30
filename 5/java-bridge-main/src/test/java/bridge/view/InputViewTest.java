@@ -2,9 +2,7 @@ package bridge.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,17 +16,12 @@ public class InputViewTest {
         inputView = new InputView();
     }
 
-    @AfterEach
-    void afterEach() {
-        Console.close();
-    }
-
     @DisplayName("다리 길이 입력")
     @Test
-    void getLength() {
+    void getBridgeLength() {
         System.setIn(new ByteArrayInputStream("10".getBytes()));
 
-        assertThat(inputView.getLength()).isEqualTo("10");
+        assertThat(inputView.getBridgeLength()).isEqualTo("10");
     }
 
     @DisplayName("이동할 칸 입력")
