@@ -27,6 +27,17 @@ public class BridgeGameTest {
                 List.of("D", "X")));
     }
 
+    @DisplayName("다리 이동 값이 U 또는 D가 아닐 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"A","UU","DD","u","d"})
+    void moveByNotValue(String direction) {
+        BridgeGame bridgeGame = new BridgeGame();
+        List<String> bridge = List.of("U", "U", "D");
+
+        assertThatThrownBy(() -> bridgeGame.move(bridge, direction))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
     @DisplayName("재시작/종료")
     @ParameterizedTest
     @CsvSource(value = {"R,true","Q,false"})
@@ -36,7 +47,7 @@ public class BridgeGameTest {
         assertThat(bridgeGame.retry(retryValue)).isEqualTo(result);
     }
 
-    @DisplayName("R 또는 Q가 아닐 때, 예외 처리")
+    @DisplayName("재시작/종료 값이 R 또는 Q가 아닐 때, 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"A","RR","QQ","r","q"})
     void retryByNotValue(String retryValue) {
