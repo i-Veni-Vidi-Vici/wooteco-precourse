@@ -49,7 +49,7 @@ public class BridgeGameTest {
 
     @DisplayName("총 시도한 횟수 계산")
     @Test
-    void retryCount() {
+    void countRetry() {
         BridgeGame bridgeGame = new BridgeGame();
         bridgeGame.retry("R");
         bridgeGame.retry("R");
