@@ -9,7 +9,6 @@ import java.util.List;
  */
 public class BridgeGame {
 
-
     private final List<List<String>> result;
 
     public BridgeGame() {
