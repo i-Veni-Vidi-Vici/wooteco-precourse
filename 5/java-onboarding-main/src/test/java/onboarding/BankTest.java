@@ -6,7 +6,7 @@ import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class BankTest {
+public class gBankTest {
 
     @DisplayName("출금")
     @Test
