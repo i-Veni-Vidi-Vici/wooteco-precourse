@@ -1,12 +1,14 @@
 package bridge;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class BridgeGameTest {
 
@@ -32,5 +34,15 @@ public class BridgeGameTest {
         BridgeGame bridgeGame = new BridgeGame();
 
         assertThat(bridgeGame.retry(retryValue)).isEqualTo(result);
+    }
+
+    @DisplayName("R 또는 Q가 아닐 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {"A","RR","QQ","r","q"})
+    void retryByNotValue(String retryValue) {
+        BridgeGame bridgeGame = new BridgeGame();
+
+        assertThatThrownBy(() -> bridgeGame.retry(retryValue))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
