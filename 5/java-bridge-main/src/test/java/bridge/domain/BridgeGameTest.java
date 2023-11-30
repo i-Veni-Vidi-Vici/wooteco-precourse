@@ -29,7 +29,7 @@ public class BridgeGameTest {
 
     @DisplayName("다리 이동 값이 U 또는 D가 아닐 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"A","UU","DD","u","d"})
+    @ValueSource(strings = {"A", "UU", "DD", "u", "d"})
     void moveByNotValue(String direction) {
         BridgeGame bridgeGame = new BridgeGame();
         List<String> bridge = List.of("U", "U", "D");
@@ -40,16 +40,26 @@ public class BridgeGameTest {
 
     @DisplayName("재시작/종료")
     @ParameterizedTest
-    @CsvSource(value = {"R,true","Q,false"})
+    @CsvSource(value = {"R,true", "Q,false"})
     void retry(String retryValue, boolean result) {
         BridgeGame bridgeGame = new BridgeGame();
 
         assertThat(bridgeGame.retry(retryValue)).isEqualTo(result);
     }
 
+    @DisplayName("총 시도한 횟수 계산")
+    @Test
+    void retryCount() {
+        BridgeGame bridgeGame = new BridgeGame();
+        bridgeGame.retry("R");
+        bridgeGame.retry("R");
+        bridgeGame.retry("Q");
+        assertThat(bridgeGame.getRetryCount()).isEqualTo(3);
+    }
+
     @DisplayName("재시작/종료 값이 R 또는 Q가 아닐 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"A","RR","QQ","r","q"})
+    @ValueSource(strings = {"A", "RR", "QQ", "r", "q"})
     void retryByNotValue(String retryValue) {
         BridgeGame bridgeGame = new BridgeGame();
 

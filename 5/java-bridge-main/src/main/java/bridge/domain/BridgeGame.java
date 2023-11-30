@@ -11,7 +11,12 @@ public class BridgeGame {
 
     private final List<List<String>> result;
 
+
+
+    private Integer retryCount;
+
     public BridgeGame() {
+        retryCount = 1;
         result = new ArrayList<>();
     }
 
@@ -32,7 +37,7 @@ public class BridgeGame {
         }
     }
 
-    private void checkMove( String direction){
+    private void checkMove(String direction) {
         if (!direction.equals("U") && !direction.equals("D")) {
             throw new IllegalArgumentException();
         }
@@ -45,14 +50,25 @@ public class BridgeGame {
      */
     public boolean retry(String retryValue) {
         checkRetry(retryValue);
+        countRetry(retryValue);
 
         return retryValue.equals("R");
+    }
+
+    private void countRetry(String retryValue){
+        if (retryValue.equals("R")) {
+            retryCount++;
+        }
     }
 
     private void checkRetry(String retryValue) {
         if ((!retryValue.equals("R")) && (!retryValue.equals("Q"))) {
             throw new IllegalArgumentException();
         }
+    }
+
+    public Integer getRetryCount() {
+        return retryCount;
     }
 
     public List<List<String>> getResult() {
