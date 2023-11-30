@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-
 public class OutputViewTest {
 
     private static OutputView outputView;
@@ -43,12 +42,13 @@ public class OutputViewTest {
                 .contains("[ O |   | X ]")
                 .contains("[   | O |   ]");
     }
+
     @DisplayName("게임 종료 문구 출력")
     @Test
     void printResult() {
         List<List<String>> result = List.of(List.of("U", "O"), List.of("D", "O"), List.of("U", "X"));
 
-        outputView.printResult(result,2);
+        outputView.printResult(result, 2);
 
         assertThat(out.toString())
                 .contains("최종 게임 결과")
