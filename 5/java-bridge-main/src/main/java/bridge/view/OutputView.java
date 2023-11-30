@@ -9,6 +9,7 @@ import static bridge.constants.Message.RETRY_COUNT;
 import static bridge.constants.Message.START_GAME;
 import static bridge.constants.Message.SUCCESS_RESULT;
 import static bridge.constants.Message.UPPER_BRIDGE;
+import static bridge.constants.Symbol.EMPTY;
 import static bridge.constants.Symbol.LEFT_SQUARE_BRACKET;
 import static bridge.constants.Symbol.RIGHT_SQUARE_BRACKET;
 import static bridge.constants.Symbol.VERTICAL_BAR;
@@ -33,21 +34,24 @@ public class OutputView {
         StringBuilder oneMap = new StringBuilder(LEFT_SQUARE_BRACKET.get());
 
         for (List<String> stage : result) {
-            if (oneMap.length() > ONE_LENGTH.get()) {
-                oneMap.append(VERTICAL_BAR.get());
-            }
-
-            oneMap.append(expressMap(stage, direction));
+            oneMap.append(createVerticalBar(oneMap.length())).append(expressMap(stage, direction));
         }
 
         oneMap.append(RIGHT_SQUARE_BRACKET.get());
         System.out.println(oneMap);
     }
 
+    private String createVerticalBar(Integer length){
+        if (length > ONE_LENGTH.get()) {
+            return VERTICAL_BAR.get();
+        }
+
+        return EMPTY.get();
+    }
+
     private String expressMap(List<String> stage, String direction) {
         if (stage.get(FIRST_INDEX.get()).equals(direction)) {
             return (WHITESPACE.get() + stage.get(SECOND_INDEX.get()) + WHITESPACE.get());
-
         }
 
         return (WHITESPACE.get() + WHITESPACE.get() + WHITESPACE.get());

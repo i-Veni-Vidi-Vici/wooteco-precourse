@@ -65,6 +65,10 @@ public class BridgeGame {
         return retryCount;
     }
 
+    public void initialize(){
+        result.clear();
+    }
+
     public List<List<String>> getResult() {
         return Collections.unmodifiableList(result);
     }

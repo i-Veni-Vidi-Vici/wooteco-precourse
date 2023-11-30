@@ -25,18 +25,21 @@ public class BridgeMaker {
         List<String> bridge = new ArrayList<>();
 
         for (int count = INITIAL_ZERO.get(); count < size; count++) {
-            if (bridgeNumberGenerator.generate() == ZERO.get()) {
-                bridge.add(BELOW_BRIDGE.getMessage());
-                continue;
-            }
-            bridge.add(UPPER_BRIDGE.getMessage());
+            bridge.add(selectBridge());
         }
 
         return bridge;
     }
 
+    private String selectBridge() {
+        if (bridgeNumberGenerator.generate() == ZERO.get()) {
+            return BELOW_BRIDGE.getMessage();
+        }
+        return UPPER_BRIDGE.getMessage();
+    }
+
     private void check(int size) {
-        if (size < MIN_LENGTH.get() || size > MAX_LENGTH.get()) {
+        if ((size < MIN_LENGTH.get()) || (size > MAX_LENGTH.get())) {
             throw new IllegalArgumentException(RANGE_ERROR.getMessage());
         }
     }

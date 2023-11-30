@@ -1,6 +1,8 @@
 package bridge.constants;
 
 public enum Symbol {
+
+    EMPTY(""),
     WHITESPACE(" "),
     VERTICAL_BAR("|"),
     LEFT_SQUARE_BRACKET("["),
