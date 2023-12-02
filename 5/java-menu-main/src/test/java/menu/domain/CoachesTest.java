@@ -36,4 +36,26 @@ public class CoachesTest {
         assertThatThrownBy(() -> new Coaches(List.of("12", "ab", "abc", "abcd", "123", "1234")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
+
+    @DisplayName("코치 이름이 중복될 때, 예외 처리")
+    @Test
+    void checkDuplication() {
+        assertThatThrownBy(() -> new Coaches(List.of("12", "12")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("코치 이름이 공백일 때, 예외 처리")
+    @Test
+    void checkBlank() {
+        assertThatThrownBy(() -> new Coaches(List.of("   ", "   ")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("코치 이름 앞뒤에 공백이 포함될 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(strings = {" ab", "ab ", " ab "})
+    void checkWhitespace(String name) {
+        assertThatThrownBy(() -> new Coaches(List.of(name,"12")))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
