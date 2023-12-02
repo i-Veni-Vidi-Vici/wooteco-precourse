@@ -9,7 +9,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class InedibleMenusTest {
-
     @DisplayName("못 먹는 메뉴 개수가 범위를 벗어날 때")
     @Test
     void checkCount() {

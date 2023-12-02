@@ -55,7 +55,7 @@ public class CoachesTest {
     @ParameterizedTest
     @ValueSource(strings = {" ab", "ab ", " ab "})
     void checkWhitespace(String name) {
-        assertThatThrownBy(() -> new Coaches(List.of(name,"12")))
+        assertThatThrownBy(() -> new Coaches(List.of(name, "12")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
