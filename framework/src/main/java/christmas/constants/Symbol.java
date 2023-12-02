@@ -14,6 +14,8 @@ public enum Symbol {
     GREATER_THAN_SYMBOL(">"),
     LEFT_PARENTHESIS("("),
     RIGHT_PARENTHESIS(")"),
+    LEFT_SQUARE_BRACKET("["),
+    RIGHT_SQUARE_BRACKET("]"),
     EARNINGS_RATE_FORMAT("%,.1f"),
     NEW_LINE("\n"),
 
