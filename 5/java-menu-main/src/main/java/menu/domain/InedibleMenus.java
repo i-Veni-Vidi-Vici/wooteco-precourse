@@ -36,7 +36,7 @@ public class InedibleMenus {
         }
     }
 
-    public List<String> getInedibleMenus() {
+    public List<String> get() {
         return Collections.unmodifiableList(inedibleMenus);
     }
 }

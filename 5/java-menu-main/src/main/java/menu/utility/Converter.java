@@ -10,7 +10,7 @@ public class Converter {
 
     private void checkComma(String value) {
         if (value.endsWith(",")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 콤마(,)를 마지막에 입력하지 마세요.");
         }
     }
 }

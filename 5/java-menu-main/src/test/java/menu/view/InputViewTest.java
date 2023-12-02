@@ -29,6 +29,6 @@ public class InputViewTest {
     void getInedibleMenu() {
         System.setIn(new ByteArrayInputStream("규동,우동".getBytes()));
 
-        assertThat(inputView.getInedibleMenu()).isEqualTo("규동,우동");
+        assertThat(inputView.getInedibleMenu("포비")).isEqualTo("규동,우동");
     }
 }

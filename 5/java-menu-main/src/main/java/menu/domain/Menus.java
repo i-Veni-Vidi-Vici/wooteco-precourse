@@ -8,7 +8,6 @@ import java.util.Map;
 import menu.constants.Menu;
 
 public class Menus {
-
     private final Map<String, List<String>> menus;
 
     public Menus() {
@@ -21,17 +20,34 @@ public class Menus {
         }
     }
 
-    public List<String> recommend(List<String> categories, List<String> inedibleMenus) {
-        List<String> recommendedMenus = new ArrayList<>();
+    public Map<String, List<String>> recommend(List<String> categories, Map<String, InedibleMenus> inedibleMenus) {
+        Map<String, List<String>> recommendedMenus = initialize(inedibleMenus);
 
         for (String category : categories) {
-            checkMenu(recommendedMenus, category, inedibleMenus);
+            addMenu(recommendedMenus, category, inedibleMenus);
         }
 
         return recommendedMenus;
     }
 
-    private void checkMenu(List<String> recommendedMenus, String category, List<String> inedibleMenus) {
+    private Map<String, List<String>> initialize(Map<String, InedibleMenus> inedibleMenus) {
+        Map<String, List<String>> recommendedMenus = new LinkedHashMap<>();
+
+        for (String coach : inedibleMenus.keySet()) {
+            recommendedMenus.put(coach, new ArrayList<>());
+        }
+
+        return recommendedMenus;
+    }
+
+    private void addMenu(Map<String, List<String>> recommendedMenus, String category,
+                         Map<String, InedibleMenus> inedibleMenus) {
+        for (String coach : inedibleMenus.keySet()) {
+            checkMenu(category, recommendedMenus.get(coach), inedibleMenus.get(coach).get());
+        }
+    }
+
+    private void checkMenu(String category, List<String> recommendedMenus, List<String> inedibleMenus) {
         while (true) {
             String menu = Randoms.shuffle(menus.get(category)).get(0);
 
@@ -41,5 +57,4 @@ public class Menus {
             }
         }
     }
-
 }

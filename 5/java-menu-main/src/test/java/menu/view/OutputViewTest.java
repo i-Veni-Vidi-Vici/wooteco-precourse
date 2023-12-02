@@ -12,7 +12,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class OutputViewTest {
-
     private static OutputView outputView;
     private static OutputStream out;
 
