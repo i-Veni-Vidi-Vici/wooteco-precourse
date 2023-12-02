@@ -26,7 +26,7 @@ public class CategoriesTest {
         List<String> recommendedCategories = categories.recommend();
 
         for (String recommendedCategory : recommendedCategories) {
-            categoryCount.put(recommendedCategory, categoryCount.getOrDefault(recommendedCategory, 1));
+            categoryCount.put(recommendedCategory, categoryCount.getOrDefault(recommendedCategory, 0)+1);
         }
 
         for (Integer value : categoryCount.values()) {

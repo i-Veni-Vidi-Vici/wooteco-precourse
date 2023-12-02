@@ -7,14 +7,14 @@ public enum Category {
     ASIAN_FOOD("아시안"),
     WESTERN_FOOD("양식");
 
-    private final String name;
+    private final String category;
 
-    Category(String name) {
-        this.name = name;
+    Category(String category) {
+        this.category = category;
 
     }
 
     public String get() {
-        return name;
+        return category;
     }
 }
