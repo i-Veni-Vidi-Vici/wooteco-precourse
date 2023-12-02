@@ -1,6 +1,8 @@
 package christmas.constants;
 
 public enum Symbol {
+
+    VERTICAL_BAR("|"),
     MINUS("-"),
     HYPHEN("-"),
     COMMA(","),
