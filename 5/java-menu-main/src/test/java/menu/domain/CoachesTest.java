@@ -1,5 +1,6 @@
 package menu.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -10,17 +11,25 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 public class CoachesTest {
 
+    @DisplayName("코치 생성")
+    @Test
+    void create() {
+        Coaches coaches = new Coaches(List.of("pobi", "jun", "woni"));
+
+        assertThat(coaches.get()).isEqualTo(List.of("pobi", "jun", "woni"));
+    }
+
     @DisplayName("이름 길이가 범위를 벗어날 때, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"1","12345"})
-    void checkNameLength(String name){
+    @ValueSource(strings = {"1", "12345"})
+    void checkNameLength(String name) {
         assertThatThrownBy(() -> new Coaches(List.of(name, "123")))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
     @DisplayName("코치의 수가 범위를 벗어날 때, 예외 처리")
     @Test
-    void checkCount(){
+    void checkCount() {
         assertThatThrownBy(() -> new Coaches(List.of("12")))
                 .isInstanceOf(IllegalArgumentException.class);
 
