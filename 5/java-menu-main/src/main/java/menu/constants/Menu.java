@@ -72,4 +72,14 @@ public enum Menu {
     public String getCategory() {
         return category;
     }
+
+    public static boolean checkExistence(String menuName){
+        for (Menu menu : Menu.values()) {
+            if (menu.getMenu().equals(menuName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
