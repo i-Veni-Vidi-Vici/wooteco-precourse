@@ -1,5 +1,7 @@
 package menu.domain;
 
+import static menu.constants.Value.FIRST_INDEX;
+
 import camp.nextstep.edu.missionutils.Randoms;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -12,6 +14,7 @@ public class Menus {
 
     public Menus() {
         menus = new LinkedHashMap<>();
+
         for (Menu menu : Menu.values()) {
             List<String> menuList = menus.getOrDefault(menu.getCategory(), new ArrayList<>());
             menuList.add(menu.getMenu());
@@ -49,7 +52,7 @@ public class Menus {
 
     private void checkMenu(String category, List<String> recommendedMenus, List<String> inedibleMenus) {
         while (true) {
-            String menu = Randoms.shuffle(menus.get(category)).get(0);
+            String menu = Randoms.shuffle(menus.get(category)).get(FIRST_INDEX.get());
 
             if (!recommendedMenus.contains(menu) && !inedibleMenus.contains(menu)) {
                 recommendedMenus.add(menu);

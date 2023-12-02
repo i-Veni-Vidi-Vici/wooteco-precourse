@@ -1,15 +1,18 @@
 package menu.view;
 
+import static menu.constants.Message.COACHES_INPUT;
+import static menu.constants.Message.INEDIBLE_MENU_INPUT;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public String getCoaches() {
-        System.out.println("코치의 이름을 입력해 주세요. (, 로 구분)");
+        System.out.println(COACHES_INPUT.getMessage());
         return Console.readLine();
     }
 
     public String getInedibleMenu(String coach) {
-        System.out.println(coach + "(이)가 못 먹는 메뉴를 입력해 주세요.");
+        System.out.println(coach + INEDIBLE_MENU_INPUT.getMessage());
         return Console.readLine();
     }
 }

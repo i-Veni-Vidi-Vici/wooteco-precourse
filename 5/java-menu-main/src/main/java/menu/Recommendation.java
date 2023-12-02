@@ -1,5 +1,8 @@
 package menu;
 
+import static menu.constants.Condition.FALSE;
+import static menu.constants.Condition.TRUE;
+
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +33,6 @@ public class Recommendation {
 
         outputView.printRecommendations(recommendedCategories,
                 recommendMenus(recommendedCategories, inedibleMenus));
-
         outputView.printCompletion();
     }
 
@@ -56,13 +58,13 @@ public class Recommendation {
     }
 
     private Coaches createCoach() {
-        boolean isCreating = true;
+        boolean isCreating = TRUE.get();
         Coaches coaches = null;
 
         while (isCreating) {
             try {
                 coaches = new Coaches(converter.convertToList(inputView.getCoaches()));
-                isCreating = false;
+                isCreating = FALSE.get();
             } catch (IllegalArgumentException exception) {
                 outputView.printError(exception.getMessage());
             }
@@ -72,13 +74,13 @@ public class Recommendation {
     }
 
     private InedibleMenus createInedibleMenus(String coach) {
-        boolean isCreating = true;
+        boolean isCreating = TRUE.get();
         InedibleMenus inedibleMenus = null;
 
         while (isCreating) {
             try {
                 inedibleMenus = new InedibleMenus(converter.convertToList(inputView.getInedibleMenu(coach)));
-                isCreating = false;
+                isCreating = FALSE.get();
             } catch (IllegalArgumentException exception) {
                 outputView.printError(exception.getMessage());
             }

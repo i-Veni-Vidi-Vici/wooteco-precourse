@@ -56,7 +56,6 @@ public enum Menu {
     PIZZA("피자", "양식"),
     PANINI("파니니", "양식");
 
-
     private final String menu;
     private final String category;
 

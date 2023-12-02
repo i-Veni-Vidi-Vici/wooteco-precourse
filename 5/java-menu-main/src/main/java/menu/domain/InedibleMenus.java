@@ -1,5 +1,10 @@
 package menu.domain;
 
+import static menu.constants.Error.MENU_COUNT_ERROR;
+import static menu.constants.Error.MENU_DUPLICATION_ERROR;
+import static menu.constants.Error.NON_EXISTENT_MENU_ERROR;
+import static menu.constants.Value.MAX_MENU_COUNT;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -17,21 +22,21 @@ public class InedibleMenus {
     }
 
     private void checkCount(List<String> inedibleMenus) {
-        if (inedibleMenus.size() > 2) {
-            throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴 개수는 2개이하 이어야 합니다.");
+        if (inedibleMenus.size() > MAX_MENU_COUNT.get()) {
+            throw new IllegalArgumentException(MENU_COUNT_ERROR.getMessage());
         }
     }
 
     private void checkDuplication(List<String> inedibleMenus) {
         if (new HashSet<>(inedibleMenus).size() != inedibleMenus.size()) {
-            throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴가 중복됩니다.");
+            throw new IllegalArgumentException(MENU_DUPLICATION_ERROR.getMessage());
         }
     }
 
     private void checkMenu(List<String> inedibleMenus) {
         for (String inedibleMenu : inedibleMenus) {
             if (!Menu.checkExistence(inedibleMenu)) {
-                throw new IllegalArgumentException("[ERROR] 못 먹는 메뉴가 존재하지 않습니다.");
+                throw new IllegalArgumentException(NON_EXISTENT_MENU_ERROR.getMessage());
             }
         }
     }

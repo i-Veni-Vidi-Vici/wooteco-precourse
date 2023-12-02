@@ -1,5 +1,15 @@
 package menu.domain;
 
+import static menu.constants.CoachValue.MAX_COACH_COUNT;
+import static menu.constants.CoachValue.MAX_NAME_LENGTH;
+import static menu.constants.CoachValue.MIN_COACH_COUNT;
+import static menu.constants.CoachValue.MIN_NAME_LENGTH;
+import static menu.constants.Error.BLANK_ERROR;
+import static menu.constants.Error.COACH_COUNT_ERROR;
+import static menu.constants.Error.COACH_DUPLICATION_ERROR;
+import static menu.constants.Error.COACH_LENGTH_ERROR;
+import static menu.constants.Error.WHITESPACE_ERROR;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -18,28 +28,28 @@ public class Coaches {
 
     private void checkNameLength(List<String> coaches) {
         for (String coach : coaches) {
-            if (coach.length() < 2 || coach.length() > 4) {
-                throw new IllegalArgumentException("[ERROR] 코치 이름 길이는 2~4자 이어야 입니다.");
+            if ((coach.length() < MIN_NAME_LENGTH.get()) || (coach.length() > MAX_NAME_LENGTH.get())) {
+                throw new IllegalArgumentException(COACH_LENGTH_ERROR.getMessage());
             }
         }
     }
 
     private void checkCount(List<String> coaches) {
-        if (coaches.size() < 2 || coaches.size() > 5) {
-            throw new IllegalArgumentException("[ERROR] 코치는 2~5명 이어야 합니다.");
+        if ((coaches.size() < MIN_COACH_COUNT.get()) || (coaches.size() > MAX_COACH_COUNT.get())) {
+            throw new IllegalArgumentException(COACH_COUNT_ERROR.getMessage());
         }
     }
 
     private void checkDuplication(List<String> coaches) {
-        if (new HashSet<>(coaches).size() != coaches.size()) {
-            throw new IllegalArgumentException("[ERROR] 코치 이름이 중복 됩니다.");
+        if ((new HashSet<>(coaches).size()) != coaches.size()) {
+            throw new IllegalArgumentException(COACH_DUPLICATION_ERROR.getMessage());
         }
     }
 
     private void checkBlank(List<String> coaches) {
         for (String coach : coaches) {
             if (coach.isBlank()) {
-                throw new IllegalArgumentException("[ERROR] 코치 이름이 공백으로 이루어져 있습니다.");
+                throw new IllegalArgumentException(BLANK_ERROR.getMessage());
             }
         }
     }
@@ -47,7 +57,7 @@ public class Coaches {
     private void checkWhitespace(List<String> coaches) {
         for (String coach : coaches) {
             if (coach.trim().length() != coach.length()) {
-                throw new IllegalArgumentException("[ERROR] 코치 이름 앞 또는 뒤에 공백이 포함 됩니다.");
+                throw new IllegalArgumentException(WHITESPACE_ERROR.getMessage());
             }
         }
     }
