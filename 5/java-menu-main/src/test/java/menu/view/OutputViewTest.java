@@ -34,8 +34,8 @@ public class OutputViewTest {
 
     @DisplayName("메뉴 추천 결과 출력")
     @Test
-    void printRecommendation() {
-        outputView.printRecommendation(List.of("한식", "한식", "일식", "중식", "아시안"), Map.of(
+    void printRecommendations() {
+        outputView.printRecommendations(List.of("한식", "한식", "일식", "중식", "아시안"), Map.of(
                 "토미", List.of("쌈밥", "김치찌개", "미소시루", "짜장면", "팟타이"),
                 "제임스", List.of("된장찌개", "비빔밥", "가츠동", "토마토 달걀볶음", "파인애플 볶음밥"),
                 "포코", List.of("된장찌개", "불고기", "하이라이스", "탕수육", "나시고렝")
