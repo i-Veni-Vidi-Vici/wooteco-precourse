@@ -13,5 +13,4 @@ public class CoinTest {
     void calculate(){
         assertThat(Coin.calculate(450)).isEqualTo(Arrays.asList(0,4,1,0));
     }
-
 }
