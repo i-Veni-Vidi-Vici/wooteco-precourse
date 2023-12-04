@@ -1,5 +1,6 @@
 package vendingmachine.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.Arrays;
@@ -32,5 +33,15 @@ public class ProductsTest {
     void createByCountZero() {
         assertThatThrownBy(() -> new Products(Collections.singletonMap("콜라", Arrays.asList(1000, 0))))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("상품 판매")
+    @Test
+    void sell() {
+        Products products = new Products(Collections.singletonMap("콜라", Arrays.asList(1000, 3)));
+
+        products.sell("콜라");
+
+        assertThat(products.get().get("콜라").get(1)).isEqualTo(2);
     }
 }
