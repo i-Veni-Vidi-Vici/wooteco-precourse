@@ -1,11 +1,14 @@
 package vendingmachine.domain;
 
+import static vendingmachine.constants.Error.MONEY_ERROR;
+import static vendingmachine.constants.Value.MIN_MONEY_UNIT;
+import static vendingmachine.constants.Value.REMAINDER_ZERO;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 import vendingmachine.constants.Coin;
 
 public class Change {
-
     private final Map<String, Integer> coins;
     private final Integer money;
 
@@ -16,8 +19,8 @@ public class Change {
     }
 
     private void checkMoney(Integer money){
-        if ((money % 10) != 0) {
-            throw new IllegalArgumentException("[ERROR] 금액은 10원 단위 이어야 합니다.");
+        if ((money % MIN_MONEY_UNIT.get()) != REMAINDER_ZERO.get()) {
+            throw new IllegalArgumentException(MONEY_ERROR.getMessage());
         }
     }
 

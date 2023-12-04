@@ -1,5 +1,8 @@
 package vendingmachine;
 
+import static vendingmachine.constants.Condition.FALSE;
+import static vendingmachine.constants.Condition.TRUE;
+
 import vendingmachine.domain.Change;
 import vendingmachine.domain.Products;
 import vendingmachine.domain.User;
@@ -32,13 +35,13 @@ public class VendingMachine {
     }
 
     private Change setMoney() {
-        boolean isSetting = true;
+        boolean isSetting = TRUE.get();
         Change change = null;
 
         while (isSetting) {
             try {
                 change = new Change(converter.convertToNumber(inputView.getHavingMoney()));
-                isSetting = false;
+                isSetting = FALSE.get();
             } catch (IllegalArgumentException exception) {
                 outputView.printError(exception.getMessage());
             }
@@ -48,13 +51,13 @@ public class VendingMachine {
     }
 
     private Products setProduct() {
-        boolean isSetting = true;
+        boolean isSetting = TRUE.get();
         Products products = null;
 
         while (isSetting) {
             try {
                 products = new Products(converter.convertToMap(inputView.getProduct()));
-                isSetting = false;
+                isSetting = FALSE.get();
             } catch (IllegalArgumentException exception) {
                 outputView.printError(exception.getMessage());
             }
@@ -64,13 +67,13 @@ public class VendingMachine {
     }
 
     private User putMoney() {
-        boolean isPutting = true;
+        boolean isPutting = TRUE.get();
         User user = null;
 
         while (isPutting) {
             try {
                 user = new User(converter.convertToNumber(inputView.getMoney()));
-                isPutting = false;
+                isPutting = FALSE.get();
             } catch (IllegalArgumentException exception) {
                 outputView.printError(exception.getMessage());
             }

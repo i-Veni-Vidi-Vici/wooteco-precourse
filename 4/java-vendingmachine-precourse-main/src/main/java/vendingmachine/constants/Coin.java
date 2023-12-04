@@ -20,16 +20,16 @@ public enum Coin {
     public static Map<String, Integer> calculate(Integer money) {
         Map<String, Integer> coins = new LinkedHashMap<>();
 
-        coins.put("500원", money / 500);
-        money %= 500;
+        coins.put(COIN_500.name, money / COIN_500.amount);
+        money %= COIN_500.amount;
 
-        coins.put("100원", money / 100);
-        money %= 100;
+        coins.put(COIN_100.name, money / COIN_100.amount);
+        money %= COIN_100.amount;
 
-        coins.put("50원", money / 50);
-        money %= 50;
+        coins.put(COIN_50.name, money / COIN_50.amount);
+        money %= COIN_50.amount;
 
-        coins.put("10원", money / 10);
+        coins.put(COIN_10.name, money / COIN_10.amount);
 
         return coins;
     }

@@ -1,5 +1,24 @@
 package vendingmachine.utility;
 
+import static vendingmachine.constants.Error.BLANK_ERROR;
+import static vendingmachine.constants.Error.COMMA_ERROR;
+import static vendingmachine.constants.Error.DUPLICATION_ERROR;
+import static vendingmachine.constants.Error.FIRST_ZERO_ERROR;
+import static vendingmachine.constants.Error.FORM_ERROR;
+import static vendingmachine.constants.Error.NUMBER_ERROR;
+import static vendingmachine.constants.Error.SEMI_COLON_ERROR;
+import static vendingmachine.constants.Symbol.COMMA;
+import static vendingmachine.constants.Symbol.EMPTY;
+import static vendingmachine.constants.Symbol.LEFT_SQUARE_BRACKET;
+import static vendingmachine.constants.Symbol.RIGHT_SQUARE_BRACKET;
+import static vendingmachine.constants.Symbol.SEMI_COLON;
+import static vendingmachine.constants.Value.ASCII_ZERO;
+import static vendingmachine.constants.Value.FIRST_CHARACTER;
+import static vendingmachine.constants.Value.FIRST_INDEX;
+import static vendingmachine.constants.Value.FORM_SIZE;
+import static vendingmachine.constants.Value.SECOND_INDEX;
+import static vendingmachine.constants.Value.TWO_LENGTH;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -17,19 +36,19 @@ public class Converter {
         try {
             Integer.parseInt(value);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("[ERROR] 정수만 입력해 주세요.");
+            throw new IllegalArgumentException(NUMBER_ERROR.getMessage());
         }
     }
 
     private void checkFirstZero(String value) {
-        if ((value.length() >= 2) && (value.charAt(0) == '0')) {
-            throw new IllegalArgumentException("[ERROR] 숫자 앞에 0을 입력하지 마세요.");
+        if ((value.length() >= TWO_LENGTH.get()) && (value.charAt(FIRST_CHARACTER.get()) == ASCII_ZERO.get())) {
+            throw new IllegalArgumentException(FIRST_ZERO_ERROR.getMessage());
         }
     }
 
     public Map<String, List<Integer>> convertToMap(String value) {
         checkSemiColon(value);
-        List<String> splitValues = Arrays.asList(value.split(";"));
+        List<String> splitValues = Arrays.asList(value.split(SEMI_COLON.get()));
         Map<String, List<Integer>> products = new HashMap<>();
 
         checkSquareBracket(splitValues);
@@ -44,11 +63,12 @@ public class Converter {
     private void createMap(Map<String, List<Integer>> products, List<String> splitValues) {
         for (String splitValue : splitValues) {
             checkComma(splitValue);
-            List<String> splitProduct = Arrays.asList(splitValue.split(","));
+            List<String> splitProduct = Arrays.asList(splitValue.split(COMMA.get()));
             checkForm(splitProduct);
-            checkBlank(splitProduct.get(0));
+            checkBlank(splitProduct.get(FIRST_INDEX.get()));
 
-            products.put(splitProduct.get(0), convertToList(splitProduct.subList(1, splitProduct.size())));
+            products.put(splitProduct.get(FIRST_INDEX.get()),
+                    convertToList(splitProduct.subList(SECOND_INDEX.get(), splitProduct.size())));
         }
     }
 
@@ -64,14 +84,14 @@ public class Converter {
 
     private void checkBlank(String value) {
         if (value.trim().isEmpty()) {
-            throw new IllegalArgumentException("[ERROR] 상품명을 공백으로 입력하지 마세요.");
+            throw new IllegalArgumentException(BLANK_ERROR.getMessage());
         }
     }
 
     private void removeSquareBracket(List<String> values) {
         for (int index = 0; index < values.size(); index++) {
             values.set(index, values.get(index)
-                    .replace("[", "").replace("]", ""));
+                    .replace(LEFT_SQUARE_BRACKET.get(), EMPTY.get()).replace(RIGHT_SQUARE_BRACKET.get(), EMPTY.get()));
         }
     }
 
@@ -83,46 +103,46 @@ public class Converter {
     }
 
     private void checkExistenceOfSquareBracket(String value) {
-        if (!(value.startsWith("[") && value.endsWith("]"))) {
-            throw new IllegalArgumentException("[ERROR] 양식에 맞게 입력해 주세요.");
+        if (!(value.startsWith(LEFT_SQUARE_BRACKET.get()) && value.endsWith(RIGHT_SQUARE_BRACKET.get()))) {
+            throw new IllegalArgumentException(FORM_ERROR.getMessage());
         }
     }
 
     private void checkOneSquareBracket(String value) {
         Integer count = 0;
 
-        for (char oneLetter : value.toCharArray()) {
-            if ((oneLetter == '[') || (oneLetter == ']')) {
+        for (String oneLetter : value.split(EMPTY.get())) {
+            if ((oneLetter.equals(LEFT_SQUARE_BRACKET.get())) || (oneLetter.equals(RIGHT_SQUARE_BRACKET.get()))) {
                 count++;
             }
         }
 
         if (count > 2) {
-            throw new IllegalArgumentException("[ERROR] 양식에 맞게 입력해 주세요.");
+            throw new IllegalArgumentException(FORM_ERROR.getMessage());
         }
     }
 
     private void checkDuplication(List<String> originalValues, Map<String, List<Integer>> processedValues) {
         if (originalValues.size() != processedValues.size()) {
-            throw new IllegalArgumentException("[ERROR] 상품이 중복됩니다.");
+            throw new IllegalArgumentException(DUPLICATION_ERROR.getMessage());
         }
     }
 
     private void checkForm(List<String> splitMenu) {
-        if (splitMenu.size() != 3) {
-            throw new IllegalArgumentException("[ERROR] 양식에 맞게 입력해 주세요.");
+        if (splitMenu.size() != FORM_SIZE.get()) {
+            throw new IllegalArgumentException(FORM_ERROR.getMessage());
         }
     }
 
     private void checkComma(String value) {
-        if (value.endsWith(",")) {
-            throw new IllegalArgumentException("[ERROR] 수량 뒤에 콤마(,)를 입력하지 마세요.");
+        if (value.endsWith(COMMA.get())) {
+            throw new IllegalArgumentException(COMMA_ERROR.getMessage());
         }
     }
 
     private void checkSemiColon(String value) {
-        if (value.endsWith(";")) {
-            throw new IllegalArgumentException("[ERROR] 문자열 마지막에 세미콜론(;)를 입력하지 마세요.");
+        if (value.endsWith(SEMI_COLON.get())) {
+            throw new IllegalArgumentException(SEMI_COLON_ERROR.getMessage());
         }
     }
 }

@@ -1,5 +1,13 @@
 package vendingmachine.view;
 
+import static vendingmachine.constants.Message.CHANGE;
+import static vendingmachine.constants.Message.COIN;
+import static vendingmachine.constants.Message.COUNT;
+import static vendingmachine.constants.Message.MONEY;
+import static vendingmachine.constants.Message.WON;
+import static vendingmachine.constants.Symbol.HYPHEN;
+import static vendingmachine.constants.Symbol.WHITESPACE;
+
 import java.util.Map;
 
 public class OutputView {
@@ -10,23 +18,25 @@ public class OutputView {
 
     public void printCoin(Map<String, Integer> coins) {
         System.out.println();
-        System.out.println("자판기가 보유한 동전");
+        System.out.println(COIN.getMessage());
 
         for (String coin : coins.keySet()) {
-            System.out.println(coin + " - " + coins.get(coin) + "개");
+            System.out.println(
+                    coin + WHITESPACE.get() + HYPHEN.get() + WHITESPACE.get() + coins.get(coin) + COUNT.getMessage());
         }
     }
 
     public void printMoney(Integer money) {
         System.out.println();
-        System.out.println("투입 금액: " + money + "원");
+        System.out.println(MONEY.getMessage() + money + WON.getMessage());
     }
 
     public void printChange(Map<String, Integer> change) {
-        System.out.println("잔돈");
+        System.out.println(CHANGE.getMessage());
 
         for (String coin : change.keySet()) {
-            System.out.println(coin + " - " + change.get(coin) + "개");
+            System.out.println(
+                    coin + WHITESPACE.get() + HYPHEN.get() + WHITESPACE.get() + change.get(coin) + COUNT.getMessage());
         }
     }
 }
