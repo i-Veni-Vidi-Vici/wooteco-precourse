@@ -5,6 +5,7 @@ import java.util.Map;
 import vendingmachine.constants.Coin;
 
 public class Change {
+
     private final Map<String, Integer> coins;
     private final Integer money;
 
@@ -43,5 +44,9 @@ public class Change {
         }
 
         return convertedCoins;
+    }
+
+    public Map<String, Integer> getCoins() {
+        return coins;
     }
 }
