@@ -24,13 +24,13 @@ public class EventPlanner {
     }
 
     private ReservedDate reserveDate() {
-        boolean isReserving = TRUE.get();
+        boolean isReserving = true;
         ReservedDate reservedDate = null;
 
         while (isReserving) {
             try {
                 reservedDate = new ReservedDate(converter.convertToNumber(inputView.getDate()));
-                isReserving = FALSE.get();
+                isReserving = false;
             } catch (IllegalArgumentException exception) {
                 outputView.printError("[ERROR]");
             }
