@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class UserTest {
     @DisplayName("상품 금액 지불")
     @Test
-    void pay(){
+    void pay() {
         User user = new User(3000);
 
         user.pay(1500);

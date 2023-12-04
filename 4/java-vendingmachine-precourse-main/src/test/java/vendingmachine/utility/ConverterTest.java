@@ -104,7 +104,7 @@ public class ConverterTest {
 
     @DisplayName("대괄호가 앞 뒤에 존재하지 않으면, 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"[콜라,1500,20", "콜라,1500,20]","콜라,1500,20"})
+    @ValueSource(strings = {"[콜라,1500,20", "콜라,1500,20]", "콜라,1500,20"})
     void convertToMapByNonexistenceSquareBracket(String value) {
         assertThatThrownBy(() -> converter.convertToMap(value))
                 .isInstanceOf(IllegalArgumentException.class);
@@ -112,7 +112,7 @@ public class ConverterTest {
 
     @DisplayName("대괄호가 한쌍 이외에 존재할 때 , 예외 처리")
     @ParameterizedTest
-    @ValueSource(strings = {"[[콜라,1500,20]", "[콜라,1500,20]]", "[콜라],1500,20]","[[콜라,1500,20]]"})
+    @ValueSource(strings = {"[[콜라,1500,20]", "[콜라,1500,20]]", "[콜라],1500,20]", "[[콜라,1500,20]]"})
     void convertToMapByManySquareBracket(String value) {
         assertThatThrownBy(() -> converter.convertToMap(value))
                 .isInstanceOf(IllegalArgumentException.class);

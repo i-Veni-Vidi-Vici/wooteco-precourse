@@ -8,7 +8,6 @@ import java.util.Collections;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class ProductsTest {
@@ -84,7 +83,6 @@ public class ProductsTest {
         assertThat(products.isExistence()).isTrue();
 
         products.sell("콜라", 1500);
-
         assertThat(products.isExistence()).isFalse();
     }
 

@@ -45,6 +45,7 @@ public class OutputViewTest {
         assertThat(out.toString())
                 .contains("투입 금액: 3000원");
     }
+
     @DisplayName("잔돈 출력")
     @Test
     void printChange() {

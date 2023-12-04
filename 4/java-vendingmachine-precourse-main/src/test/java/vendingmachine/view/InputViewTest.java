@@ -2,9 +2,7 @@ package vendingmachine.view;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import camp.nextstep.edu.missionutils.Console;
 import java.io.ByteArrayInputStream;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +15,6 @@ public class InputViewTest {
     static void beforeAll() {
         inputView = new InputView();
     }
-
 
     @DisplayName("자판기 보유 금액 입력")
     @Test
