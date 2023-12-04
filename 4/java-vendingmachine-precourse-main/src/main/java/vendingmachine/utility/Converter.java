@@ -17,13 +17,13 @@ public class Converter {
         try {
             Integer.parseInt(value);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 정수만 입력해 주세요.");
         }
     }
 
     private void checkFirstZero(String value) {
         if ((value.length() >= 2) && (value.charAt(0) == '0')) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 숫자 앞에 0을 입력하지 마세요.");
         }
     }
 
@@ -64,7 +64,7 @@ public class Converter {
 
     private void checkBlank(String value) {
         if (value.trim().isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 상품명을 공백으로 입력하지 마세요.");
         }
     }
 
@@ -84,7 +84,7 @@ public class Converter {
 
     private void checkExistenceOfSquareBracket(String value) {
         if (!(value.startsWith("[") && value.endsWith("]"))) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 양식에 맞게 입력해 주세요.");
         }
     }
 
@@ -98,31 +98,31 @@ public class Converter {
         }
 
         if (count > 2) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 양식에 맞게 입력해 주세요.");
         }
     }
 
     private void checkDuplication(List<String> originalValues, Map<String, List<Integer>> processedValues) {
         if (originalValues.size() != processedValues.size()) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 상품이 중복됩니다.");
         }
     }
 
     private void checkForm(List<String> splitMenu) {
         if (splitMenu.size() != 3) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 양식에 맞게 입력해 주세요.");
         }
     }
 
     private void checkComma(String value) {
         if (value.endsWith(",")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 수량 뒤에 콤마(,)를 입력하지 마세요.");
         }
     }
 
     private void checkSemiColon(String value) {
         if (value.endsWith(";")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR] 문자열 마지막에 세미콜론(;)를 입력하지 마세요.");
         }
     }
 }
