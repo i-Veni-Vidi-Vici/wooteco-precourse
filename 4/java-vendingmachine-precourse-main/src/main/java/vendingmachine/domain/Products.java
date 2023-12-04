@@ -38,6 +38,26 @@ public class Products {
         }
     }
 
+    public boolean isExistence(){
+        Integer count = 0;
+
+        for (String product : products.keySet()) {
+            count += products.get(product).get(1);
+        }
+
+        return count != 0;
+    }
+
+    public boolean canPurchase(Integer money){
+        for (String product : products.keySet()) {
+            if (products.get(product).get(0) <= money) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public Integer sell(String product, Integer money) {
         checkProduct(product);
         checkCount(product);

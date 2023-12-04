@@ -8,6 +8,7 @@ import java.util.Collections;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class ProductsTest {
@@ -73,5 +74,26 @@ public class ProductsTest {
 
         assertThatThrownBy(() -> products.sell("콜라1", money))
                 .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("판매할 상품이 존재하는지 확인")
+    @Test
+    void isExistence() {
+        Products products = new Products(Collections.singletonMap("콜라", Arrays.asList(1500, 1)));
+
+        assertThat(products.isExistence()).isTrue();
+
+        products.sell("콜라", 1500);
+
+        assertThat(products.isExistence()).isFalse();
+    }
+
+    @DisplayName("어떠한 상품이라도 구매할 수 있는지 확인")
+    @Test
+    void canPurchase() {
+        Products products = new Products(Collections.singletonMap("콜라", Arrays.asList(1500, 1)));
+
+        assertThat(products.canPurchase(1000)).isFalse();
+        assertThat(products.canPurchase(1500)).isTrue();
     }
 }

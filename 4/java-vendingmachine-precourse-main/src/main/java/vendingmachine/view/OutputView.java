@@ -1,6 +1,5 @@
 package vendingmachine.view;
 
-
 import java.util.Map;
 
 public class OutputView {
@@ -10,6 +9,7 @@ public class OutputView {
     }
 
     public void printCoin(Map<String, Integer> coins) {
+        System.out.println();
         System.out.println("자판기가 보유한 동전");
 
         for (String coin : coins.keySet()) {
@@ -18,6 +18,7 @@ public class OutputView {
     }
 
     public void printMoney(Integer money) {
+        System.out.println();
         System.out.println("투입 금액: " + money + "원");
     }
 

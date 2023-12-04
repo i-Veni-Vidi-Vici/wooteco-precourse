@@ -9,11 +9,13 @@ public class InputView {
     }
 
     public String getProduct() {
+        System.out.println();
         System.out.println("상품명과 가격, 수량을 입력해 주세요.");
         return Console.readLine();
     }
 
     public String getMoney() {
+        System.out.println();
         System.out.println("투입 금액을 입력해 주세요.");
         return Console.readLine();
     }
