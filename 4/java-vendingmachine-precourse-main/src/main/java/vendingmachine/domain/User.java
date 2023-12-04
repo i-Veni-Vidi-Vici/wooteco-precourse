@@ -7,7 +7,7 @@ public class User {
         this.money = money;
     }
 
-    public void purchase(Integer price) {
+    public void pay(Integer price) {
         if (money >= price) {
             money -= price;
         }
