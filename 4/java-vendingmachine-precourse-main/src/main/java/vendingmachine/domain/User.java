@@ -7,12 +7,9 @@ public class User {
         this.money = money;
     }
 
-    public boolean purchase(Integer price) {
+    public void purchase(Integer price) {
         if (money >= price) {
             money -= price;
-        }
-        if (money < price) {
-            throw new IllegalArgumentException("[ERROR] 보유한 금액이 상품 가격보다 적습니다.");
         }
     }
 

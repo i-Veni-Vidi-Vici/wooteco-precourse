@@ -40,8 +40,38 @@ public class ProductsTest {
     void sell() {
         Products products = new Products(Collections.singletonMap("콜라", Arrays.asList(1000, 3)));
 
-        products.sell("콜라");
+        products.sell("콜라", 1500);
 
         assertThat(products.get().get("콜라").get(1)).isEqualTo(2);
+    }
+
+    @DisplayName("상품 판매 시, 존재하지 않는 상품 일때, 예외 처리")
+    @Test
+    void sellByNotProduct() {
+        Products products = new Products(Collections.singletonMap("콜라", Arrays.asList(1000, 3)));
+
+        assertThatThrownBy(() -> products.sell("콜라1", 1500))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("상품 판매 시, 해당 상품이 매진되어 있을 때, 예외 처리")
+    @Test
+    void sellBySoldOut() {
+        Products products = new Products(Collections.singletonMap("콜라", Arrays.asList(1000, 1)));
+
+        products.sell("콜라", 2000);
+
+        assertThatThrownBy(() -> products.sell("콜라", 1000))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @DisplayName("상품 판매 시, 보유한 금액이 상품 가격보다 적을 때, 예외 처리")
+    @ParameterizedTest
+    @ValueSource(ints = {1499, 1000, 0})
+    void sellByDeficientPrice(Integer money) {
+        Products products = new Products(Collections.singletonMap("콜라", Arrays.asList(1500, 3)));
+
+        assertThatThrownBy(() -> products.sell("콜라1", money))
+                .isInstanceOf(IllegalArgumentException.class);
     }
 }
