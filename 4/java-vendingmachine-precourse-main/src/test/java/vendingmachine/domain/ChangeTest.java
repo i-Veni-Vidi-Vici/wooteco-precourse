@@ -11,7 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 public class ChangeTest {
-    @DisplayName("잔돈이 부족할 때")
+    @DisplayName("잔돈이 부족할 때, 거슬러 주기")
     @Test
     void giveByInsufficient() {
         Change change = new Change(450);
@@ -23,7 +23,7 @@ public class ChangeTest {
         assertThat(change.give(500)).isEqualTo(coins);
     }
 
-    @DisplayName("잔돈이 충분할 때")
+    @DisplayName("잔돈이 충분할 때, 거슬러 주기")
     @Test
     void give() {
         Change change = new Change(450);
