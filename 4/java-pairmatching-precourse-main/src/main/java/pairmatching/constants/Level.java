@@ -1,5 +1,8 @@
 package pairmatching.constants;
 
+import static pairmatching.constants.Error.LEVEL_ERROR;
+import static pairmatching.constants.Error.MISSION_ERROR;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +30,7 @@ public enum Level {
             }
         }
 
-        throw new IllegalArgumentException("[ERROR]");
+        throw new IllegalArgumentException(LEVEL_ERROR.getMessage());
     }
 
     public static void checkMissionExistence(String name) {
@@ -37,6 +40,6 @@ public enum Level {
             }
         }
 
-        throw new IllegalArgumentException("[ERROR]");
+        throw new IllegalArgumentException(MISSION_ERROR.getMessage());
     }
 }

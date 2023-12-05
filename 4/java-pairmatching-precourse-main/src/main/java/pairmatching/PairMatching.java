@@ -118,7 +118,7 @@ public class PairMatching {
 
         while (isSelecting) {
             try {
-                choice = Choice.checkExistence(inputView.getNewMatching());
+                choice = Choice.check(inputView.getNewMatching());
                 isSelecting = FALSE.get();
             } catch (IllegalArgumentException exception) {
                 outputView.printError(exception.getMessage());
