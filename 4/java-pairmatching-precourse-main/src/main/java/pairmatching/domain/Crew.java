@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,28 +41,32 @@ public class Crew {
         }
     }
 
-    public List<String> match(String type) {
+    public List<String> match(String information) {
         List<String> crews = new ArrayList<>();
         Converter converter = new Converter();
-        List<String> types = converter.convertToList(type);
+        List<String> threeInformation = converter.convertToList(information);
 
-        if (types.get(0).equals("백엔드")) {
+        if (threeInformation.get(0).equals("백엔드")) {
             crews = Randoms.shuffle(backendCrews);
         }
-        if (types.get(0).equals("프론트엔드")) {
+        if (threeInformation.get(0).equals("프론트엔드")) {
             crews = Randoms.shuffle(frontendCrews);
         }
 
-        pairCrews.put(type, crews);
+        pairCrews.put(information, crews);
         return crews;
     }
 
-    public boolean checkMatching(String type) {
-        return pairCrews.containsKey(type);
+    public boolean checkMatching(String information) {
+        return pairCrews.containsKey(information);
     }
 
-    public List<String> search(String type) {
-        return pairCrews.get(type);
+    public List<String> search(String information) {
+        return pairCrews.get(information);
+    }
+
+    public void initialize() {
+        pairCrews.clear();
     }
 
 }

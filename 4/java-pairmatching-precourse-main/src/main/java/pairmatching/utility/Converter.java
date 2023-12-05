@@ -19,7 +19,7 @@ public class Converter {
 
     private void checkComma(String value) {
         if (value.endsWith(",")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("[ERROR]");
         }
     }
 }

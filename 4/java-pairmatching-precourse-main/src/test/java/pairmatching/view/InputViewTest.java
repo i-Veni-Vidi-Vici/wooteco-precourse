@@ -26,12 +26,12 @@ public class InputViewTest {
         assertThat(inputView.getFunction()).isEqualTo("1");
     }
 
-    @DisplayName("페어 매칭 입력")
+    @DisplayName("페어 매칭 정보 입력")
     @Test
-    void getMatching() {
+    void getInformation() {
         System.setIn(new ByteArrayInputStream("백엔드, 레벨1, 자동차경주".getBytes()));
 
-        assertThat(inputView.getMatching()).isEqualTo("백엔드, 레벨1, 자동차경주");
+        assertThat(inputView.getInformation()).isEqualTo("백엔드, 레벨1, 자동차경주");
     }
 
     @DisplayName("새로운 매칭 입력")
