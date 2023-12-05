@@ -43,7 +43,7 @@ public class ConverterTest {
     @DisplayName("문자열을 리스트로 변환")
     @Test
     void convertToList() {
-        assertThat(converter.convertToList("1, 2, 3")).isEqualTo(Arrays.asList(1, 2, 3));
+        assertThat(converter.convertToList("1, 2, 3")).isEqualTo(Arrays.asList("1", "2", "3"));
     }
 
     @DisplayName("문자열 마지막에 콤마가 있을 때, 예외 처리")
