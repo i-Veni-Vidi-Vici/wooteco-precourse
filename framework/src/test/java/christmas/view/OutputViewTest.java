@@ -52,9 +52,9 @@ public class OutputViewTest {
     @DisplayName("에러 메시지 출력")
     @Test
     void printError() {
-        outputView.printError("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+        outputView.printError("[ERROR] message");
 
         assertThat(out.toString())
-                .contains("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+                .contains("[ERROR] message");
     }
 }
