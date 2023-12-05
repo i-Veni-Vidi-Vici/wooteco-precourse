@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import view.OutputView;
 
 public class OutputViewTest {
 
@@ -39,9 +40,9 @@ public class OutputViewTest {
                 .contains("############################################");
     }
 
-    @DisplayName("페어 매칭 결과 출력")
+    @DisplayName("페어 매칭 결과 출력, 홀수 크루")
     @Test
-    void printResult() {
+    void printResultByOddCrews() {
         outputView.printResult(Arrays.asList("이브", "윌터", "보노", "제키", "리사", "덴버", "라라"));
 
         assertThat(out.toString())
@@ -49,6 +50,18 @@ public class OutputViewTest {
                 .contains("이브 : 윌터")
                 .contains("보노 : 제키")
                 .contains("리사 : 덴버 : 라라");
+    }
+
+    @DisplayName("페어 매칭 결과 출력, 짝수 크루")
+    @Test
+    void printResultByEvenCrews() {
+        outputView.printResult(Arrays.asList("이브", "윌터", "보노", "제키", "리사", "덴버"));
+
+        assertThat(out.toString())
+                .contains("페어 매칭 결과입니다.")
+                .contains("이브 : 윌터")
+                .contains("보노 : 제키")
+                .contains("리사 : 덴버");
     }
 
     @DisplayName("페어 초기화 출력")
