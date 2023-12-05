@@ -6,6 +6,7 @@ import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import view.InputView;
 
 public class InputViewTest {
 
@@ -35,9 +36,9 @@ public class InputViewTest {
 
     @DisplayName("새로운 매칭 입력")
     @Test
-    void getMatching() {
+    void getNewMatching() {
         System.setIn(new ByteArrayInputStream("아니오".getBytes()));
 
-        assertThat(inputView.getMatching()).isEqualTo("아니오");
+        assertThat(inputView.getNewMatching()).isEqualTo("아니오");
     }
 }
