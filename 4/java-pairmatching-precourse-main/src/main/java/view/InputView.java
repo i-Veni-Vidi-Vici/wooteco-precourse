@@ -1,26 +1,36 @@
 package view;
 
+import static pairmatching.constants.FunctionValue.FAIR_INITIALIZATION;
+import static pairmatching.constants.FunctionValue.FAIR_MATCHING;
+import static pairmatching.constants.FunctionValue.FAIR_SEARCH;
+import static pairmatching.constants.FunctionValue.QUIT;
+import static pairmatching.constants.Message.FUNCTION_INPUT;
+import static pairmatching.constants.Message.INFORMATION_FORM_INPUT;
+import static pairmatching.constants.Message.INFORMATION_INPUT;
+import static pairmatching.constants.Message.NEW_MATCHING_INPUT;
+import static pairmatching.constants.Message.YES_OR_NO_INPUT;
+
 import camp.nextstep.edu.missionutils.Console;
 
 public class InputView {
     public String getFunction() {
-        System.out.println("기능을 선택하세요.");
-        System.out.println("1. 페어 매칭");
-        System.out.println("2. 페어 조회");
-        System.out.println("3. 페어 초기화");
-        System.out.println("Q. 종료");
+        System.out.println(FUNCTION_INPUT.getMessage());
+        System.out.println(FAIR_MATCHING.getMessage());
+        System.out.println(FAIR_SEARCH.getMessage());
+        System.out.println(FAIR_INITIALIZATION.getMessage());
+        System.out.println(QUIT.getMessage());
         return Console.readLine();
     }
 
     public String getInformation() {
-        System.out.println("과정, 레벨, 미션을 선택하세요.");
-        System.out.println("ex) 백엔드, 레벨1, 자동차경주");
+        System.out.println(INFORMATION_INPUT.getMessage());
+        System.out.println(INFORMATION_FORM_INPUT.getMessage());
         return Console.readLine();
     }
 
     public String getNewMatching() {
-        System.out.println("매칭 정보가 있습니다. 다시 매칭하시겠습니까?");
-        System.out.println("네 | 아니오");
+        System.out.println(NEW_MATCHING_INPUT.getMessage());
+        System.out.println(YES_OR_NO_INPUT.getMessage());
         return Console.readLine();
     }
 }

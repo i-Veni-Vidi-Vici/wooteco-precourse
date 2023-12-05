@@ -1,5 +1,8 @@
 package pairmatching.domain;
 
+import static pairmatching.constants.Value.FIRST_INDEX;
+import static pairmatching.constants.Value.SECOND_INDEX;
+import static pairmatching.constants.Value.THIRD_INDEX;
 
 import java.util.List;
 import pairmatching.constants.Course;
@@ -12,9 +15,9 @@ public class Information {
     public Information(String information) {
         Converter converter = new Converter();
         List<String> threeInformation = converter.convertToList(information);
-        Course.checkExistence(threeInformation.get(0));
-        Level.checkLevelExistence(threeInformation.get(1));
-        Level.checkMissionExistence(threeInformation.get(2));
+        Course.checkExistence(threeInformation.get(FIRST_INDEX.get()));
+        Level.checkLevelExistence(threeInformation.get(SECOND_INDEX.get()));
+        Level.checkMissionExistence(threeInformation.get(THIRD_INDEX.get()));
         this.information = information;
     }
 

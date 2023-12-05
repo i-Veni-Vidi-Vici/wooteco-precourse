@@ -70,7 +70,7 @@ public class OutputViewTest {
         outputView.printResult(Arrays.asList());
 
         assertThat(out.toString())
-                .contains("초기화 되었습니다.");
+                .contains("매칭 이력이 없습니다.");
     }
 
     @DisplayName("페어 초기화 출력")

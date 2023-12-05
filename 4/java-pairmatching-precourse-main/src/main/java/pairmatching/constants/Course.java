@@ -18,4 +18,8 @@ public enum Course {
 
         throw new IllegalArgumentException("[ERROR]");
     }
+
+    public String getName() {
+        return name;
+    }
 }
