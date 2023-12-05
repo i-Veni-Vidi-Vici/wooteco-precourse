@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import pairmatching.utility.Converter;
 
 public class Crew {
     private final List<String> backendCrews;
@@ -42,7 +43,8 @@ public class Crew {
 
     public List<String> match(String type) {
         List<String> crews = new ArrayList<>();
-        List<String> types = Arrays.asList(type.split(","));
+        Converter converter = new Converter();
+        List<String> types = converter.convertToList(type);
 
         if (types.get(0).equals("백엔드")) {
             crews = Randoms.shuffle(backendCrews);
