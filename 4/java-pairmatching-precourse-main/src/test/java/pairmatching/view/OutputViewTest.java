@@ -64,6 +64,15 @@ public class OutputViewTest {
                 .contains("리사 : 덴버");
     }
 
+    @DisplayName("페어 매칭 결과 출력, 매칭 이력이 없을 때")
+    @Test
+    void printResultByNothing() {
+        outputView.printResult(Arrays.asList());
+
+        assertThat(out.toString())
+                .contains("초기화 되었습니다.");
+    }
+
     @DisplayName("페어 초기화 출력")
     @Test
     void printInitialization() {

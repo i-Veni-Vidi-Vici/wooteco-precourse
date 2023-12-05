@@ -24,12 +24,20 @@ public class OutputView {
     public void printResult(List<String> crews) {
         System.out.println("페어 매칭 결과입니다.");
 
+        if (crews.isEmpty()) {
+            printNothing();
+            return;
+        }
         if (crews.size() % 2 == 0) {
             printEvenCrews(crews);
         }
         if (crews.size() % 2 == 1) {
             printOddCrews(crews);
         }
+    }
+
+    private void printNothing(){
+        System.out.println("초기화 되었습니다.");
     }
 
     private void printEvenCrews(List<String> crews){
