@@ -5,6 +5,9 @@
 /out/
 /target/
 
+### file ###
+*.class
+
 ### STS ###
 .apt_generated
 .classpath
