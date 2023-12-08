@@ -1,26 +1,15 @@
-package christmas.view;
+package view;
 
-import static christmas.constants.Message.AMOUNT;
-import static christmas.constants.Message.BADGE;
-import static christmas.constants.Message.BENEFITS;
-import static christmas.constants.Message.BENEFIT_AMOUNT;
 import static christmas.constants.Message.COUNT;
 import static christmas.constants.Message.DATE;
 import static christmas.constants.Message.DECEMBER;
-import static christmas.constants.Message.GIVEAWAY_ITEM;
-import static christmas.constants.Message.GIVEAWAY_TITLE;
 import static christmas.constants.Message.MENU;
-import static christmas.constants.Message.NOTHING;
 import static christmas.constants.Message.PAYMENT_AMOUNT;
 import static christmas.constants.Message.PLANNER;
 import static christmas.constants.Message.WON;
-import static christmas.constants.Symbol.COLON;
-import static christmas.constants.Symbol.HYPHEN;
 import static christmas.constants.Symbol.MONEY_FORMAT;
 import static christmas.constants.Symbol.WHITESPACE;
-import static christmas.constants.Value.ZERO;
 
-import christmas.constants.Badge;
 import java.util.Map;
 
 public class OutputView {
